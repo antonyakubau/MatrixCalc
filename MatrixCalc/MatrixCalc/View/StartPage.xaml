@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MatrixCalc.StartPage"
+             xmlns:vm="clr-namespace:MatrixCalc.ViewModel"
+             BackgroundColor="WhiteSmoke">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:StartPageVM x:Key="vm"/>
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    
+    <StackLayout VerticalOptions="Center"
+                 Margin="50, 0"
+                 >
+        
+        <Label x:Name="startLabel"
+               Margin="0, 0, 0, 80"
+               Text="Matrix Calculator"
+               FontSize="Title"
+               TextColor="Black"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"/>
+
+        <Button x:Name="startButton"
+                
+                Margin="0, 0, 0, 0"
+                Text="Start"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="DarkBlue"
+                TextColor="White"
+                HeightRequest="70"
+
+                Command="{Binding Source={StaticResource vm}, Path=OpenMatrixPage}"/>
+
+        <Button x:Name="aboutButton"
+                Text="About program"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="DarkBlue"
+                TextColor="White"
+                HeightRequest="70"
+                Clicked="aboutButton_Clicked"/>
+    </StackLayout>
+
+</ContentPage>
+
