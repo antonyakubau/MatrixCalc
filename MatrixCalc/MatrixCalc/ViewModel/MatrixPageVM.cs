@@ -22,7 +22,6 @@ namespace MatrixCalc.ViewModel
         private List<GetInfoButton> ButtonList = new List<GetInfoButton>();
         private List<List<int>> Lines = new List<List<int>>();
 
-
         public int Min { get; set; }
         public int Max { get; set; }
         public int Average { get; set; }
