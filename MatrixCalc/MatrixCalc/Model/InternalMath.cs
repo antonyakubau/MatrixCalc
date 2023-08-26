@@ -6,13 +6,13 @@ namespace MatrixCalc.Model
 {
 	public class InternalMath
     {
-        private MatrixPageVM matrixPageVM;
+        private MatrixVM matrixPageVM;
 
         public List<InputEntry> EntryList { get; set; }
         public List<GetInfoButton> ButtonList { get; set; }
         public List<List<int>> Lines { get; set; }
 
-        public InternalMath(MatrixPageVM _matrixPageVM)
+        public InternalMath(MatrixVM _matrixPageVM)
 		{
             matrixPageVM = _matrixPageVM;
 		}
