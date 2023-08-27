@@ -14,7 +14,7 @@ namespace MatrixCalc
         public MatrixPage()
         {
             InitializeComponent();
-            BindingContext = new MatrixPageVM(this, MainMatrix);
+            BindingContext = new MatrixVM(this, MainMatrix);
         }
         
         public async void ShowMessage(int sum, int mult)

@@ -3,10 +3,10 @@ using Xamarin.Forms;
 
 namespace MatrixCalc.ViewModel
 {
-    public class StartPageVM
+    public class StartVM
     {
         public Command OpenMatrixPage { get; set; }
-        public StartPageVM()
+        public StartVM()
         {
             OpenMatrixPage = new Command(Open);
         }

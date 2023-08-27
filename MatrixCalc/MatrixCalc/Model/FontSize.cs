@@ -6,7 +6,7 @@ namespace MatrixCalc.Model
 {
 	public class FontSize
     {
-        private MatrixPageVM matrixPageVM;
+        private MatrixVM matrixPageVM;
 
         public List<InputEntry> EntryList { get; set; }
         public List<GetInfoButton> ButtonList { get; set; }

@@ -10,7 +10,7 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 namespace MatrixCalc.ViewModel
 {
     [AddINotifyPropertyChangedInterface]
-	public class MatrixPageVM
+	public class MatrixVM
 	{
         private MatrixPage matrixPage;
         private Grid MainMatrix;
@@ -26,7 +26,7 @@ namespace MatrixCalc.ViewModel
         public int Max { get; set; }
         public int Average { get; set; }
 
-        public MatrixPageVM(MatrixPage _matrixPage, Grid _MainMatrix)
+        public MatrixVM(MatrixPage _matrixPage, Grid _MainMatrix)
         {
             matrixPage = _matrixPage;
             MainMatrix = _MainMatrix;
