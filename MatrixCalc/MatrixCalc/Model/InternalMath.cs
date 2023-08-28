@@ -14,7 +14,6 @@ namespace MatrixCalc.Model
 		{
 		}
 
-
         public int RefreshMin()
         {
             int currentMin = int.MaxValue;
