@@ -15,7 +15,7 @@ namespace MatrixCalc.ViewModel
         private MatrixPage matrixPage;
         private Grid MainMatrix;
         private int currentMatrixDimension;
-        private InternalMath internalMath;
+        private IPageMath internalMath;
         private readonly Dimension dimension;
 
         private List<InputEntry> EntryList = new List<InputEntry>();
@@ -39,7 +39,7 @@ namespace MatrixCalc.ViewModel
 
             currentMatrixDimension = dimension.StartDimension;
 
-            internalMath = new InternalMath(this)
+            internalMath = new InternalMath()
             {
                 EntryList = this.EntryList,
                 ButtonList = this.ButtonList,
@@ -138,9 +138,9 @@ namespace MatrixCalc.ViewModel
 
         public Command RefreshResults => new Command(() =>
         {
-            internalMath.RefreshMin();
-            internalMath.RefreshMax();
-            internalMath.RefreshAverage();
+            Min = internalMath.RefreshMin();
+            Max = internalMath.RefreshMax();
+            Average = internalMath.RefreshAverage();
         });
 
 

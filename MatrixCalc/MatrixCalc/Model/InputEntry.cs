@@ -10,10 +10,8 @@ namespace MatrixCalc.Model
         public int LineId { get; set; }
         public static double newFontSize { get; set; } = (double)NamedSize.Large * 6;
 
-
         private string value;
-
-
+        
         //todo
         public string NumericText
         {

@@ -22,10 +22,12 @@
     <None Remove="PropertyChanged.Fody" />
     <None Remove="Model\" />
     <None Remove="View\" />
+    <None Remove="Model\MathInterfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
     <Folder Include="Model\" />
     <Folder Include="View\" />
+    <Folder Include="Model\MathInterfaces\" />
   </ItemGroup>
 </Project>

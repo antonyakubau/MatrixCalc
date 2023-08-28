@@ -4,21 +4,17 @@ using MatrixCalc.ViewModel;
 
 namespace MatrixCalc.Model
 {
-	public class InternalMath
+	public class InternalMath : IPageMath
     {
-        private MatrixVM matrixPageVM;
-
         public List<InputEntry> EntryList { get; set; }
         public List<GetInfoButton> ButtonList { get; set; }
         public List<List<int>> Lines { get; set; }
 
-        public InternalMath(MatrixVM _matrixPageVM)
+        public InternalMath()
 		{
-            matrixPageVM = _matrixPageVM;
 		}
 
-
-        public void RefreshMin()
+        public int RefreshMin()
         {
             int currentMin = int.MaxValue;
             foreach (var item in EntryList)
@@ -32,11 +28,11 @@ namespace MatrixCalc.Model
                 }
                 catch (Exception ex)
                 {
-                    matrixPageVM.UpdateMainMatrix();
+                    return -1;
                 }
 
             }
-            matrixPageVM.Min = currentMin;
+            return currentMin;
         }
 
         public int RefreshMin(int lineNum)
@@ -55,14 +51,14 @@ namespace MatrixCalc.Model
                 }
                 catch (Exception ex)
                 {
-                    matrixPageVM.UpdateMainMatrix();
+                    return -1;
                 }
             }
 
             return currentMin;
         }
 
-        public void RefreshMax()
+        public int RefreshMax()
         {
             int currentMax = int.MinValue;
             foreach (var item in EntryList)
@@ -76,11 +72,11 @@ namespace MatrixCalc.Model
                 }
                 catch (Exception ex)
                 {
-                    matrixPageVM.UpdateMainMatrix();
+                    return -1;
                 }
 
             }
-            matrixPageVM.Max = currentMax;
+            return currentMax;
         }
 
         public int RefreshMax(int lineNum)
@@ -99,14 +95,14 @@ namespace MatrixCalc.Model
                 }
                 catch (Exception ex)
                 {
-                    matrixPageVM.UpdateMainMatrix();
+                    return -1;
                 }
             }
 
             return currentMax;
         }
 
-        public void RefreshAverage()
+        public int RefreshAverage()
         {
             int currentSum = 0;
             foreach (var item in EntryList)
@@ -117,11 +113,11 @@ namespace MatrixCalc.Model
                 }
                 catch (Exception ex)
                 {
-                    matrixPageVM.UpdateMainMatrix();
+                    return -1;
                 }
 
             }
-            matrixPageVM.Average = currentSum / EntryList.Count;
+            return currentSum / EntryList.Count;
         }
 
 
@@ -138,7 +134,7 @@ namespace MatrixCalc.Model
                 }
                 catch (Exception ex)
                 {
-                    matrixPageVM.UpdateMainMatrix();
+                    return -1;
                 }
 
             }
@@ -158,7 +154,7 @@ namespace MatrixCalc.Model
                 }
                 catch (Exception ex)
                 {
-                    matrixPageVM.UpdateMainMatrix();
+                    return -1;
                 }
             }
 
