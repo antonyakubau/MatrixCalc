@@ -7,7 +7,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <vm:StartPageVM x:Key="vm"/>
+            <vm:StartVM x:Key="vm"/>
 
         </ResourceDictionary>
 
