@@ -1,10 +1,9 @@
 ﻿using System;
-using MatrixCalc.Model.MatrixInterfaces;
 using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
-	public class InputEntry : BaseEntry, IMatrixEntry
+	public class InputEntry : BaseEntry
 	{
 		public int Row { get; set; }
 		public int Column { get; set; }

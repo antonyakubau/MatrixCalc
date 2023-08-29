@@ -1,11 +1,10 @@
 ﻿using System;
 using MatrixCalc.ViewModel;
-using MatrixCalc.Model.MatrixInterfaces;
 using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
-	public class GetInfoButton : BaseButton, IMatrixButton
+	public class GetInfoButton : BaseButton
     {
 
         public int Row { get; set; }

@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using MatrixCalc.Model.MathInterfaces;
-using MatrixCalc.Model.MatrixInterfaces;
 using MatrixCalc.ViewModel;
 
 namespace MatrixCalc.Model
 {
 	public class InternalMath : IPageMath
     {
-        public List<IMatrixEntry> EntryList { get; set; }
-        public List<IMatrixButton> ButtonList { get; set; }
+        public List<InputEntry> EntryList { get; set; }
+        public List<GetInfoButton> ButtonList { get; set; }
         public List<List<int>> Lines { get; set; }
 
         public InternalMath()
