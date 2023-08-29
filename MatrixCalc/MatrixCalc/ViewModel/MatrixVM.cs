@@ -36,7 +36,6 @@ namespace MatrixCalc.ViewModel
                 LowerBound = 3,
                 UpperBound = 8
             };
-
             currentMatrixDimension = dimension.StartDimension;
 
             internalMath = new InternalMath()

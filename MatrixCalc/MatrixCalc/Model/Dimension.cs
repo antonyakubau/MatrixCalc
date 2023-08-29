@@ -22,7 +22,7 @@ namespace MatrixCalc.Model
                     if (currentMatrixDimension < UpperBound)
                     {
                         currentMatrixDimension++;
-                        GetInfoButton.DecreaseFontSize();
+                        GetInfoButton.DecreaseFontSize(); // try to change
                         InputEntry.DecreaseFontSize();
                         return currentMatrixDimension;
                     }

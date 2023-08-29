@@ -3,6 +3,7 @@ namespace MatrixCalc.Model
 {
 	public interface IPageMath : IFrontMath, ILineMath
 	{
+		//write tests
 	}
 }
 
