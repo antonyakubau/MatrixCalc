@@ -1,5 +1,5 @@
 ﻿using System;
-namespace MatrixCalc.Model
+namespace MatrixCalc.Model.MathInterfaces
 {
 	public interface IFrontMath
     {

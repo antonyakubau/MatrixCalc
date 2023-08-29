@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MatrixCalc.Model;
+using MatrixCalc.Model.MathInterfaces;
+using MatrixCalc.Model.MatrixInterfaces;
 using PropertyChanged;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -18,8 +20,8 @@ namespace MatrixCalc.ViewModel
         private IPageMath internalMath;
         private readonly Dimension dimension;
 
-        private List<InputEntry> EntryList = new List<InputEntry>();
-        private List<GetInfoButton> ButtonList = new List<GetInfoButton>();
+        private List<IMatrixEntry> EntryList = new List<IMatrixEntry>();
+        private List<IMatrixButton> ButtonList = new List<IMatrixButton>();
         private List<List<int>> Lines = new List<List<int>>();
 
         public int Min { get; set; }

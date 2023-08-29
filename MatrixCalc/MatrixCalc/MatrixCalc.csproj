@@ -23,11 +23,13 @@
     <None Remove="Model\" />
     <None Remove="View\" />
     <None Remove="Model\MathInterfaces\" />
+    <None Remove="Model\MatrixInterfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
     <Folder Include="Model\" />
     <Folder Include="View\" />
     <Folder Include="Model\MathInterfaces\" />
+    <Folder Include="Model\MatrixInterfaces\" />
   </ItemGroup>
 </Project>
