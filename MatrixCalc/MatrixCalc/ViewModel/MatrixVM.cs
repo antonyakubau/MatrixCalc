@@ -10,8 +10,8 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 namespace MatrixCalc.ViewModel
 {
     [AddINotifyPropertyChangedInterface]
-	public class MatrixVM
-	{
+    public class MatrixVM
+    {
         private MatrixPage matrixPage;
         private Grid MainMatrix;
         private int currentMatrixDimension;
@@ -45,6 +45,8 @@ namespace MatrixCalc.ViewModel
                 Lines = this.Lines
             };
 
+            EventHandlerDemo.handler += UpdateMainMatrix;
+
 
             UpdateMainMatrix();
         }
@@ -66,27 +68,32 @@ namespace MatrixCalc.ViewModel
                 for (int j = 0; j < currentMatrixDimension; j++)
                 {
                     if ((i == currentMatrixDimension - 1)
-                        || (j == currentMatrixDimension - 1)) 
+                        || (j == currentMatrixDimension - 1))
                     {
                         if (i != j)
                         {
                             GetInfoButton getInfoButton = new GetInfoButton()
-                                {
-                                    Row = i,
-                                    Column = j,
-                                    LineId = buttonId,
-                                    CommandParameter = Convert.ToString(buttonId)
+                            {
+                                Row = i,
+                                Column = j,
+                                LineId = buttonId,
+                                CommandParameter = Convert.ToString(buttonId)
                             };
                             MainMatrix.Children.Add(getInfoButton, j, i);
 
                             ButtonList.Add(getInfoButton);
                             buttonId++;
                         }
+                        else
+                        {
+                            UpdateButton updateButton = new UpdateButton();
+                            MainMatrix.Children.Add(updateButton, j, i);
+                        }
                     }
                     else
                     {
                         InputEntry inputEntry = new InputEntry()
-                        { 
+                        {
                             Text = random.Next(1, 999).ToString(),
                             Row = i,
                             Column = j
@@ -109,12 +116,12 @@ namespace MatrixCalc.ViewModel
                 List<int> line = new List<int>();
                 foreach (var entry in EntryList)
                 {
-                    if ((entry.Row == button.Row )
-                        || (entry.Column == button.Column ))
+                    if ((entry.Row == button.Row)
+                        || (entry.Column == button.Column))
                     {
                         line.Add(Convert.ToInt32(entry.Text));
                     }
-                    
+
                 }
                 Lines.Add(line);
             }
@@ -164,6 +171,11 @@ namespace MatrixCalc.ViewModel
             }
         });
 
+        public Command UpdateFromButton => new Command(() =>
+        {
+            UpdateMainMatrix();
+            EventHandlerDemo.Update();
+        });
     }
 }
 
