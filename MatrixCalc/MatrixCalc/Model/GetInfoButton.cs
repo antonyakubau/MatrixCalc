@@ -6,6 +6,8 @@ namespace MatrixCalc.Model
 {
 	public class GetInfoButton : BaseButton
     {
+        private double initFontSize = (double)NamedSize.Large * 10;
+        private bool initFlag = true;
 
         public int Row { get; set; }
         public int Column { get; set; }

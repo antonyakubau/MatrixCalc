@@ -15,6 +15,8 @@ namespace MatrixCalc
         {
             InitializeComponent();
             BindingContext = new MatrixVM(this, MainMatrix);
+
+            EventHandlerDemo.handler += ShowUpdated;
         }
         
         public async void ShowMessage(int sum, int mult)
@@ -51,6 +53,10 @@ namespace MatrixCalc
                 , "OK");
         }
 
+        public async void ShowUpdated()
+        {
+            await DisplayAlert($"Updated", "", "OK");
+        }
     }
 }
 
