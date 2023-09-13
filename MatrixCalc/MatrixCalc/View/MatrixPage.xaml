@@ -109,7 +109,7 @@
                     TextColor="AliceBlue"
                     BackgroundColor="DarkBlue"
                     Margin="3,3,3,0"
-                    Command="{Binding ChangeDimensionCommand}"
+                    Command="{Binding IncreaseDimensionCommand}"
                     CommandParameter="inc">
 
                     
@@ -124,7 +124,7 @@
                     TextColor="AliceBlue"
                     BackgroundColor="DarkBlue"
                     Margin="3,0,3,3"
-                    Command="{Binding ChangeDimensionCommand}"
+                    Command="{Binding DecreaseDimensionCommand}"
                     CommandParameter="dec">
             </Button>
 

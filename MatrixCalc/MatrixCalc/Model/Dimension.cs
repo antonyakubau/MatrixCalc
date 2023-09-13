@@ -78,7 +78,7 @@ namespace MatrixCalc.Model
                     {
                         currentMatrixDimension++;
                         GetInfoButton.DecreaseFontSize(); // try to change
-                        InputEntry.DecreaseFontSize();
+                        InputEntry.UpdateFontSize();
                         return currentMatrixDimension;
                     }
                     break;
@@ -87,14 +87,39 @@ namespace MatrixCalc.Model
                     {
                         currentMatrixDimension--;
                         GetInfoButton.IncreaseFontSize();
-                        InputEntry.IncreaseFontSize();
+                        InputEntry.UpdateFontSize();
                         return currentMatrixDimension;
                     }
                     break;
             }
             return currentMatrixDimension;
         }
+        public int IncreaseDimension(int currentMatrixDimension)
+        {
+            if (currentMatrixDimension < UpperBound)
+            {
+                currentMatrixDimension++;
+                GetInfoButton.DecreaseFontSize(); // try to change
+                InputEntry.UpdateFontSize();
+                return currentMatrixDimension;
+            }
+                   
+            return currentMatrixDimension;
+        }
 
+
+        public int DecreaseDimension(int currentMatrixDimension)
+        {
+            if (currentMatrixDimension > LowerBound)
+            {
+                currentMatrixDimension--;
+                GetInfoButton.IncreaseFontSize();
+                InputEntry.UpdateFontSize();
+                return currentMatrixDimension;
+            }
+
+            return currentMatrixDimension;
+        }
     }
 }
 

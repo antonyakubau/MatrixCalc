@@ -35,7 +35,7 @@ namespace MatrixCalc.ViewModel
             MainMatrix = _MainMatrix;
             dimension = new Dimension()
             {
-                LowerBound = 2,
+                LowerBound = 3,
                 UpperBound = 8,
                 StartDimension = 6
             };
@@ -129,11 +129,10 @@ namespace MatrixCalc.ViewModel
 
         }
 
-
-        public Command ChangeDimensionCommand => new Command((action) =>
+        public Command IncreaseDimensionCommand => new Command(() =>
         {
-            int newDimension = dimension.ChangeDimension
-            ((string)action, currentMatrixDimension);
+            int newDimension = dimension.IncreaseDimension
+            (currentMatrixDimension);
 
             if (newDimension != currentMatrixDimension)
             {
@@ -142,6 +141,17 @@ namespace MatrixCalc.ViewModel
             }
         });
 
+        public Command DecreaseDimensionCommand => new Command(() =>
+        {
+            int newDimension = dimension.DecreaseDimension
+            (currentMatrixDimension);
+
+            if (newDimension != currentMatrixDimension)
+            {
+                currentMatrixDimension = newDimension;
+                UpdateMainMatrix();
+            }
+        });
         private void ExecuteUpdateResults()
         {
             UpdateResults.Execute(null);

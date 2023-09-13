@@ -13,21 +13,15 @@ namespace MatrixCalc.Model
         public static double newFontSize { get; set; } = (double)NamedSize.Large * 6;
 
 
-        private string value;
-        
-        //todo
+        private string number;
         public string NumericText
         {
-            get { return value; }
+            get { return number; }
             set
             {
                 if (IsNumeric(value))
                 {
-                    this.value = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Value must be numeric.");
+                    this.number = value;
                 }
             }
         }
@@ -49,12 +43,18 @@ namespace MatrixCalc.Model
 
         public static void IncreaseFontSize()
         {
-            newFontSize += 5;
+            newFontSize = Matrix.ChildWidth / 4;
+        }
+
+
+        public static void UpdateFontSize()
+        {
+            newFontSize = Matrix.ChildWidth / 4;
         }
 
         public static void DecreaseFontSize()
         {
-            newFontSize -= 5;
+            newFontSize = Matrix.ChildWidth / 4;
         }
 
         
