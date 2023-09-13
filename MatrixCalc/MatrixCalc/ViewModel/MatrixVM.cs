@@ -13,7 +13,7 @@ namespace MatrixCalc.ViewModel
     public class MatrixVM
     {
         private MatrixPage matrixPage;
-        private Grid MainMatrix;
+        private Matrix MainMatrix;
         private int currentMatrixDimension;
         private IPageMath internalMath;
         private readonly Dimension dimension;
@@ -26,7 +26,11 @@ namespace MatrixCalc.ViewModel
         public int Max { get; set; }
         public int Average { get; set; }
 
-        public MatrixVM(MatrixPage _matrixPage, Grid _MainMatrix)
+        public delegate void Handler();
+
+        public static Handler UpdateMatrix;
+
+        public MatrixVM(MatrixPage _matrixPage, Matrix _MainMatrix)
         {
             matrixPage = _matrixPage;
             MainMatrix = _MainMatrix;
@@ -47,7 +51,7 @@ namespace MatrixCalc.ViewModel
 
             UpdateResultsDelegate.UpdateResults = ExecuteUpdateResults;
 
-            EventUpdateMainMatrix.UpdateMatrix += UpdateMainMatrix;
+            UpdateMatrix += UpdateMainMatrix;
             UpdateMainMatrix();
         }
 
@@ -175,8 +179,7 @@ namespace MatrixCalc.ViewModel
 
         public Command UpdateFromButton => new Command(() =>
         {
-            UpdateMainMatrix();
-            EventUpdateMainMatrix.Update();
+            UpdateMatrix();
         });
     }
 }

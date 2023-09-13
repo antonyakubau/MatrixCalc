@@ -12,6 +12,7 @@ namespace MatrixCalc.Model
         public int LineId { get; set; }
         public static double newFontSize { get; set; } = (double)NamedSize.Large * 6;
 
+
         private string value;
         
         //todo
@@ -39,7 +40,6 @@ namespace MatrixCalc.Model
             FontSize = newFontSize;
             Text = random.Next(1, 999).ToString();
             TextChanged += UpdateResults;
-            
         }
 
         public static void UpdateResults(object sender, EventArgs e)

@@ -1,10 +1,16 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace MatrixCalc.Model
 {
-	public class Matrix
+	public class Matrix : Grid
 	{
-		public Matrix()
+        public double ChildHeight { get; set; }
+        public double ChildWidth { get; set; }
+
+        public Matrix()
 		{
+			//ChildHeight = GridItemsLayout.VerticalItemSpacingProperty
 		}
 	}
 }
