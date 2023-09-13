@@ -5,6 +5,8 @@ namespace MatrixCalc.Model
 {
 	public class InputEntry : BaseEntry
 	{
+        private Random random = new Random();
+
 		public int Row { get; set; }
 		public int Column { get; set; }
         public int LineId { get; set; }
@@ -35,7 +37,14 @@ namespace MatrixCalc.Model
             Keyboard = Keyboard.Numeric;
             MaxLength = 3;
             FontSize = newFontSize;
-            this.SetBinding(Entry.ReturnCommandProperty, new Binding("RefreshResults"));
+            Text = random.Next(1, 999).ToString();
+            TextChanged += UpdateResults;
+            
+        }
+
+        public static void UpdateResults(object sender, EventArgs e)
+        {
+            UpdateResultsDelegate.UpdateResults();
         }
 
         public static void IncreaseFontSize()
