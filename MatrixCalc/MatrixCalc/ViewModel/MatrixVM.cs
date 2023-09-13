@@ -26,9 +26,8 @@ namespace MatrixCalc.ViewModel
         public int Max { get; set; }
         public int Average { get; set; }
 
-        public delegate void Handler();
-
-        public static Handler UpdateMatrix;
+        public delegate void UpdateHandler();
+        public static UpdateHandler UpdateMatrixAndNotify;
 
         public MatrixVM(MatrixPage _matrixPage, Matrix _MainMatrix)
         {
@@ -36,9 +35,9 @@ namespace MatrixCalc.ViewModel
             MainMatrix = _MainMatrix;
             dimension = new Dimension()
             {
-                StartDimension = 6,
-                LowerBound = 3,
-                UpperBound = 8
+                LowerBound = 2,
+                UpperBound = 8,
+                StartDimension = 6
             };
             currentMatrixDimension = dimension.StartDimension;
 
@@ -51,7 +50,7 @@ namespace MatrixCalc.ViewModel
 
             UpdateResultsDelegate.UpdateResults = ExecuteUpdateResults;
 
-            UpdateMatrix += UpdateMainMatrix;
+            UpdateMatrixAndNotify += UpdateMainMatrix;
             UpdateMainMatrix();
         }
 
@@ -179,7 +178,7 @@ namespace MatrixCalc.ViewModel
 
         public Command UpdateFromButton => new Command(() =>
         {
-            UpdateMatrix();
+            UpdateMatrixAndNotify();
         });
     }
 }

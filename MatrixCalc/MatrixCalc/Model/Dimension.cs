@@ -5,13 +5,68 @@ namespace MatrixCalc.Model
 {
 	public class Dimension
 	{
-		public int StartDimension { get; set; }
-		public int UpperBound { get; set; }
-		public int LowerBound { get; set; }
+        private int MaxDimension;
+        private int MinDimension;
+
+        private int startDimension;
+		public int StartDimension
+        {
+            get { return startDimension; }
+            set
+            {
+                if (LowerBound == 0 || UpperBound == 0)
+                    throw new IndexOutOfRangeException("StartDimension must be set last");
+
+                if (LowerBound >= UpperBound)
+                    throw new IndexOutOfRangeException("LowerBound must be lower than UpperBound");
+
+                if (UpperBound <= LowerBound)
+                    throw new IndexOutOfRangeException("UpperBound must be higher than LowerBound");
+
+
+                if (value < LowerBound)
+                    startDimension = LowerBound;
+                else
+                if (value > UpperBound)
+                    startDimension = UpperBound;
+                else
+                    startDimension = value;
+            }
+
+        }
+
+        private int upperBound;
+        public int UpperBound
+        {
+            get { return upperBound; }
+
+            set
+            {
+                if (value <= MaxDimension)
+                    upperBound = value;
+                else
+                    upperBound = MaxDimension;
+            }
+
+        }
+
+        private int lowerBound;
+        public int LowerBound
+        {
+            get { return lowerBound; }
+            set
+            {
+                if (value >= MinDimension)
+                    lowerBound = value;
+                else
+                    lowerBound = MinDimension;
+            }
+        }
 
         public Dimension()
         {
-
+            MaxDimension = 20;
+            MinDimension = 2;
         }
 
         public int ChangeDimension(string action, int currentMatrixDimension)

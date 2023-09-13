@@ -18,7 +18,7 @@ namespace MatrixCalc
             matrixVM = new MatrixVM(this, MainMatrix);
             BindingContext = matrixVM;
 
-            MatrixVM.UpdateMatrix += ShowUpdated;
+            MatrixVM.UpdateMatrixAndNotify += ShowUpdated;
         }
         
         public async void ShowMessage(int sum, int mult)

@@ -10,8 +10,14 @@ namespace MatrixCalc.Model
 
         public Matrix()
 		{
-			//ChildHeight = GridItemsLayout.VerticalItemSpacingProperty
-		}
-	}
+            
+        }
+        
+        public void CalculateChildHeightWidth()
+        {
+        }
+
+
+    }
 }
 
