@@ -45,9 +45,9 @@ namespace MatrixCalc.ViewModel
                 Lines = this.Lines
             };
 
-            EventHandlerDemo.handler += UpdateMainMatrix;
+            UpdateResultsDelegate.UpdateResults = ExecuteUpdateResults;
 
-
+            EventUpdateMainMatrix.UpdateMatrix += UpdateMainMatrix;
             UpdateMainMatrix();
         }
 
@@ -61,7 +61,6 @@ namespace MatrixCalc.ViewModel
             ButtonList.Clear();
 
             int buttonId = 0;
-            Random random = new Random();
 
             for (int i = 0; i < currentMatrixDimension; i++)
             {
@@ -94,7 +93,6 @@ namespace MatrixCalc.ViewModel
                     {
                         InputEntry inputEntry = new InputEntry()
                         {
-                            Text = random.Next(1, 999).ToString(),
                             Row = i,
                             Column = j
                         };
@@ -104,7 +102,7 @@ namespace MatrixCalc.ViewModel
                 }
 
             }
-            RefreshResults.Execute(null);
+            UpdateResults.Execute(null);
         }
 
         private void AssignLines()
@@ -141,8 +139,12 @@ namespace MatrixCalc.ViewModel
             }
         });
 
+        private void ExecuteUpdateResults()
+        {
+            UpdateResults.Execute(null);
+        }
 
-        public Command RefreshResults => new Command(() =>
+        public Command UpdateResults => new Command(() =>
         {
             Min = internalMath.RefreshMin();
             Max = internalMath.RefreshMax();
@@ -163,7 +165,7 @@ namespace MatrixCalc.ViewModel
                     internalMath.RefreshMax(lineId),
                     internalMath.RefreshAverage(lineId));
 
-                RefreshResults.Execute(null);
+                UpdateResults.Execute(null);
             }
             catch (Exception ex)
             {
@@ -174,7 +176,7 @@ namespace MatrixCalc.ViewModel
         public Command UpdateFromButton => new Command(() =>
         {
             UpdateMainMatrix();
-            EventHandlerDemo.Update();
+            EventUpdateMainMatrix.Update();
         });
     }
 }

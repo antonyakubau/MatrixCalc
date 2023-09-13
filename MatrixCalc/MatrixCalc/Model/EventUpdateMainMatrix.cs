@@ -1,17 +1,17 @@
 ﻿using System;
 namespace MatrixCalc.Model
 {
-	public class EventHandlerDemo
+	public class EventUpdateMainMatrix
 	{
 		public delegate void Handler();
 
-		public static event Handler handler;
+		public static event Handler UpdateMatrix;
 
 		public static void Update()
 		{
-			if (handler != null)
+			if (UpdateMatrix != null)
 			{
-				handler();
+                UpdateMatrix();
 			}
 		}
     }
