@@ -105,7 +105,11 @@ namespace MatrixCalc.ViewModel
                 }
 
             }
+
             UpdateResults.Execute(null);
+
+            FontManager.UpdateFontInputEntryVoid(EntryList);
+            ButtonList = FontManager.UpdateFontGetInfoButton(ButtonList);
         }
 
         private void AssignLines()

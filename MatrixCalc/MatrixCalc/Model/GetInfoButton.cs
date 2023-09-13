@@ -4,35 +4,25 @@ using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
-	public class GetInfoButton : BaseButton
+	public class GetInfoButton : BaseButton, IUpdatableFont
     {
-        private double initFontSize = (double)NamedSize.Large * 10;
-        private bool initFlag = true;
-
         public int Row { get; set; }
         public int Column { get; set; }
         public int LineId { get; set; }
-        public static double newFontSize { get; set; } = (double)NamedSize.Large * 10;
 
         public GetInfoButton()
 		{
             Text = "⋯";
-            FontSize = newFontSize;
+            FontSize = 1;
             this.SetBinding(Button.CommandProperty, new Binding("GetInfo"));
             CommandParameter = LineId;
 
         }
 
-        public static void IncreaseFontSize()
+        public double UpdateFontSize()
         {
-            newFontSize += 10;
+            return Matrix.ChildHeight / 2;
         }
-
-        public static void DecreaseFontSize()
-        {
-            newFontSize -= 10;
-        }
-
     }
 }
 

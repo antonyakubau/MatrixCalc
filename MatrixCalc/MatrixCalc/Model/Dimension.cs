@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MatrixCalc.ViewModel;
 
 namespace MatrixCalc.Model
@@ -69,41 +70,14 @@ namespace MatrixCalc.Model
             MinDimension = 2;
         }
 
-        public int ChangeDimension(string action, int currentMatrixDimension)
-        {
-            switch (action)
-            {
-                case "inc":
-                    if (currentMatrixDimension < UpperBound)
-                    {
-                        currentMatrixDimension++;
-                        GetInfoButton.DecreaseFontSize(); // try to change
-                        InputEntry.UpdateFontSize();
-                        return currentMatrixDimension;
-                    }
-                    break;
-                case "dec":
-                    if (currentMatrixDimension > LowerBound)
-                    {
-                        currentMatrixDimension--;
-                        GetInfoButton.IncreaseFontSize();
-                        InputEntry.UpdateFontSize();
-                        return currentMatrixDimension;
-                    }
-                    break;
-            }
-            return currentMatrixDimension;
-        }
         public int IncreaseDimension(int currentMatrixDimension)
         {
             if (currentMatrixDimension < UpperBound)
             {
                 currentMatrixDimension++;
-                GetInfoButton.DecreaseFontSize(); // try to change
-                InputEntry.UpdateFontSize();
                 return currentMatrixDimension;
             }
-                   
+
             return currentMatrixDimension;
         }
 
@@ -113,8 +87,6 @@ namespace MatrixCalc.Model
             if (currentMatrixDimension > LowerBound)
             {
                 currentMatrixDimension--;
-                GetInfoButton.IncreaseFontSize();
-                InputEntry.UpdateFontSize();
                 return currentMatrixDimension;
             }
 

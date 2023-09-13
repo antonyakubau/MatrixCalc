@@ -10,7 +10,7 @@ namespace MatrixCalc.Model
 
         public Matrix()
         {
-            ChildAdded += CalculateChildHeightWidth;
+            LayoutChanged += CalculateChildHeightWidth;
         }
 
         private void CalculateChildHeightWidth(object sender, EventArgs e)
