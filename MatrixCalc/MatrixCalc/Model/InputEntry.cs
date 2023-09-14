@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
-	public class InputEntry : BaseEntry, IUpdatableFont
+	public class InputEntry : BaseEntry
 	{
         private Random random = new Random();
 
@@ -28,11 +28,12 @@ namespace MatrixCalc.Model
 
         public InputEntry()
         {
-            
+
             Keyboard = Keyboard.Numeric;
             MaxLength = 3;
             Text = random.Next(1, 999).ToString();
             TextChanged += UpdateResults;
+            FontManager.UpdateFontDelegate += UpdateFontSize;
         }
 
         public static void UpdateResults(object sender, EventArgs e)
@@ -41,12 +42,12 @@ namespace MatrixCalc.Model
         }
 
 
-        public double UpdateFontSize()
+
+        public void UpdateFontSize()
         {
-            return Matrix.ChildHeight / 3;
+            FontSize = Matrix.ChildHeight / 3.5;
         }
 
-        
         private bool IsNumeric(string value)
         {
             if (string.IsNullOrEmpty(value))

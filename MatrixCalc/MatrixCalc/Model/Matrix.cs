@@ -1,4 +1,5 @@
 ﻿using System;
+using MatrixCalc.ViewModel;
 using Xamarin.Forms;
 
 namespace MatrixCalc.Model
@@ -10,13 +11,16 @@ namespace MatrixCalc.Model
 
         public Matrix()
         {
-            LayoutChanged += CalculateChildHeightWidth;
+            SizeChanged += UpdateChildHeightWidth;
+            LayoutChanged += UpdateChildHeightWidth;
         }
 
-        private void CalculateChildHeightWidth(object sender, EventArgs e)
+        private void UpdateChildHeightWidth(object sender, EventArgs e)
         {
             ChildHeight = Children[0].Height;
             ChildWidth = Children[0].Width;
+
+            FontManager.UpdateFontDelegate();
         }
 
         public void CalculateChildHeightWidth()

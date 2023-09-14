@@ -45,6 +45,7 @@
           ColumnSpacing="10">
           
         <model:Matrix x:Name="MainMatrix"
+                      
               Grid.Row="0"
               BackgroundColor="AliceBlue"
               Padding="5"

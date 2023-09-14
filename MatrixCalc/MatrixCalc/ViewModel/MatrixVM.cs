@@ -36,8 +36,8 @@ namespace MatrixCalc.ViewModel
             dimension = new Dimension()
             {
                 LowerBound = 3,
-                UpperBound = 8,
-                StartDimension = 6
+                UpperBound = 7,
+                StartDimension = 5
             };
             currentMatrixDimension = dimension.StartDimension;
 
@@ -107,9 +107,6 @@ namespace MatrixCalc.ViewModel
             }
 
             UpdateResults.Execute(null);
-
-            FontManager.UpdateFontInputEntryVoid(EntryList);
-            ButtonList = FontManager.UpdateFontGetInfoButton(ButtonList);
         }
 
         private void AssignLines()
