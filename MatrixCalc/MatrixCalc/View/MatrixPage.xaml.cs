@@ -10,13 +10,15 @@ namespace MatrixCalc
     [AddINotifyPropertyChangedInterface]
     public partial class MatrixPage : ContentPage
     {
+        private MatrixVM matrixVM;
 
         public MatrixPage()
         {
             InitializeComponent();
-            BindingContext = new MatrixVM(this, MainMatrix);
+            matrixVM = new MatrixVM(this, MainMatrix);
+            BindingContext = matrixVM;
 
-            EventUpdateMainMatrix.UpdateMatrix += ShowUpdated;
+            MatrixVM.UpdateMatrixAndNotify += ShowUpdated;
         }
         
         public async void ShowMessage(int sum, int mult)

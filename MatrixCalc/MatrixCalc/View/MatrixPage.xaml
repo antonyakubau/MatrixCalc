@@ -3,7 +3,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MatrixCalc.MatrixPage"
-    xmlns:vm="clr-namespace:MatrixCalc"
+    xmlns:vm="clr-namespace:MatrixCalc.ViewModel"
+    xmlns:model="clr-namespace:MatrixCalc.Model"
     >
 
     <ContentPage.Resources>
@@ -43,7 +44,8 @@
           BackgroundColor="AliceBlue"
           ColumnSpacing="10">
           
-        <Grid x:Name="MainMatrix"
+        <model:Matrix x:Name="MainMatrix"
+                      
               Grid.Row="0"
               BackgroundColor="AliceBlue"
               Padding="5"
@@ -52,7 +54,7 @@
               RowDefinitions="*,*"
               RowSpacing="5">
             
-        </Grid>
+        </model:Matrix>
 
 
 
@@ -108,7 +110,7 @@
                     TextColor="AliceBlue"
                     BackgroundColor="DarkBlue"
                     Margin="3,3,3,0"
-                    Command="{Binding ChangeDimensionCommand}"
+                    Command="{Binding IncreaseDimensionCommand}"
                     CommandParameter="inc">
 
                     
@@ -123,7 +125,7 @@
                     TextColor="AliceBlue"
                     BackgroundColor="DarkBlue"
                     Margin="3,0,3,3"
-                    Command="{Binding ChangeDimensionCommand}"
+                    Command="{Binding DecreaseDimensionCommand}"
                     CommandParameter="dec">
             </Button>
 

@@ -13,7 +13,7 @@ namespace MatrixCalc.ViewModel
     public class MatrixVM
     {
         private MatrixPage matrixPage;
-        private Grid MainMatrix;
+        private Matrix MainMatrix;
         private int currentMatrixDimension;
         private IPageMath internalMath;
         private readonly Dimension dimension;
@@ -26,15 +26,18 @@ namespace MatrixCalc.ViewModel
         public int Max { get; set; }
         public int Average { get; set; }
 
-        public MatrixVM(MatrixPage _matrixPage, Grid _MainMatrix)
+        public delegate void UpdateHandler();
+        public static UpdateHandler UpdateMatrixAndNotify;
+
+        public MatrixVM(MatrixPage _matrixPage, Matrix _MainMatrix)
         {
             matrixPage = _matrixPage;
             MainMatrix = _MainMatrix;
             dimension = new Dimension()
             {
-                StartDimension = 6,
                 LowerBound = 3,
-                UpperBound = 8
+                UpperBound = 7,
+                StartDimension = 5
             };
             currentMatrixDimension = dimension.StartDimension;
 
@@ -47,7 +50,7 @@ namespace MatrixCalc.ViewModel
 
             UpdateResultsDelegate.UpdateResults = ExecuteUpdateResults;
 
-            EventUpdateMainMatrix.UpdateMatrix += UpdateMainMatrix;
+            UpdateMatrixAndNotify += UpdateMainMatrix;
             UpdateMainMatrix();
         }
 
@@ -102,6 +105,7 @@ namespace MatrixCalc.ViewModel
                 }
 
             }
+
             UpdateResults.Execute(null);
         }
 
@@ -126,11 +130,10 @@ namespace MatrixCalc.ViewModel
 
         }
 
-
-        public Command ChangeDimensionCommand => new Command((action) =>
+        public Command IncreaseDimensionCommand => new Command(() =>
         {
-            int newDimension = dimension.ChangeDimension
-            ((string)action, currentMatrixDimension);
+            int newDimension = dimension.IncreaseDimension
+            (currentMatrixDimension);
 
             if (newDimension != currentMatrixDimension)
             {
@@ -139,6 +142,17 @@ namespace MatrixCalc.ViewModel
             }
         });
 
+        public Command DecreaseDimensionCommand => new Command(() =>
+        {
+            int newDimension = dimension.DecreaseDimension
+            (currentMatrixDimension);
+
+            if (newDimension != currentMatrixDimension)
+            {
+                currentMatrixDimension = newDimension;
+                UpdateMainMatrix();
+            }
+        });
         private void ExecuteUpdateResults()
         {
             UpdateResults.Execute(null);
@@ -175,8 +189,7 @@ namespace MatrixCalc.ViewModel
 
         public Command UpdateFromButton => new Command(() =>
         {
-            UpdateMainMatrix();
-            EventUpdateMainMatrix.Update();
+            UpdateMatrixAndNotify();
         });
     }
 }

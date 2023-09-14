@@ -6,33 +6,23 @@ namespace MatrixCalc.Model
 {
 	public class GetInfoButton : BaseButton
     {
-        private double initFontSize = (double)NamedSize.Large * 10;
-        private bool initFlag = true;
-
         public int Row { get; set; }
         public int Column { get; set; }
         public int LineId { get; set; }
-        public static double newFontSize { get; set; } = (double)NamedSize.Large * 10;
 
         public GetInfoButton()
 		{
             Text = "⋯";
-            FontSize = newFontSize;
+            VerticalOptions = LayoutOptions.FillAndExpand;
             this.SetBinding(Button.CommandProperty, new Binding("GetInfo"));
             CommandParameter = LineId;
-
+            FontManager.UpdateFontDelegate += UpdateFontSize;
         }
 
-        public static void IncreaseFontSize()
+        public void UpdateFontSize()
         {
-            newFontSize += 10;
+            FontSize = Matrix.ChildHeight / 2;
         }
-
-        public static void DecreaseFontSize()
-        {
-            newFontSize -= 10;
-        }
-
     }
 }
 
