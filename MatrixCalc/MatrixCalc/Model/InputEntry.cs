@@ -13,22 +13,8 @@ namespace MatrixCalc.Model
         public int LineId { get; set; }
 
 
-        private string number;
-        public string NumericText
-        {
-            get { return number; }
-            set
-            {
-                if (IsNumeric(value))
-                {
-                    this.number = value;
-                }
-            }
-        }
-
         public InputEntry()
-        {
-
+        { 
             Keyboard = Keyboard.Numeric;
             MaxLength = 3;
             Text = random.Next(1, 999).ToString();
@@ -36,11 +22,19 @@ namespace MatrixCalc.Model
             FontManager.UpdateFontDelegate += UpdateFontSize;
         }
 
-        public static void UpdateResults(object sender, EventArgs e)
+        public void UpdateResults(object sender, TextChangedEventArgs e)
         {
-            UpdateResultsDelegate.UpdateResults();
-        }
+            if (IsNumeric(e.NewTextValue))
+            {
+                Text = e.NewTextValue;
+                UpdateResultsDelegate.UpdateResults();
+            }
+            else
+            {
+                Text = e.OldTextValue;
+            }
 
+        }
 
 
         public void UpdateFontSize()
@@ -67,6 +61,27 @@ namespace MatrixCalc.Model
         }
 
 
+        private bool SumMoreZero(string value)
+        {
+            int sum = 0;
+
+            if (string.IsNullOrEmpty(value))
+            {
+                return false;
+            }
+
+            foreach (char c in value)
+            {
+                sum += (int)c;
+            }
+
+            if (sum <= 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
 
