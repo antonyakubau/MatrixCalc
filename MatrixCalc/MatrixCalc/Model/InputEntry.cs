@@ -7,6 +7,7 @@ namespace MatrixCalc.Model
 	public class InputEntry : BaseEntry 
 	{
         private Random random = new Random();
+        private string lastNumber;
 
 		public int Row { get; set; }
 		public int Column { get; set; }
@@ -20,6 +21,7 @@ namespace MatrixCalc.Model
             Text = random.Next(1, 999).ToString();
             TextChanged += UpdateResults;
             FontManager.UpdateFontDelegate += UpdateFontSize;
+            Unfocused += RestoreNumber;
         }
 
         public void UpdateResults(object sender, TextChangedEventArgs e)
@@ -31,11 +33,10 @@ namespace MatrixCalc.Model
             }
             else
             {
-                Text = e.OldTextValue;
+                lastNumber = e.OldTextValue;
             }
 
         }
-
 
         public void UpdateFontSize()
         {
@@ -60,6 +61,13 @@ namespace MatrixCalc.Model
             return true;
         }
 
+
+        private void RestoreNumber(object sender, FocusEventArgs e)
+        {
+            if (Text == "")
+                Text = lastNumber;
+
+        }
 
         private bool SumMoreZero(string value)
         {

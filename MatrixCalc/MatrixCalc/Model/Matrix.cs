@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MatrixCalc.ViewModel;
 using Xamarin.Forms;
 
 namespace MatrixCalc.Model
