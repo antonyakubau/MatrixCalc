@@ -8,8 +8,9 @@ namespace MatrixCalc.Model
 	{
         private Random random = new Random();
         private string lastNumber;
+        private string oldNumber;
 
-		public int Row { get; set; }
+        public int Row { get; set; }
 		public int Column { get; set; }
         public int LineId { get; set; }
 
@@ -18,7 +19,7 @@ namespace MatrixCalc.Model
         { 
             Keyboard = Keyboard.Numeric;
             MaxLength = 3;
-            Text = random.Next(1, 999).ToString();
+            Text = random.Next(0, 999).ToString();
             TextChanged += UpdateResults;
             FontManager.UpdateFontDelegate += UpdateFontSize;
             Unfocused += RestoreNumber;
@@ -41,6 +42,11 @@ namespace MatrixCalc.Model
         public void UpdateFontSize()
         {
             FontSize = Matrix.ChildHeight / 3.5;
+        }
+
+        public void GenerateNewValue()
+        {
+            Text = random.Next(0, 999).ToString();
         }
 
         private bool IsNumeric(string value)
