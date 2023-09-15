@@ -22,12 +22,6 @@ namespace MatrixCalc.Model
 
             FontManager.UpdateFontDelegate();
         }
-
-        public void CalculateChildHeightWidth()
-        {
-        }
-
-
     }
 }
 

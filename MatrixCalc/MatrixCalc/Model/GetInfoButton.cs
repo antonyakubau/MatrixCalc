@@ -14,8 +14,8 @@ namespace MatrixCalc.Model
 		{
             Text = "⋯";
             VerticalOptions = LayoutOptions.FillAndExpand;
+            HorizontalOptions = LayoutOptions.FillAndExpand;
             this.SetBinding(Button.CommandProperty, new Binding("GetInfo"));
-            CommandParameter = LineId;
             FontManager.UpdateFontDelegate += UpdateFontSize;
         }
 
