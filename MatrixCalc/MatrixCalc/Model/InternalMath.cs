@@ -6,156 +6,114 @@ namespace MatrixCalc.Model
 {
 	public class InternalMath : IPageMath
     {
-        public List<InputEntry> EntryList { get; set; }
-        public List<GetInfoButton> ButtonList { get; set; }
-        public List<List<int>> Lines { get; set; }
-
         public InternalMath()
 		{
-		}
+        }
 
-        public int RefreshMin()
+        public int RefreshMin(List<InputEntry> EntryList)
         {
             int currentMin = int.MaxValue;
-            foreach (var item in EntryList)
-            {
-                try
+
+                foreach (var item in EntryList)
                 {
                     if (Convert.ToInt32(item.Text) < currentMin)
                     {
                         currentMin = Convert.ToInt32(item.Text);
                     }
                 }
-                catch (Exception ex)
-                {
-                    return -1;
-                }
 
-            }
             return currentMin;
         }
 
-        public int RefreshMin(int lineNum)
+        public int RefreshMin(int lineNum, List<List<InputEntry>> Lines)
         {
             int currentMin = int.MaxValue;
-            List<int> line = Lines[lineNum];
+            int itemText;
+            List<InputEntry> line = Lines[lineNum];
 
-            foreach (var item in line)
-            {
-                try
+                foreach (var item in line)
                 {
-                    if (item < currentMin)
+                    itemText = Convert.ToInt32(item.Text);
+                    if (itemText < currentMin)
                     {
-                        currentMin = item;
+                        currentMin = itemText;
                     }
                 }
-                catch (Exception ex)
-                {
-                    return -1;
-                }
-            }
 
             return currentMin;
         }
 
-        public int RefreshMax()
+        public int RefreshMax(List<InputEntry> EntryList)
         {
             int currentMax = int.MinValue;
-            foreach (var item in EntryList)
-            {
-                try
+
+                foreach (var item in EntryList)
                 {
                     if (Convert.ToInt32(item.Text) > currentMax)
                     {
                         currentMax = Convert.ToInt32(item.Text);
                     }
                 }
-                catch (Exception ex)
-                {
-                    return -1;
-                }
 
-            }
             return currentMax;
         }
 
-        public int RefreshMax(int lineNum)
+        public int RefreshMax(int lineNum, List<List<InputEntry>> Lines)
         {
             int currentMax = int.MinValue;
-            List<int> line = Lines[lineNum];
+            int itemText;
+            List<InputEntry> line = Lines[lineNum];
 
             foreach (var item in line)
             {
-                try
-                {
-                    if (item > currentMax)
+                itemText = Convert.ToInt32(item.Text);
+                if (itemText > currentMax)
                     {
-                        currentMax = item;
+                        currentMax = itemText;
                     }
-                }
-                catch (Exception ex)
-                {
-                    return -1;
-                }
             }
 
             return currentMax;
         }
 
-        public int RefreshAverage()
+        public int RefreshAverage(List<InputEntry> EntryList)
         {
             int currentSum = 0;
-            foreach (var item in EntryList)
-            {
-                try
+
+                foreach (var item in EntryList)
                 {
                     currentSum += Convert.ToInt32(item.Text);
                 }
-                catch (Exception ex)
-                {
-                    return -1;
-                }
 
-            }
             return currentSum / EntryList.Count;
         }
 
 
-        public int RefreshAverage(int lineNum)
+        public int RefreshAverage(int lineNum, List<List<InputEntry>> Lines)
         {
             int currentSum = 0;
-            List<int> line = Lines[lineNum];
+            int itemText;
+            List<InputEntry> line = Lines[lineNum];
 
             foreach (var item in line)
             {
-                try
-                {
-                    currentSum += item;
-                }
-                catch (Exception ex)
-                {
-                    return -1;
-                }
-
+                itemText = Convert.ToInt32(item.Text);
+                currentSum += itemText;
             }
+
             return currentSum / line.Count;
         }
 
-        public int RefreshSum(int lineNum)
+        public int RefreshSum(int lineNum, List<List<InputEntry>> Lines)
         {
             int currentSum = 0;
-            List<int> line = Lines[lineNum];
+            int itemText;
+            List<InputEntry> line = Lines[lineNum];
 
             foreach (var item in line)
             {
-                try
-                {
-                    currentSum += item;
-                }
-                catch (Exception ex)
-                {
-                    return -1;
-                }
+                itemText = Convert.ToInt32(item.Text);
+                currentSum += itemText;
             }
 
             return currentSum;
