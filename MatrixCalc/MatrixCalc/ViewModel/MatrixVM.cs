@@ -18,9 +18,8 @@ namespace MatrixCalc.ViewModel
         private IPageMath internalMath;
         private readonly Dimension dimension;
 
-        private List<InputEntry> EntryList = new List<InputEntry>();
-        private List<GetInfoButton> ButtonList = new List<GetInfoButton>();
-        private List<List<int>> Lines = new List<List<int>>();
+        public List<InputEntry> EntryList { get; set; }
+        public List<GetInfoButton> ButtonList { get; set; }
 
         public int Min { get; set; }
         public int Max { get; set; }
@@ -31,8 +30,14 @@ namespace MatrixCalc.ViewModel
 
         public MatrixVM(MatrixPage _matrixPage, Matrix _MainMatrix)
         {
+            EntryList = new List<InputEntry>();
+            ButtonList = new List<GetInfoButton>();
+
             matrixPage = _matrixPage;
             MainMatrix = _MainMatrix;
+            MainMatrix.EntryList = EntryList;
+            MainMatrix.ButtonList = ButtonList;
+
             dimension = new Dimension()
             {
                 LowerBound = 3,
@@ -45,7 +50,7 @@ namespace MatrixCalc.ViewModel
             {
                 EntryList = this.EntryList,
                 ButtonList = this.ButtonList,
-                Lines = this.Lines
+                Lines = MainMatrix.Lines
             };
 
             UpdateResultsDelegate.UpdateResults = ExecuteUpdateResults;
@@ -109,26 +114,6 @@ namespace MatrixCalc.ViewModel
             UpdateResults.Execute(null);
         }
 
-        private void AssignLines()
-        {
-            Lines.Clear();
-
-            foreach (var button in ButtonList)
-            {
-                List<int> line = new List<int>();
-                foreach (var entry in EntryList)
-                {
-                    if ((entry.Row == button.Row)
-                        || (entry.Column == button.Column))
-                    {
-                        line.Add(Convert.ToInt32(entry.Text));
-                    }
-
-                }
-                Lines.Add(line);
-            }
-
-        }
 
         public Command IncreaseDimensionCommand => new Command(() =>
         {
@@ -173,7 +158,7 @@ namespace MatrixCalc.ViewModel
             try
             {
                 int lineId = Convert.ToInt32(LineId);
-                AssignLines();
+                MainMatrix.AssignLines();
                 matrixPage.ShowMessage(
                     internalMath.RefreshSum(lineId),
                     internalMath.RefreshMin(lineId),
