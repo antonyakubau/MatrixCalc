@@ -10,9 +10,12 @@ namespace MatrixCalc.Model
         public List<GetInfoButton> ButtonList { get; set; }
         public List<List<int>> Lines { get; set; }
 
-        public InternalMath()
+        public InternalMath(Matrix MainMatrix)
 		{
-		}
+            EntryList = MainMatrix.EntryList;
+            ButtonList = MainMatrix.ButtonList;
+            Lines = MainMatrix.Lines;
+        }
 
         public int RefreshMin()
         {

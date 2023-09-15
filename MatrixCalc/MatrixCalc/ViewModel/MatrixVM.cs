@@ -18,25 +18,15 @@ namespace MatrixCalc.ViewModel
         private IPageMath internalMath;
         private readonly Dimension dimension;
 
-        public List<InputEntry> EntryList { get; set; }
-        public List<GetInfoButton> ButtonList { get; set; }
-
         public int Min { get; set; }
         public int Max { get; set; }
         public int Average { get; set; }
 
-        public delegate void UpdateHandler();
-        public static UpdateHandler UpdateMatrixAndNotify;
-
         public MatrixVM(MatrixPage _matrixPage, Matrix _MainMatrix)
         {
-            EntryList = new List<InputEntry>();
-            ButtonList = new List<GetInfoButton>();
 
             matrixPage = _matrixPage;
             MainMatrix = _MainMatrix;
-            MainMatrix.EntryList = EntryList;
-            MainMatrix.ButtonList = ButtonList;
 
             dimension = new Dimension()
             {
@@ -46,73 +36,13 @@ namespace MatrixCalc.ViewModel
             };
             currentMatrixDimension = dimension.StartDimension;
 
-            internalMath = new InternalMath()
-            {
-                EntryList = this.EntryList,
-                ButtonList = this.ButtonList,
-                Lines = MainMatrix.Lines
-            };
+            internalMath = new InternalMath(MainMatrix);
 
             UpdateResultsDelegate.UpdateResults = ExecuteUpdateResults;
 
-            UpdateMatrixAndNotify += UpdateMainMatrix;
-            UpdateMainMatrix();
+            MainMatrix.UpdateMainMatrix(currentMatrixDimension);
         }
 
-
-
-
-        public void UpdateMainMatrix()
-        {
-            MainMatrix.Children.Clear();
-            EntryList.Clear();
-            ButtonList.Clear();
-
-            int buttonId = 0;
-
-            for (int i = 0; i < currentMatrixDimension; i++)
-            {
-                for (int j = 0; j < currentMatrixDimension; j++)
-                {
-                    if ((i == currentMatrixDimension - 1)
-                        || (j == currentMatrixDimension - 1))
-                    {
-                        if (i != j)
-                        {
-                            GetInfoButton getInfoButton = new GetInfoButton()
-                            {
-                                Row = i,
-                                Column = j,
-                                LineId = buttonId,
-                                CommandParameter = Convert.ToString(buttonId)
-                            };
-                            MainMatrix.Children.Add(getInfoButton, j, i);
-
-                            ButtonList.Add(getInfoButton);
-                            buttonId++;
-                        }
-                        else
-                        {
-                            UpdateButton updateButton = new UpdateButton();
-                            MainMatrix.Children.Add(updateButton, j, i);
-                        }
-                    }
-                    else
-                    {
-                        InputEntry inputEntry = new InputEntry()
-                        {
-                            Row = i,
-                            Column = j
-                        };
-                        MainMatrix.Children.Add(inputEntry, j, i);
-                        EntryList.Add(inputEntry);
-                    }
-                }
-
-            }
-
-            UpdateResults.Execute(null);
-        }
 
 
         public Command IncreaseDimensionCommand => new Command(() =>
@@ -123,7 +53,7 @@ namespace MatrixCalc.ViewModel
             if (newDimension != currentMatrixDimension)
             {
                 currentMatrixDimension = newDimension;
-                UpdateMainMatrix();
+                MainMatrix.UpdateMainMatrix(currentMatrixDimension);
             }
         });
 
@@ -135,7 +65,7 @@ namespace MatrixCalc.ViewModel
             if (newDimension != currentMatrixDimension)
             {
                 currentMatrixDimension = newDimension;
-                UpdateMainMatrix();
+                MainMatrix.UpdateMainMatrix(currentMatrixDimension);
             }
         });
 
@@ -165,18 +95,18 @@ namespace MatrixCalc.ViewModel
                     internalMath.RefreshMax(lineId),
                     internalMath.RefreshAverage(lineId));
 
-                UpdateResults.Execute(null);
+                UpdateResultsDelegate.UpdateResults();
             }
             catch (Exception ex)
             {
                 ExceptionHandler.ExceptionMessege(ex);
-                UpdateMainMatrix();
+                MainMatrix.UpdateMainMatrix(currentMatrixDimension);
             }
         });
 
         public Command UpdateFromButton => new Command(() =>
         {
-            UpdateMatrixAndNotify();
+            Matrix.UpdateMatrixAndNotify(currentMatrixDimension);
         });
     }
 }

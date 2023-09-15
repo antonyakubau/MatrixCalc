@@ -18,7 +18,7 @@ namespace MatrixCalc
             matrixVM = new MatrixVM(this, MainMatrix);
             BindingContext = matrixVM;
 
-            MatrixVM.UpdateMatrixAndNotify += ShowUpdated;
+            Matrix.UpdateMatrixAndNotify += ShowUpdated;
             ExceptionHandler.ExceptionMessege += ShowException;
         }
         
@@ -56,7 +56,7 @@ namespace MatrixCalc
                 , "OK");
         }
 
-        public async void ShowUpdated()
+        public async void ShowUpdated(int currentMatrixDimension)
         {
             await DisplayAlert($"Updated", "", "OK");
         }
