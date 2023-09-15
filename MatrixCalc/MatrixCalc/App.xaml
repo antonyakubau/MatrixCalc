@@ -4,5 +4,13 @@
              x:Class="MatrixCalc.App">
     <Application.Resources>
 
+        <Style x:Key="BaseLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="OpenSansRegular"/>
+            <Setter Property="BackgroundColor" Value="DarkBlue"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+        </Style>
     </Application.Resources>
 </Application>
