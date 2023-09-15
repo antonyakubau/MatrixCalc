@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MatrixCalc.ViewModel;
 using Xamarin.Forms;
 
 namespace MatrixCalc.Model
@@ -23,9 +22,20 @@ namespace MatrixCalc.Model
             SizeChanged += UpdateChildHeightWidth;
             LayoutChanged += UpdateChildHeightWidth;
         }
+        
+
+        public void UpdateValues()
+        {
+            foreach (var entry in EntryList)
+            {
+                entry.GenerateNewValue();
+            }
+        }
 
         public void UpdateMatrix(int currentMatrixDimension)
         {
+            List<InputEntry> oldEntryList = new List<InputEntry>(EntryList);
+
             Children.Clear();
             EntryList.Clear();
             ButtonList.Clear();
@@ -66,6 +76,17 @@ namespace MatrixCalc.Model
                             Row = i,
                             Column = j
                         };
+
+                        foreach (var oldEntry in oldEntryList)
+                        {
+                            if (oldEntry.Row == inputEntry.Row
+                                && oldEntry.Column == inputEntry.Column)
+                            {
+                                inputEntry = oldEntry;
+                                break;
+                            }
+                        }
+
                         Children.Add(inputEntry, j, i);
                         EntryList.Add(inputEntry);
                     }

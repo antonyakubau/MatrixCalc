@@ -111,7 +111,7 @@ namespace MatrixCalc.ViewModel
 
         public Command UpdateFromButton => new Command(() =>
         {
-            MainMatrix.UpdateMatrix(currentMatrixDimension);
+            MainMatrix.UpdateValues();
             MatrixPage.ShowMatrixUpdated();
         });
     }

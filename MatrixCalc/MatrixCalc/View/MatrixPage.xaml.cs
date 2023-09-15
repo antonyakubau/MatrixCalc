@@ -24,29 +24,6 @@ namespace MatrixCalc
             ShowMatrixUpdated = ShowUpdated;
             ExceptionHandler.ExceptionMessege = ShowException;
         }
-        
-        public async void ShowMessage(int sum, int mult)
-        {
-            await DisplayAlert($"Results", $"Sum = {sum}\nMultiplication = " +
-                $"{(mult > sizeof(int) ? mult : 0)}", "OK");
-        }
-
-        public async void ShowMessage()
-        {
-            await DisplayAlert($"Results", $"Sum = \nMultiplication = " +
-                $"", "OK");
-        }
-
-        public async void ShowMessage(Exception ex)
-        {
-            await DisplayAlert($"Results", $"Sum = \nMultiplication = " +
-                $"", "OK");
-        }
-
-        public async void ShowMessage(int sum)
-        {
-            await DisplayAlert($"Results", $"Sum = {sum}\nMultiplication = ", "OK");
-        }
 
         public async void ShowMessage(int sum, int min, int max, int everage)
         {
