@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
-	public class InputEntry : BaseEntry
+	public class InputEntry : BaseEntry 
 	{
         private Random random = new Random();
 

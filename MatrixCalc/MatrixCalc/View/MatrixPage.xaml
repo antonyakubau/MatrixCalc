@@ -4,41 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MatrixCalc.MatrixPage"
     xmlns:vm="clr-namespace:MatrixCalc.ViewModel"
-    xmlns:model="clr-namespace:MatrixCalc.Model"
-    >
+    xmlns:model="clr-namespace:MatrixCalc.Model">
 
-    <ContentPage.Resources>
-    <Style x:Key="BaseButton" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="DarkBlue"/>
-        <Setter Property="TextColor" Value="White" />
-        <Setter Property="FontFamily" Value="OpenSansRegular"/>
-        <Setter Property="FontSize" Value="30"/>
-        <Setter Property="CornerRadius" Value="8"/>
-        <Setter Property="Text" Value="..."/>
-        <Setter Property="Command" Value="{Binding GetInfo}"/>
-    </Style>
-
-    <Style x:Key="BaseEntry" TargetType="Entry">
-        <Setter Property="BackgroundColor" Value="SlateGray" />
-        <Setter Property="FontFamily" Value="OpenSansRegular"/>
-        <Setter Property="FontSize" Value="Large" />
-        <Setter Property="HorizontalTextAlignment" Value="Center" />
-        <Setter Property="Keyboard" Value="Numeric"/>
-        <Setter Property="FontAttributes" Value="Bold"/>
-        <Setter Property="TextColor" Value="White" />
-        <Setter Property="MaxLength" Value="3"/>
-        <Setter Property="ReturnCommand" Value="{Binding RefreshResults}"/>
-    </Style>
-
-    <Style x:Key="BaseLabel" TargetType="Label">
-        <Setter Property="FontFamily" Value="OpenSansRegular"/>
-        <Setter Property="BackgroundColor" Value="DarkBlue"/>
-        <Setter Property="TextColor" Value="White"/>
-        <Setter Property="FontSize" Value="Medium"/>
-        <Setter Property="FontAttributes" Value="Bold"/>
-        <Setter Property="Margin" Value="20,0,0,0"/>
-    </Style>
-    </ContentPage.Resources>
 
     <Grid RowDefinitions=".6*,.4*"
           BackgroundColor="AliceBlue"

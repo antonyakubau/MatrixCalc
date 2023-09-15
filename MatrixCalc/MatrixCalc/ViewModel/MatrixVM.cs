@@ -75,9 +75,17 @@ namespace MatrixCalc.ViewModel
 
         public Command UpdateResults => new Command(() =>
         {
-            Min = internalMath.RefreshMin(MainMatrix.EntryList);
-            Max = internalMath.RefreshMax(MainMatrix.EntryList);
-            Average = internalMath.RefreshAverage(MainMatrix.EntryList);
+            try
+            {
+                Min = internalMath.RefreshMin(MainMatrix.EntryList);
+                Max = internalMath.RefreshMax(MainMatrix.EntryList);
+                Average = internalMath.RefreshAverage(MainMatrix.EntryList);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.ExceptionMessege(ex);
+                MainMatrix.UpdateMatrix(currentMatrixDimension);
+            }
         });
 
 
