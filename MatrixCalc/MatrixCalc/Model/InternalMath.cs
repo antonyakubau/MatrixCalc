@@ -18,8 +18,6 @@ namespace MatrixCalc.Model
         {
             int currentMin = int.MaxValue;
 
-            try
-            {
                 foreach (var item in EntryList)
                 {
                     if (Convert.ToInt32(item.Text) < currentMin)
@@ -27,11 +25,6 @@ namespace MatrixCalc.Model
                         currentMin = Convert.ToInt32(item.Text);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                return -1;
-            }
 
             return currentMin;
         }
@@ -41,8 +34,6 @@ namespace MatrixCalc.Model
             int currentMin = int.MaxValue;
             List<int> line = Lines[lineNum];
 
-            try
-            {
                 foreach (var item in line)
                 {
                     if (item < currentMin)
@@ -50,11 +41,6 @@ namespace MatrixCalc.Model
                         currentMin = item;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                return -1;
-            }
 
             return currentMin;
         }
@@ -63,8 +49,6 @@ namespace MatrixCalc.Model
         {
             int currentMax = int.MinValue;
 
-            try
-            {
                 foreach (var item in EntryList)
                 {
                     if (Convert.ToInt32(item.Text) > currentMax)
@@ -73,11 +57,6 @@ namespace MatrixCalc.Model
                     }
                 }
 
-            }
-            catch (Exception ex)
-            {
-                return -1;
-            }
             return currentMax;
         }
 
@@ -86,8 +65,6 @@ namespace MatrixCalc.Model
             int currentMax = int.MinValue;
             List<int> line = Lines[lineNum];
 
-            try
-            {
                 foreach (var item in line)
                 {
                     if (item > currentMax)
@@ -95,11 +72,6 @@ namespace MatrixCalc.Model
                         currentMax = item;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                return -1;
-            }
 
             return currentMax;
         }
@@ -108,17 +80,10 @@ namespace MatrixCalc.Model
         {
             int currentSum = 0;
 
-            try
-            {
                 foreach (var item in EntryList)
                 {
                     currentSum += Convert.ToInt32(item.Text);
                 }
-            }
-            catch (Exception ex)
-            {
-                return -1;
-            }
 
             return currentSum / EntryList.Count;
         }
@@ -129,17 +94,10 @@ namespace MatrixCalc.Model
             int currentSum = 0;
             List<int> line = Lines[lineNum];
 
-            try
-            {
                 foreach (var item in line)
                 {
                     currentSum += item;
                 }
-            }
-            catch (Exception ex)
-            {
-                return -1;
-            }
 
             return currentSum / line.Count;
         }
@@ -149,17 +107,10 @@ namespace MatrixCalc.Model
             int currentSum = 0;
             List<int> line = Lines[lineNum];
 
-            try
-            {
                 foreach (var item in line)
                 {
                     currentSum += item;
                 }
-            }
-            catch (Exception ex)
-            {
-                return -1;
-            }
 
             return currentSum;
         }

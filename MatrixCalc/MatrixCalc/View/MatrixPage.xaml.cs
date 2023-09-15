@@ -19,6 +19,7 @@ namespace MatrixCalc
             BindingContext = matrixVM;
 
             MatrixVM.UpdateMatrixAndNotify += ShowUpdated;
+            ExceptionHandler.ExceptionMessege += ShowException;
         }
         
         public async void ShowMessage(int sum, int mult)
@@ -58,6 +59,12 @@ namespace MatrixCalc
         public async void ShowUpdated()
         {
             await DisplayAlert($"Updated", "", "OK");
+        }
+
+
+        public async void ShowException(Exception exception)
+        {
+            await DisplayAlert($"Exception", $"{exception.Message}", "OK");
         }
     }
 }

@@ -153,6 +153,7 @@ namespace MatrixCalc.ViewModel
                 UpdateMainMatrix();
             }
         });
+
         private void ExecuteUpdateResults()
         {
             UpdateResults.Execute(null);
@@ -183,6 +184,7 @@ namespace MatrixCalc.ViewModel
             }
             catch (Exception ex)
             {
+                ExceptionHandler.ExceptionMessege(ex);
                 UpdateMainMatrix();
             }
         });
