@@ -24,7 +24,6 @@ namespace MatrixCalc.ViewModel
 
         public MatrixVM(MatrixPage _matrixPage, Matrix _MainMatrix)
         {
-
             matrixPage = _matrixPage;
             MainMatrix = _MainMatrix;
 
@@ -36,11 +35,11 @@ namespace MatrixCalc.ViewModel
             };
             currentMatrixDimension = dimension.StartDimension;
 
-            internalMath = new InternalMath(MainMatrix);
+            internalMath = new InternalMath();
 
             UpdateResultsDelegate.UpdateResults = ExecuteUpdateResults;
 
-            MainMatrix.UpdateMainMatrix(currentMatrixDimension);
+            MainMatrix.UpdateMatrix(currentMatrixDimension);
         }
 
 
@@ -53,7 +52,7 @@ namespace MatrixCalc.ViewModel
             if (newDimension != currentMatrixDimension)
             {
                 currentMatrixDimension = newDimension;
-                MainMatrix.UpdateMainMatrix(currentMatrixDimension);
+                MainMatrix.UpdateMatrix(currentMatrixDimension);
             }
         });
 
@@ -65,7 +64,7 @@ namespace MatrixCalc.ViewModel
             if (newDimension != currentMatrixDimension)
             {
                 currentMatrixDimension = newDimension;
-                MainMatrix.UpdateMainMatrix(currentMatrixDimension);
+                MainMatrix.UpdateMatrix(currentMatrixDimension);
             }
         });
 
@@ -76,11 +75,10 @@ namespace MatrixCalc.ViewModel
 
         public Command UpdateResults => new Command(() =>
         {
-            Min = internalMath.RefreshMin();
-            Max = internalMath.RefreshMax();
-            Average = internalMath.RefreshAverage();
+            Min = internalMath.RefreshMin(MainMatrix.EntryList);
+            Max = internalMath.RefreshMax(MainMatrix.EntryList);
+            Average = internalMath.RefreshAverage(MainMatrix.EntryList);
         });
-
 
 
         public Command GetInfo => new Command((LineId) =>
@@ -88,25 +86,25 @@ namespace MatrixCalc.ViewModel
             try
             {
                 int lineId = Convert.ToInt32(LineId);
-                MainMatrix.AssignLines();
                 matrixPage.ShowMessage(
-                    internalMath.RefreshSum(lineId),
-                    internalMath.RefreshMin(lineId),
-                    internalMath.RefreshMax(lineId),
-                    internalMath.RefreshAverage(lineId));
+                    internalMath.RefreshSum(lineId, MainMatrix.Lines),
+                    internalMath.RefreshMin(lineId, MainMatrix.Lines),
+                    internalMath.RefreshMax(lineId, MainMatrix.Lines),
+                    internalMath.RefreshAverage(lineId, MainMatrix.Lines));
 
                 UpdateResultsDelegate.UpdateResults();
             }
             catch (Exception ex)
             {
                 ExceptionHandler.ExceptionMessege(ex);
-                MainMatrix.UpdateMainMatrix(currentMatrixDimension);
+                MainMatrix.UpdateMatrix(currentMatrixDimension);
             }
         });
 
         public Command UpdateFromButton => new Command(() =>
         {
-            Matrix.UpdateMatrixAndNotify(currentMatrixDimension);
+            MainMatrix.UpdateMatrix(currentMatrixDimension);
+            MatrixPage.ShowMatrixUpdated();
         });
     }
 }

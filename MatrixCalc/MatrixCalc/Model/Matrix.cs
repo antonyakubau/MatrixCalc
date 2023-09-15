@@ -10,26 +10,21 @@ namespace MatrixCalc.Model
         public static double ChildHeight { get; set; }
         public static double ChildWidth { get; set; }
 
-        public List<InputEntry> EntryList { get; set; }
-        public List<GetInfoButton> ButtonList { get; set; }
-        public List<List<int>> Lines { get; set; }
-
-        public delegate void UpdateHandler(int currentMatrixDimension);
-        public static UpdateHandler UpdateMatrixAndNotify;
+        public List<InputEntry> EntryList { get; }
+        public List<GetInfoButton> ButtonList { get; }
+        public List<List<InputEntry>> Lines { get; }
 
         public Matrix()
         {
             EntryList = new List<InputEntry>();
             ButtonList = new List<GetInfoButton>();
-            Lines = new List<List<int>>();
+            Lines = new List<List<InputEntry>>();
 
             SizeChanged += UpdateChildHeightWidth;
             LayoutChanged += UpdateChildHeightWidth;
-
-            UpdateMatrixAndNotify += UpdateMainMatrix;
         }
 
-        public void UpdateMainMatrix(int currentMatrixDimension)
+        public void UpdateMatrix(int currentMatrixDimension)
         {
             Children.Clear();
             EntryList.Clear();
@@ -78,6 +73,8 @@ namespace MatrixCalc.Model
 
             }
 
+            AssignLines();
+
             UpdateResultsDelegate.UpdateResults();
         }
 
@@ -90,19 +87,19 @@ namespace MatrixCalc.Model
             FontManager.UpdateFontDelegate();
         }
 
-        public void AssignLines()
+        private void AssignLines()
         {
             Lines.Clear();
 
             foreach (var button in ButtonList)
             {
-                List<int> line = new List<int>();
+                List<InputEntry> line = new List<InputEntry>();
                 foreach (var entry in EntryList)
                 {
                     if ((entry.Row == button.Row)
                         || (entry.Column == button.Column))
                     {
-                        line.Add(Convert.ToInt32(entry.Text));
+                        line.Add(entry);
                     }
 
                 }

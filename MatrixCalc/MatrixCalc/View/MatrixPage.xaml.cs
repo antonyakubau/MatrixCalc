@@ -12,14 +12,17 @@ namespace MatrixCalc
     {
         private MatrixVM matrixVM;
 
+        public delegate void ShowUpdateHandler();
+        public static ShowUpdateHandler ShowMatrixUpdated;
+
         public MatrixPage()
         {
             InitializeComponent();
             matrixVM = new MatrixVM(this, MainMatrix);
             BindingContext = matrixVM;
 
-            Matrix.UpdateMatrixAndNotify += ShowUpdated;
-            ExceptionHandler.ExceptionMessege += ShowException;
+            ShowMatrixUpdated = ShowUpdated;
+            ExceptionHandler.ExceptionMessege = ShowException;
         }
         
         public async void ShowMessage(int sum, int mult)
@@ -56,7 +59,7 @@ namespace MatrixCalc
                 , "OK");
         }
 
-        public async void ShowUpdated(int currentMatrixDimension)
+        public async void ShowUpdated()
         {
             await DisplayAlert($"Updated", "", "OK");
         }
