@@ -22,7 +22,7 @@ namespace MatrixCalc
             BindingContext = matrixVM;
 
             ShowMatrixUpdated = ShowUpdated;
-            ExceptionHandler.ExceptionMessege = ShowException;
+            ExceptionManager.ExceptionMessege = ShowException;
         }
 
         public async void ShowMessage(int sum, int min, int max, int everage)

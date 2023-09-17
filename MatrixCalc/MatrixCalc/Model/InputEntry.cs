@@ -13,7 +13,7 @@ namespace MatrixCalc.Model
         public int LineId { get; set; }
 
         public InputEntry()
-        {
+        { 
             random = new Random();
             Keyboard = Keyboard.Numeric;
             MaxLength = 3;
