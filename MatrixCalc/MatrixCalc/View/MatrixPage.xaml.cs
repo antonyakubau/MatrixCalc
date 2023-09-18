@@ -12,13 +12,15 @@ namespace MatrixCalc
     {
         private MatrixVM matrixVM;
 
-        public delegate void ShowUpdateHandler();
-        public static ShowUpdateHandler ShowMatrixUpdated;
+        public delegate void ShowUpdateDelegate();
+        public delegate void ShowMessegeDelegate(int sum, int min, int max, int everage);
+        public static ShowUpdateDelegate ShowMatrixUpdated;
+        public static ShowMessegeDelegate ShowMatrixMessege;
 
         public MatrixPage()
         {
             InitializeComponent();
-            matrixVM = new MatrixVM(this, MainMatrix);
+            matrixVM = new MatrixVM(MainMatrix);
             BindingContext = matrixVM;
 
             ShowMatrixUpdated = ShowUpdated;
