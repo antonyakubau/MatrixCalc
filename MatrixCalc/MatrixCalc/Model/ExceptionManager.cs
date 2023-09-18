@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MatrixCalc.Model
 {
-	public class ExceptionHandler
+	public class ExceptionManager
 	{
         public delegate void ExceptionDelegate(Exception exception);
 
