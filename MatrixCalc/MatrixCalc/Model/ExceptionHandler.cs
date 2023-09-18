@@ -7,6 +7,10 @@ namespace MatrixCalc.Model
 
         public static ExceptionDelegate ExceptionMessege;
 
+        public ExceptionHandler()
+		{
+
+		}
 	}
 }
 
