@@ -24,6 +24,7 @@ namespace MatrixCalc
             BindingContext = matrixVM;
 
             ShowMatrixUpdated = ShowUpdated;
+            ShowMatrixMessege = ShowMessage;
             ExceptionManager.ExceptionMessege = ShowException;
         }
 

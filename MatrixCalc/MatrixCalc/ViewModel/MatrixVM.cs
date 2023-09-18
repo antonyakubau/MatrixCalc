@@ -12,6 +12,7 @@ namespace MatrixCalc.ViewModel
     [AddINotifyPropertyChangedInterface]
     public class MatrixVM
     {
+        private MatrixPage matrixPage;
         private Matrix MainMatrix;
         private int currentMatrixDimension;
         private IPageMath internalMath;
@@ -21,8 +22,9 @@ namespace MatrixCalc.ViewModel
         public int Max { get; set; }
         public int Average { get; set; }
 
-        public MatrixVM(Matrix _MainMatrix)
+        public MatrixVM(MatrixPage _matrixPage, Matrix _MainMatrix)
         {
+            matrixPage = _matrixPage;
             MainMatrix = _MainMatrix;
 
             dimension = new Dimension()
@@ -92,7 +94,7 @@ namespace MatrixCalc.ViewModel
             try
             {
                 int lineId = Convert.ToInt32(LineId);
-                MatrixPage.ShowMatrixMessege(
+                matrixPage.ShowMessage(
                     internalMath.RefreshSum(lineId, MainMatrix.Lines),
                     internalMath.RefreshMin(lineId, MainMatrix.Lines),
                     internalMath.RefreshMax(lineId, MainMatrix.Lines),
