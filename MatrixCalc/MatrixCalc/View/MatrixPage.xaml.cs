@@ -24,7 +24,6 @@ namespace MatrixCalc
             BindingContext = matrixVM;
 
             ShowMatrixUpdated = ShowUpdated;
-            ShowMatrixMessege = ShowMessage;
             ExceptionManager.ExceptionMessege = ShowException;
         }
 
@@ -43,7 +42,6 @@ namespace MatrixCalc
         {
             await DisplayAlert($"Updated", "", "OK");
         }
-
 
         public async void ShowException(Exception exception)
         {
