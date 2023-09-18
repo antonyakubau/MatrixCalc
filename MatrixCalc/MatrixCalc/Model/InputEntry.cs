@@ -1,28 +1,28 @@
 ﻿using System;
+using PropertyChanged;
 using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
 	public class InputEntry : BaseEntry 
 	{
-        private Random random;
+        private Random random = new Random();
         private string lastNumber;
+        private string oldNumber;
 
         public int Row { get; set; }
 		public int Column { get; set; }
         public int LineId { get; set; }
 
+
         public InputEntry()
         { 
-            random = new Random();
             Keyboard = Keyboard.Numeric;
             MaxLength = 3;
             Text = random.Next(0, 999).ToString();
-            lastNumber = Text;
-
             TextChanged += UpdateResults;
-            Unfocused += RestoreNumber;
             FontManager.UpdateFontDelegate += UpdateFontSize;
+            Unfocused += RestoreNumber;
         }
 
         public void UpdateResults(object sender, TextChangedEventArgs e)
