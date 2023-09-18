@@ -83,7 +83,7 @@ namespace MatrixCalc.ViewModel
             }
             catch (Exception ex)
             {
-                ExceptionHandler.ExceptionMessege(ex);
+                ExceptionManager.ExceptionMessege(ex);
                 MainMatrix.UpdateMatrix(currentMatrixDimension);
             }
         });
@@ -104,7 +104,7 @@ namespace MatrixCalc.ViewModel
             }
             catch (Exception ex)
             {
-                ExceptionHandler.ExceptionMessege(ex);
+                ExceptionManager.ExceptionMessege(ex);
                 MainMatrix.UpdateMatrix(currentMatrixDimension);
             }
         });
