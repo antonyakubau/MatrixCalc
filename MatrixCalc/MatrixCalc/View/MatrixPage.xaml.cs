@@ -43,7 +43,6 @@ namespace MatrixCalc
             await DisplayAlert($"Updated", "", "OK");
         }
 
-
         public async void ShowException(Exception exception)
         {
             await DisplayAlert($"Exception", $"{exception.Message}", "OK");
