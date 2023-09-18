@@ -6,9 +6,9 @@ namespace MatrixCalc.Model
 {
 	public class UpdateResultsDelegate
 	{
-        public delegate void UpdateDelegate();
+        public delegate void UpdateHandler();
 
-        public static UpdateDelegate UpdateResults;
+        public static UpdateHandler UpdateResults;
     }
 }
 
