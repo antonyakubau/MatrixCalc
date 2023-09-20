@@ -17,6 +17,7 @@ namespace MatrixCalc.Model
             random = new Random();
             Keyboard = Keyboard.Numeric;
             MaxLength = 3;
+            Behaviors.Add(new InputTextBehavior());
             Text = random.Next(0, 999).ToString();
             lastNumber = Text;
 

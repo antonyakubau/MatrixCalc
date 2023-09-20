@@ -42,7 +42,7 @@ namespace MatrixCalc.ViewModel
 
 
 
-        public Command IncreaseDimensionCommand => new Command(() =>
+        public ICommand IncreaseDimensionCommand => new Command(() =>
         {
             int newDimension = dimension.IncreaseDimension
             (currentMatrixDimension);
@@ -54,7 +54,7 @@ namespace MatrixCalc.ViewModel
             }
         });
 
-        public Command DecreaseDimensionCommand => new Command(() =>
+        public ICommand DecreaseDimensionCommand => new Command(() =>
         {
             int newDimension = dimension.DecreaseDimension
             (currentMatrixDimension);
@@ -71,7 +71,7 @@ namespace MatrixCalc.ViewModel
             UpdateResults.Execute(null);
         }
 
-        public Command UpdateResults => new Command(() =>
+        public ICommand UpdateResults => new Command(() =>
         {
             try
             {
@@ -87,7 +87,7 @@ namespace MatrixCalc.ViewModel
         });
 
 
-        public Command GetInfo => new Command((LineId) =>
+        public ICommand GetInfo => new Command((LineId) =>
         {
             try
             {
@@ -107,7 +107,7 @@ namespace MatrixCalc.ViewModel
             }
         });
 
-        public Command UpdateFromButton => new Command(() =>
+        public ICommand UpdateFromButton => new Command(() =>
         {
             MainMatrix.UpdateValues();
             MatrixPage.ShowMatrixUpdated();
