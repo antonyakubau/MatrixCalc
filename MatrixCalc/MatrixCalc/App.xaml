@@ -12,5 +12,8 @@
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="Margin" Value="20,0,0,0"/>
         </Style>
+
+        <SolidColorBrush x:Key="DarkBlueFrontColor" Color="DarkBlue"/>
+        <SolidColorBrush x:Key="MainWhiteColor" Color="White"/>
     </Application.Resources>
 </Application>
