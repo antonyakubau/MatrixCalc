@@ -82,7 +82,9 @@ namespace MatrixCalc.Model
                             if (oldEntry.Row == inputEntry.Row
                                 && oldEntry.Column == inputEntry.Column)
                             {
-                                inputEntry = oldEntry;
+                                inputEntry.TextChanged -= inputEntry.UpdateResults;
+                                inputEntry.Text = oldEntry.Text;
+                                inputEntry.TextChanged += inputEntry.UpdateResults;
                                 break;
                             }
                         }
