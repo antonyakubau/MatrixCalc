@@ -1,16 +1,27 @@
 ﻿using System;
 using Xamarin.Forms;
+using static SQLite.TableMapping;
+using Xamarin.Forms.Shapes;
 
 namespace MatrixCalc.Model
 {
-	public class UpdateButton : GetInfoButton
+    public class UpdateButton : BaseButton
     {
-		public UpdateButton()
+        public UpdateButton()
 		{
 			Text = "⟳";
-			SetBinding(Button.CommandProperty, new Binding("UpdateFromButton"));
+            VerticalOptions = LayoutOptions.FillAndExpand;
+            HorizontalOptions = LayoutOptions.FillAndExpand;
+            SetBinding(Button.CommandProperty, new Binding("UpdateFromButton"));
+
+            FontManager.UpdateFontDelegate += UpdateFontSize;
         }
-		
-	}
+
+        public void UpdateFontSize()
+        {
+            FontSize = Matrix.ChildHeight / 2;
+        }
+
+    }
 }
 

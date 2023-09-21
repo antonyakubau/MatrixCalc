@@ -5,24 +5,30 @@ using Xamarin.Forms;
 namespace MatrixCalc.Model
 {
 	public class GetInfoButton : BaseButton
-    {
-        public int Row { get; set; }
-        public int Column { get; set; }
-        public int LineId { get; set; }
+	{
+		public int Row { get; protected set; }
+		public int Column { get; protected set; }
+		public int LineId { get; set; }
 
-        public GetInfoButton()
+		public GetInfoButton(int row, int column, int lineId)
 		{
-            Text = "⋯";
-            VerticalOptions = LayoutOptions.FillAndExpand;
-            HorizontalOptions = LayoutOptions.FillAndExpand;
-            this.SetBinding(Button.CommandProperty, new Binding("GetInfo"));
-            FontManager.UpdateFontDelegate += UpdateFontSize;
-        }
+			Text = "⋯";
+			VerticalOptions = LayoutOptions.FillAndExpand;
+			HorizontalOptions = LayoutOptions.FillAndExpand;
+			SetBinding(Button.CommandProperty, new Binding("GetInfo"));
 
-        public void UpdateFontSize()
-        {
-            FontSize = Matrix.ChildHeight / 2;
-        }
-    }
+			Row = row;
+			Column = column;
+			LineId = lineId;
+			CommandParameter = Convert.ToString(lineId);
+
+			FontManager.UpdateFontDelegate += UpdateFontSize;
+		}
+
+		public void UpdateFontSize()
+		{
+			FontSize = Matrix.ChildHeight / 2;
+		}
+	}
 }
 

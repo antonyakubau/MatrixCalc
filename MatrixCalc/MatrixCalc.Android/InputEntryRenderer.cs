@@ -21,7 +21,6 @@ namespace MatrixCalc.Droid
 
             if (Control != null)
             {
-
             }
         }
     }
