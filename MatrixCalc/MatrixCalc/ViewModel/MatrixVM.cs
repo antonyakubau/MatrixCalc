@@ -93,10 +93,10 @@ namespace MatrixCalc.ViewModel
 			{
 				int lineId = Convert.ToInt32(LineId);
 				MatrixPage.ShowMatrixMessege(
-					internalMath.RefreshSum(lineId, MainMatrix.Lines),
-					internalMath.RefreshMin(lineId, MainMatrix.Lines),
-					internalMath.RefreshMax(lineId, MainMatrix.Lines),
-					internalMath.RefreshAverage(lineId, MainMatrix.Lines));
+					internalMath.RefreshSum(MainMatrix.Lines[lineId]),
+					internalMath.RefreshMin(MainMatrix.Lines[lineId]),
+					internalMath.RefreshMax(MainMatrix.Lines[lineId]),
+					internalMath.RefreshAverage(MainMatrix.Lines[lineId]));
 
 				UpdateResultsDelegate.UpdateResults();
 			}

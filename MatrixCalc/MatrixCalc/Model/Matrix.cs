@@ -110,7 +110,6 @@ namespace MatrixCalc.Model
 						|| (entry.Column == button.Column))
 					{
 						line.Add(entry);
-						entry.LineId = button.LineId;
 					}
 
 				}

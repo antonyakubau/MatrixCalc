@@ -10,7 +10,6 @@ namespace MatrixCalc.Model
 
         public int Row { get; protected set; }
 		public int Column { get; protected set; }
-        public int LineId { get; set; }
 
         public InputEntry(int row, int column)
         { 

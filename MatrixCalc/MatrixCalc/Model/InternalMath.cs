@@ -10,7 +10,7 @@ namespace MatrixCalc.Model
 		{
         }
 
-        public int RefreshMin(List<InputEntry> EntryList)
+        public int CalculateMin(List<InputEntry> EntryList)
         {
             int currentMin = int.MaxValue;
 
@@ -25,25 +25,8 @@ namespace MatrixCalc.Model
             return currentMin;
         }
 
-        public int RefreshMin(int lineNum, List<List<InputEntry>> Lines)
-        {
-            int currentMin = int.MaxValue;
-            int itemText;
-            List<InputEntry> line = Lines[lineNum];
 
-                foreach (var item in line)
-                {
-                    itemText = Convert.ToInt32(item.Text);
-                    if (itemText < currentMin)
-                    {
-                        currentMin = itemText;
-                    }
-                }
-
-            return currentMin;
-        }
-
-        public int RefreshMax(List<InputEntry> EntryList)
+        public int CalculateMax(List<InputEntry> EntryList)
         {
             int currentMax = int.MinValue;
 
@@ -58,25 +41,8 @@ namespace MatrixCalc.Model
             return currentMax;
         }
 
-        public int RefreshMax(int lineNum, List<List<InputEntry>> Lines)
-        {
-            int currentMax = int.MinValue;
-            int itemText;
-            List<InputEntry> line = Lines[lineNum];
 
-            foreach (var item in line)
-            {
-                itemText = Convert.ToInt32(item.Text);
-                if (itemText > currentMax)
-                    {
-                        currentMax = itemText;
-                    }
-            }
-
-            return currentMax;
-        }
-
-        public int RefreshAverage(List<InputEntry> EntryList)
+        public int CalculateAverage(List<InputEntry> EntryList)
         {
             int currentSum = 0;
 
@@ -88,29 +54,12 @@ namespace MatrixCalc.Model
             return currentSum / EntryList.Count;
         }
 
-
-        public int RefreshAverage(int lineNum, List<List<InputEntry>> Lines)
+        public int CalculateSum(List<InputEntry> EntryList)
         {
             int currentSum = 0;
             int itemText;
-            List<InputEntry> line = Lines[lineNum];
 
-            foreach (var item in line)
-            {
-                itemText = Convert.ToInt32(item.Text);
-                currentSum += itemText;
-            }
-
-            return currentSum / line.Count;
-        }
-
-        public int RefreshSum(int lineNum, List<List<InputEntry>> Lines)
-        {
-            int currentSum = 0;
-            int itemText;
-            List<InputEntry> line = Lines[lineNum];
-
-            foreach (var item in line)
+            foreach (var item in EntryList)
             {
                 itemText = Convert.ToInt32(item.Text);
                 currentSum += itemText;
