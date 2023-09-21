@@ -5,21 +5,38 @@ namespace MatrixCalc.Model
 {
 	public class InputEntry : BaseEntry 
 	{
-        private Random random;
+        private Random random = new Random();
         private string lastNumber;
 
-        public int Row { get; set; }
-		public int Column { get; set; }
-        public int LineId { get; set; }
+        public int Row { get; protected set; }
+		public int Column { get; protected set; }
 
-        public InputEntry()
+        public InputEntry(int row, int column)
         { 
-            random = new Random();
             Keyboard = Keyboard.Numeric;
             MaxLength = 3;
             Behaviors.Add(new InputTextBehavior());
             Text = random.Next(0, 999).ToString();
             lastNumber = Text;
+
+            Row = row;
+            Column = column;
+
+            TextChanged += UpdateResults;
+            Unfocused += RestoreNumber;
+            FontManager.UpdateFontDelegate += UpdateFontSize;
+        }
+
+        public InputEntry(InputEntry oldInputEntry)
+        {
+            Keyboard = Keyboard.Numeric;
+            MaxLength = 3;
+            Behaviors.Add(new InputTextBehavior());
+            Text = oldInputEntry.Text;
+            lastNumber = Text;
+
+            Row = oldInputEntry.Row;
+            Column = oldInputEntry.Column;
 
             TextChanged += UpdateResults;
             Unfocused += RestoreNumber;
