@@ -75,9 +75,9 @@ namespace MatrixCalc.ViewModel
 		{
 			try
 			{
-				Min = internalMath.RefreshMin(MainMatrix.EntryList);
-				Max = internalMath.RefreshMax(MainMatrix.EntryList);
-				Average = internalMath.RefreshAverage(MainMatrix.EntryList);
+				Min = internalMath.CalculateMin(MainMatrix.EntryList);
+				Max = internalMath.CalculateMax(MainMatrix.EntryList);
+				Average = internalMath.CalculateAverage(MainMatrix.EntryList);
 			}
 			catch (Exception ex)
 			{
@@ -93,10 +93,10 @@ namespace MatrixCalc.ViewModel
 			{
 				int lineId = Convert.ToInt32(LineId);
 				MatrixPage.ShowMatrixMessege(
-					internalMath.RefreshSum(MainMatrix.Lines[lineId]),
-					internalMath.RefreshMin(MainMatrix.Lines[lineId]),
-					internalMath.RefreshMax(MainMatrix.Lines[lineId]),
-					internalMath.RefreshAverage(MainMatrix.Lines[lineId]));
+					internalMath.CalculateSum(MainMatrix.Lines[lineId]),
+					internalMath.CalculateMin(MainMatrix.Lines[lineId]),
+					internalMath.CalculateMax(MainMatrix.Lines[lineId]),
+					internalMath.CalculateAverage(MainMatrix.Lines[lineId]));
 
 				UpdateResultsDelegate.UpdateResults();
 			}
