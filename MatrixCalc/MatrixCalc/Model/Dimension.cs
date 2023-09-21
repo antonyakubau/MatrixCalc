@@ -6,14 +6,41 @@ namespace MatrixCalc.Model
 {
 	public class Dimension
 	{
-        private int MaxDimension;
-        private int MinDimension;
+        public const int MAXDIM = 10;
+        public const int MINDIM = 1;
+
+        private int upperBound;
+        public int UpperBound
+        {
+            get { return upperBound; }
+            private set
+            {
+                if (value <= MAXDIM)
+                    upperBound = value;
+                else
+                    upperBound = MAXDIM;
+            }
+
+        }
+
+        private int lowerBound;
+        public int LowerBound
+        {
+            get { return lowerBound; }
+            private set
+            {
+                if (value >= MINDIM)
+                    lowerBound = value;
+                else
+                    lowerBound = MINDIM;
+            }
+        }
 
         private int startDimension;
-		public int StartDimension
+        public int StartDimension
         {
             get { return startDimension; }
-            set
+            private set
             {
                 if (LowerBound == 0 || UpperBound == 0)
                     throw new IndexOutOfRangeException("StartDimension must be set last");
@@ -36,38 +63,11 @@ namespace MatrixCalc.Model
 
         }
 
-        private int upperBound;
-        public int UpperBound
+        public Dimension(int lowerBound, int upperBound, int startDimension)
         {
-            get { return upperBound; }
-
-            set
-            {
-                if (value <= MaxDimension)
-                    upperBound = value;
-                else
-                    upperBound = MaxDimension;
-            }
-
-        }
-
-        private int lowerBound;
-        public int LowerBound
-        {
-            get { return lowerBound; }
-            set
-            {
-                if (value >= MinDimension)
-                    lowerBound = value;
-                else
-                    lowerBound = MinDimension;
-            }
-        }
-
-        public Dimension()
-        {
-            MaxDimension = 20;
-            MinDimension = 2;
+            LowerBound = lowerBound;
+            UpperBound = upperBound;
+            StartDimension = startDimension;
         }
 
         public int IncreaseDimension(int currentMatrixDimension)

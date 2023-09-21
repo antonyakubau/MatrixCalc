@@ -41,12 +41,12 @@ namespace MatrixCalc.Model
 			EntryList.Clear();
 			ButtonList.Clear();
 
-			for (int i = 0; i < currentMatrixDimension; i++)
+			for (int i = 0; i <= currentMatrixDimension; i++)
 			{
-				for (int j = 0; j < currentMatrixDimension; j++)
+				for (int j = 0; j <= currentMatrixDimension; j++)
 				{
-					if ((i == currentMatrixDimension - 1)
-						|| (j == currentMatrixDimension - 1))
+					if ((i == currentMatrixDimension)
+						|| (j == currentMatrixDimension))
 					{
 						if (i != j)
 						{
