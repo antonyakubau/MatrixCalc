@@ -24,9 +24,9 @@ namespace MatrixCalc.ViewModel
 		public int Max { get; private set; }
 		public int Average { get; private set; }
 
-		public MatrixVM(Matrix _MainMatrix)
+		public MatrixVM(Matrix mainMatrix)
 		{
-			MainMatrix = _MainMatrix;
+			MainMatrix = mainMatrix;
 
 			LowerBound = 2;
 			UpperBound = 7;
