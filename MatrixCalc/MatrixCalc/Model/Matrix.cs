@@ -41,15 +41,16 @@ namespace MatrixCalc.Model
 			Children.Clear();
 			EntryList.Clear();
             ButtonList.Clear();
+			GetInfoButton.LastLineId = 0;
 
-			for (int i = 0, lineId = 0; i <= currentMatrixDimension; i++)
+			for (int i = 0; i <= currentMatrixDimension; i++)
 			{
 				for (int j = 0; j <= currentMatrixDimension; j++)
 				{
 					if ((i == currentMatrixDimension)
 						|| (j == currentMatrixDimension))
                     {
-                        lineId = CreateButton(i, j, lineId);
+                        CreateButton(i, j);
                     }
                     else
                     {
@@ -73,23 +74,21 @@ namespace MatrixCalc.Model
             EntryList.Add(inputEntry);
         }
 
-        private int CreateButton(int i, int j, int lineId)
+        private void CreateButton(int i, int j)
         {
             if (i != j)
             {
-                GetInfoButton getInfoButton = new GetInfoButton(i, j, lineId);
+                GetInfoButton getInfoButton = new GetInfoButton(i, j);
 
                 Children.Add(getInfoButton, j, i);
                 ButtonList.Add(getInfoButton);
-                lineId++;
+				GetInfoButton.LastLineId++;
             }
             else
             {
                 UpdateButton updateButton = new UpdateButton();
                 Children.Add(updateButton, j, i);
             }
-
-            return lineId;
         }
 
         private InputEntry CheckOldValueExist(InputEntry inputEntry)

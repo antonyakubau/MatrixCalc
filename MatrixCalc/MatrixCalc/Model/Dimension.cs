@@ -10,6 +10,16 @@ namespace MatrixCalc.Model
         public const int MINDIM = 1;
 
         private int upperBound;
+        private int lowerBound;
+        private int startDimension;
+
+        public Dimension(int lowerBound, int upperBound, int startDimension)
+        {
+            LowerBound = lowerBound;
+            UpperBound = upperBound;
+            StartDimension = startDimension;
+        }
+
         public int UpperBound
         {
             get { return upperBound; }
@@ -23,7 +33,6 @@ namespace MatrixCalc.Model
 
         }
 
-        private int lowerBound;
         public int LowerBound
         {
             get { return lowerBound; }
@@ -36,7 +45,6 @@ namespace MatrixCalc.Model
             }
         }
 
-        private int startDimension;
         public int StartDimension
         {
             get { return startDimension; }
@@ -61,13 +69,6 @@ namespace MatrixCalc.Model
                     startDimension = value;
             }
 
-        }
-
-        public Dimension(int lowerBound, int upperBound, int startDimension)
-        {
-            LowerBound = lowerBound;
-            UpperBound = upperBound;
-            StartDimension = startDimension;
         }
 
         public int IncreaseDimension(int currentMatrixDimension)

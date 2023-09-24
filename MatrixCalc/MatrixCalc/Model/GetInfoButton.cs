@@ -6,12 +6,14 @@ namespace MatrixCalc.Model
 {
 	public class GetInfoButton : BaseButton
 	{
+		public static int LastLineId { get; set; }
+
 		public int Row { get; protected set; }
 		public int Column { get; protected set; }
 		public int LineId { get; set; }
 
-		public GetInfoButton(int row, int column, int lineId)
-		{
+		public GetInfoButton(int row, int column)
+        {
 			Text = "⋯";
 			VerticalOptions = LayoutOptions.FillAndExpand;
 			HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -19,8 +21,8 @@ namespace MatrixCalc.Model
 
 			Row = row;
 			Column = column;
-			LineId = lineId;
-			CommandParameter = Convert.ToString(lineId);
+			LineId = LastLineId;
+			CommandParameter = Convert.ToString(LineId);
 
 			FontManager.UpdateFontDelegate += UpdateFontSize;
 		}
