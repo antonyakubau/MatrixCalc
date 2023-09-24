@@ -17,20 +17,22 @@ namespace MatrixCalc.ViewModel
 		private IPageMath internalMath;
 		private readonly Dimension dimension;
 
-		public int Min { get; set; }
-		public int Max { get; set; }
-		public int Average { get; set; }
+		public int LowerBound { get; private set; }
+        public int UpperBound { get; private set; }
+        public int StartDimension { get; private set; }
+        public int Min { get; private set; }
+		public int Max { get; private set; }
+		public int Average { get; private set; }
 
-		public MatrixVM(Matrix _MainMatrix)
+		public MatrixVM(Matrix mainMatrix)
 		{
-			MainMatrix = _MainMatrix;
+			MainMatrix = mainMatrix;
 
-			dimension = new Dimension()
-			{
-				LowerBound = 3,
-				UpperBound = 7,
-				StartDimension = 5
-			};
+			LowerBound = 2;
+			UpperBound = 7;
+			StartDimension = 4;
+
+			dimension = new Dimension(LowerBound, UpperBound, StartDimension);
 			currentMatrixDimension = dimension.StartDimension;
 
 			internalMath = new InternalMath();

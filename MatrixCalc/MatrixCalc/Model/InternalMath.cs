@@ -5,68 +5,68 @@ using MatrixCalc.ViewModel;
 namespace MatrixCalc.Model
 {
 	public class InternalMath : IPageMath
-    {
-        public InternalMath()
+	{
+		public InternalMath()
 		{
-        }
+		}
 
-        public int CalculateMin(List<InputEntry> EntryList)
-        {
-            int currentMin = int.MaxValue;
+		public int CalculateMin(List<InputEntry> EntryList)
+		{
+			int currentMin = int.MaxValue;
 
-                foreach (var item in EntryList)
-                {
-                    if (Convert.ToInt32(item.Text) < currentMin)
-                    {
-                        currentMin = Convert.ToInt32(item.Text);
-                    }
-                }
+				foreach (var item in EntryList)
+				{
+					if (Convert.ToInt32(item.Text) < currentMin)
+					{
+						currentMin = Convert.ToInt32(item.Text);
+					}
+				}
 
-            return currentMin;
-        }
-
-
-        public int CalculateMax(List<InputEntry> EntryList)
-        {
-            int currentMax = int.MinValue;
-
-                foreach (var item in EntryList)
-                {
-                    if (Convert.ToInt32(item.Text) > currentMax)
-                    {
-                        currentMax = Convert.ToInt32(item.Text);
-                    }
-                }
-
-            return currentMax;
-        }
+			return currentMin;
+		}
 
 
-        public int CalculateAverage(List<InputEntry> EntryList)
-        {
-            int currentSum = 0;
+		public int CalculateMax(List<InputEntry> EntryList)
+		{
+			int currentMax = int.MinValue;
 
-                foreach (var item in EntryList)
-                {
-                    currentSum += Convert.ToInt32(item.Text);
-                }
+				foreach (var item in EntryList)
+				{
+					if (Convert.ToInt32(item.Text) > currentMax)
+					{
+						currentMax = Convert.ToInt32(item.Text);
+					}
+				}
 
-            return currentSum / EntryList.Count;
-        }
+			return currentMax;
+		}
 
-        public int CalculateSum(List<InputEntry> EntryList)
-        {
-            int currentSum = 0;
-            int itemText;
 
-            foreach (var item in EntryList)
-            {
-                itemText = Convert.ToInt32(item.Text);
-                currentSum += itemText;
-            }
+		public int CalculateAverage(List<InputEntry> EntryList)
+		{
+			int currentSum = 0;
 
-            return currentSum;
-        }
-    }
+				foreach (var item in EntryList)
+				{
+					currentSum += Convert.ToInt32(item.Text);
+				}
+
+			return currentSum / EntryList.Count;
+		}
+
+		public int CalculateSum(List<InputEntry> EntryList)
+		{
+			int currentSum = 0;
+			int itemText;
+
+			foreach (var item in EntryList)
+			{
+				itemText = Convert.ToInt32(item.Text);
+				currentSum += itemText;
+			}
+
+			return currentSum;
+		}
+	}
 }
 
