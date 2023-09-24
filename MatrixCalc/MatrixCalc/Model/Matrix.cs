@@ -37,10 +37,7 @@ namespace MatrixCalc.Model
 		public void UpdateMatrix(int currentMatrixDimension)
         {
             OldEntryList = new List<InputEntry>(EntryList);
-
-            Children.Clear();
-            EntryList.Clear();
-            ButtonList.Clear();
+            ClearOldChildrens();
             GetInfoButton.LastLineId = 0;
 
             CreateChildrens(currentMatrixDimension);
@@ -48,6 +45,13 @@ namespace MatrixCalc.Model
             AssignLines();
 
             UpdateResultsDelegate.UpdateResults();
+        }
+
+        private void ClearOldChildrens()
+        {
+            Children.Clear();
+            EntryList.Clear();
+            ButtonList.Clear();
         }
 
         private void CreateChildrens(int currentMatrixDimension)
