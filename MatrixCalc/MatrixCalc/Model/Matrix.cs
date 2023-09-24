@@ -124,21 +124,25 @@ namespace MatrixCalc.Model
 			Lines.Clear();
 
 			foreach (var button in ButtonList)
-			{
-				List<InputEntry> line = new List<InputEntry>();
-				foreach (var entry in EntryList)
-				{
-					if ((entry.Row == button.Row)
-						|| (entry.Column == button.Column))
-					{
-						line.Add(entry);
-					}
+            {
+                List<InputEntry> Line = new List<InputEntry>();
+                FillLine(Line, button);
+                Lines.Add(Line);
+            }
 
-				}
-				Lines.Add(line);
-			}
+        }
 
-		}
-	}
+        private void FillLine(List<InputEntry> Line, GetInfoButton button)
+        {
+            foreach (var entry in EntryList)
+            {
+                if ((entry.Row == button.Row)
+                    || (entry.Column == button.Column))
+                {
+                    Line.Add(entry);
+                }
+            }
+        }
+    }
 }
 
