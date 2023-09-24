@@ -35,20 +35,29 @@ namespace MatrixCalc.Model
 		}
 
 		public void UpdateMatrix(int currentMatrixDimension)
-		{
-			OldEntryList = new List<InputEntry>(EntryList);
-			
-			Children.Clear();
-			EntryList.Clear();
-            ButtonList.Clear();
-			GetInfoButton.LastLineId = 0;
+        {
+            OldEntryList = new List<InputEntry>(EntryList);
 
-			for (int i = 0; i <= currentMatrixDimension; i++)
-			{
-				for (int j = 0; j <= currentMatrixDimension; j++)
-				{
-					if ((i == currentMatrixDimension)
-						|| (j == currentMatrixDimension))
+            Children.Clear();
+            EntryList.Clear();
+            ButtonList.Clear();
+            GetInfoButton.LastLineId = 0;
+
+            CreateChildrens(currentMatrixDimension);
+
+            AssignLines();
+
+            UpdateResultsDelegate.UpdateResults();
+        }
+
+        private void CreateChildrens(int currentMatrixDimension)
+        {
+            for (int i = 0; i <= currentMatrixDimension; i++)
+            {
+                for (int j = 0; j <= currentMatrixDimension; j++)
+                {
+                    if ((i == currentMatrixDimension)
+                        || (j == currentMatrixDimension))
                     {
                         CreateButton(i, j);
                     }
@@ -58,12 +67,8 @@ namespace MatrixCalc.Model
                     }
                 }
 
-			}
-
-			AssignLines();
-
-			UpdateResultsDelegate.UpdateResults();
-		}
+            }
+        }
 
         private void CreateEntry(int i, int j)
         {
