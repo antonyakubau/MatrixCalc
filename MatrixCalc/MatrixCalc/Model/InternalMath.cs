@@ -44,26 +44,17 @@ namespace MatrixCalc.Model
 
 		public int CalculateAverage(List<InputEntry> EntryList)
 		{
-			int currentSum = 0;
-
-				foreach (var item in EntryList)
-				{
-					currentSum += Convert.ToInt32(item.Text);
-				}
-
-			return currentSum / EntryList.Count;
+			return CalculateSum(EntryList) / EntryList.Count;
 		}
 
 		public int CalculateSum(List<InputEntry> EntryList)
 		{
 			int currentSum = 0;
-			int itemText;
 
 			foreach (var item in EntryList)
-			{
-				itemText = Convert.ToInt32(item.Text);
-				currentSum += itemText;
-			}
+			{ 
+				currentSum += Convert.ToInt32(item.Text);
+            }
 
 			return currentSum;
 		}

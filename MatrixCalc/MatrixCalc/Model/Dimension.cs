@@ -74,10 +74,7 @@ namespace MatrixCalc.Model
         public int IncreaseDimension(int currentMatrixDimension)
         {
             if (currentMatrixDimension < UpperBound)
-            {
                 currentMatrixDimension++;
-                return currentMatrixDimension;
-            }
 
             return currentMatrixDimension;
         }
@@ -86,10 +83,7 @@ namespace MatrixCalc.Model
         public int DecreaseDimension(int currentMatrixDimension)
         {
             if (currentMatrixDimension > LowerBound)
-            {
                 currentMatrixDimension--;
-                return currentMatrixDimension;
-            }
 
             return currentMatrixDimension;
         }
