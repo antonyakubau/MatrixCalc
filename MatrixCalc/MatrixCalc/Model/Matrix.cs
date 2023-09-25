@@ -24,32 +24,44 @@ namespace MatrixCalc.Model
 			SizeChanged += UpdateChildHeightWidth;
 			LayoutChanged += UpdateChildHeightWidth;
 		}
-		
 
-		public void UpdateValues()
-		{
-			foreach (var entry in EntryList)
-			{
-				entry.GenerateNewValue();
-			}
-		}
+        public void UpdateValues()
+        {
+            foreach (var entry in EntryList)
+            {
+                entry.GenerateNewValue();
+            }
+        }
 
-		public void UpdateMatrix(int currentMatrixDimension)
-		{
-			OldEntryList = new List<InputEntry>(EntryList);
-			
-			Children.Clear();
-			EntryList.Clear();
+        public void UpdateMatrix(int currentMatrixDimension)
+        {
+            OldEntryList = new List<InputEntry>(EntryList);
+
+            ClearOldChildren();
+            CreateChildren(currentMatrixDimension);
+            AssignLines();
+
+            UpdateResultsDelegate.UpdateResults();
+        }
+
+        private void ClearOldChildren()
+        {
+            Children.Clear();
+            EntryList.Clear();
             ButtonList.Clear();
+            GetInfoButton.LastLineId = 0;
+        }
 
-			for (int i = 0, lineId = 0; i <= currentMatrixDimension; i++)
-			{
-				for (int j = 0; j <= currentMatrixDimension; j++)
-				{
-					if ((i == currentMatrixDimension)
-						|| (j == currentMatrixDimension))
+        private void CreateChildren(int currentMatrixDimension)
+        {
+            for (int i = 0; i <= currentMatrixDimension; i++)
+            {
+                for (int j = 0; j <= currentMatrixDimension; j++)
+                {
+                    if ((i == currentMatrixDimension)
+                        || (j == currentMatrixDimension))
                     {
-                        lineId = CreateButton(i, j, lineId);
+                        CreateButton(i, j);
                     }
                     else
                     {
@@ -57,39 +69,29 @@ namespace MatrixCalc.Model
                     }
                 }
 
-			}
+            }
+        }
 
-			AssignLines();
-
-			UpdateResultsDelegate.UpdateResults();
-		}
+        private void CreateButton(int i, int j)
+        {
+            if (i != j)
+            {
+                GetInfoButton getInfoButton = new GetInfoButton(i, j);
+                AddToChildren(getInfoButton, i, j);
+				GetInfoButton.LastLineId++;
+            }
+            else
+            {
+                UpdateButton updateButton = new UpdateButton();
+                AddToChildren(updateButton, i, j);
+            }
+        }
 
         private void CreateEntry(int i, int j)
         {
             InputEntry inputEntry = new InputEntry(i, j);
             inputEntry = CheckOldValueExist(inputEntry);
-
-            Children.Add(inputEntry, j, i);
-            EntryList.Add(inputEntry);
-        }
-
-        private int CreateButton(int i, int j, int lineId)
-        {
-            if (i != j)
-            {
-                GetInfoButton getInfoButton = new GetInfoButton(i, j, lineId);
-
-                Children.Add(getInfoButton, j, i);
-                ButtonList.Add(getInfoButton);
-                lineId++;
-            }
-            else
-            {
-                UpdateButton updateButton = new UpdateButton();
-                Children.Add(updateButton, j, i);
-            }
-
-            return lineId;
+            AddToChildren(inputEntry, i, j);
         }
 
         private InputEntry CheckOldValueExist(InputEntry inputEntry)
@@ -107,34 +109,49 @@ namespace MatrixCalc.Model
             return inputEntry;
         }
 
-        private void UpdateChildHeightWidth(object sender, EventArgs e)
-		{
-			ChildHeight = Children[0].Height;
-			ChildWidth = Children[0].Width;
-
-			FontManager.UpdateFontDelegate();
-		}
+        private void AddToChildren(View child, int i, int j)
+        {
+            Children.Add(child, j, i);
+            if (child is InputEntry inputEntry)
+                EntryList.Add(inputEntry);
+            else
+            if (child is GetInfoButton getInfoButton)
+                ButtonList.Add(getInfoButton);
+        }
 
 		private void AssignLines()
 		{
 			Lines.Clear();
 
 			foreach (var button in ButtonList)
-			{
-				List<InputEntry> line = new List<InputEntry>();
-				foreach (var entry in EntryList)
-				{
-					if ((entry.Row == button.Row)
-						|| (entry.Column == button.Column))
-					{
-						line.Add(entry);
-					}
+            {
+                List<InputEntry> Line = new List<InputEntry>();
+                FillLine(Line, button);
+                Lines.Add(Line);
+            }
 
-				}
-				Lines.Add(line);
-			}
+        }
 
-		}
-	}
+        private void FillLine(List<InputEntry> Line, GetInfoButton button)
+        {
+            foreach (var entry in EntryList)
+            {
+                if ((entry.Row == button.Row)
+                    || (entry.Column == button.Column))
+                {
+                    Line.Add(entry);
+                }
+            }
+        }
+
+        private void UpdateChildHeightWidth(object sender, EventArgs e)
+        {
+            ChildHeight = Children[0].Height;
+            ChildWidth = Children[0].Width;
+
+            FontManager.UpdateFontDelegate();
+        }
+
+    }
 }
 
