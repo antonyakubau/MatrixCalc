@@ -27,6 +27,10 @@ namespace MatrixCalc.Model
 			FontManager.UpdateFontDelegate += UpdateFontSize;
 		}
 
+		public GetInfoButton()
+		{
+		}
+
 		public void UpdateFontSize()
 		{
 			FontSize = Matrix.ChildHeight / 2;
