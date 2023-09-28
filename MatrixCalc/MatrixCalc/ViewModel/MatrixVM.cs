@@ -12,7 +12,7 @@ namespace MatrixCalc.ViewModel
 	[AddINotifyPropertyChangedInterface]
 	public class MatrixVM
 	{
-		private Matrix _mainMatrix;
+		private IMatrix _mainMatrix;
 		private int _currentMatrixDimension;
 		private IPageMath _internalMath;
 		private readonly Dimension _dimension;
@@ -24,7 +24,7 @@ namespace MatrixCalc.ViewModel
 		public int MaxValueOfMatrix { get; private set; }
 		public int AverageValueOfMatrix { get; private set; }
 
-		public MatrixVM(Matrix mainMatrix)
+		public MatrixVM(IMatrix mainMatrix)
 		{
 			_mainMatrix = mainMatrix;
 
