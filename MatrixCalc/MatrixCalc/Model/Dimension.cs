@@ -9,9 +9,9 @@ namespace MatrixCalc.Model
         public const int MAXDIM = 10;
         public const int MINDIM = 1;
 
-        private int upperBound;
-        private int lowerBound;
-        private int startDimension;
+        private int _upperBound;
+        private int _lowerBound;
+        private int _startDimension;
 
         public Dimension(int lowerBound, int upperBound, int startDimension)
         {
@@ -22,32 +22,32 @@ namespace MatrixCalc.Model
 
         public int UpperBound
         {
-            get { return upperBound; }
+            get { return _upperBound; }
             private set
             {
                 if (value <= MAXDIM)
-                    upperBound = value;
+                    _upperBound = value;
                 else
-                    upperBound = MAXDIM;
+                    _upperBound = MAXDIM;
             }
 
         }
 
         public int LowerBound
         {
-            get { return lowerBound; }
+            get { return _lowerBound; }
             private set
             {
                 if (value >= MINDIM)
-                    lowerBound = value;
+                    _lowerBound = value;
                 else
-                    lowerBound = MINDIM;
+                    _lowerBound = MINDIM;
             }
         }
 
         public int StartDimension
         {
-            get { return startDimension; }
+            get { return _startDimension; }
             private set
             {
                 if (LowerBound == 0 || UpperBound == 0)
@@ -61,12 +61,12 @@ namespace MatrixCalc.Model
 
 
                 if (value < LowerBound)
-                    startDimension = LowerBound;
+                    _startDimension = LowerBound;
                 else
                 if (value > UpperBound)
-                    startDimension = UpperBound;
+                    _startDimension = UpperBound;
                 else
-                    startDimension = value;
+                    _startDimension = value;
             }
 
         }

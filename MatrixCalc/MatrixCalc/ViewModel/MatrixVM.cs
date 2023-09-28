@@ -20,9 +20,9 @@ namespace MatrixCalc.ViewModel
 		public int LowerBound { get; private set; }
         public int UpperBound { get; private set; }
         public int StartDimension { get; private set; }
-        public int Min { get; private set; }
-		public int Max { get; private set; }
-		public int Average { get; private set; }
+        public int MinValueOfMatrix { get; private set; }
+		public int MaxValueOfMatrix { get; private set; }
+		public int AverageValueOfMatrix { get; private set; }
 
 		public MatrixVM(Matrix mainMatrix)
 		{
@@ -77,9 +77,9 @@ namespace MatrixCalc.ViewModel
 		{
 			try
 			{
-				Min = _internalMath.CalculateMin(_mainMatrix.EntryList);
-				Max = _internalMath.CalculateMax(_mainMatrix.EntryList);
-				Average = _internalMath.CalculateAverage(_mainMatrix.EntryList);
+				MinValueOfMatrix = _internalMath.CalculateMin(_mainMatrix.EntryList);
+				MaxValueOfMatrix = _internalMath.CalculateMax(_mainMatrix.EntryList);
+				AverageValueOfMatrix = _internalMath.CalculateAverage(_mainMatrix.EntryList);
 			}
 			catch (Exception ex)
 			{
