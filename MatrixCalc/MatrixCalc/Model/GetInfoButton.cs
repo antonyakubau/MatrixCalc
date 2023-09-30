@@ -33,7 +33,7 @@ namespace MatrixCalc.Model
 
 		public void UpdateFontSize()
 		{
-			FontSize = Matrix.ChildHeight / 2;
+			FontSize = Matrix.ChildWidth / 2;
 		}
 	}
 }

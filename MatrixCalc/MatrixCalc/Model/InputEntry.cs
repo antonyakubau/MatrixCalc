@@ -63,7 +63,7 @@ namespace MatrixCalc.Model
 
 		public void UpdateFontSize()
 		{
-			FontSize = Matrix.ChildHeight / 3.5;
+			FontSize = Matrix.ChildWidth / 3;
 		}
 
 		public void GenerateNewValue()
@@ -94,7 +94,6 @@ namespace MatrixCalc.Model
 		{
 			if (Text == string.Empty)
 				Text = _lastNumber;
-
 		}
 
 		private bool SumMoreZero(string value)

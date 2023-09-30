@@ -40,8 +40,10 @@ namespace MatrixCalc.Model
             ClearOldChildren();
             CreateChildren(currentMatrixDimension);
             AssignLines();
-
-            UpdateResultsDelegate.UpdateResults();
+            if (UpdateResultsDelegate.UpdateResults != null)
+            {
+                UpdateResultsDelegate.UpdateResults();
+            }
         }
 
         private void ClearOldChildren()
@@ -149,7 +151,10 @@ namespace MatrixCalc.Model
             ChildHeight = Children[0].Height;
             ChildWidth = Children[0].Width;
 
-            FontManager.UpdateFontDelegate();
+            if (FontManager.UpdateFontDelegate != null)
+            {
+                FontManager.UpdateFontDelegate();
+            }
         }
 
     }
