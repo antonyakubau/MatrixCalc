@@ -5,25 +5,25 @@ using Xamarin.Forms.Shapes;
 
 namespace MatrixCalc.Model
 {
-	public class Matrix : Grid
-	{
-		public static double ChildHeight { get; set; }
-		public static double ChildWidth { get; set; }
+    public class Matrix : Grid, IMatrix
+    {
+        public static double ChildHeight { get; set; }
+        public static double ChildWidth { get; set; }
 
-		public List<InputEntry> OldEntryList { get; private set; }
-		public List<InputEntry> EntryList { get; private set; }
-		public List<GetInfoButton> ButtonList { get; private set; }
-		public List<List<InputEntry>> Lines { get; private set; }
+        public List<InputEntry> OldEntryList { get; private set; }
+        public List<InputEntry> EntryList { get; private set; }
+        public List<GetInfoButton> ButtonList { get; private set; }
+        public List<List<InputEntry>> Lines { get; private set; }
 
-		public Matrix()
-		{
-			EntryList = new List<InputEntry>();
-			ButtonList = new List<GetInfoButton>();
-			Lines = new List<List<InputEntry>>();
+        public Matrix()
+        {
+            EntryList = new List<InputEntry>();
+            ButtonList = new List<GetInfoButton>();
+            Lines = new List<List<InputEntry>>();
 
-			SizeChanged += UpdateChildHeightWidth;
-			LayoutChanged += UpdateChildHeightWidth;
-		}
+            SizeChanged += UpdateChildHeightWidth;
+            LayoutChanged += UpdateChildHeightWidth;
+        }
 
         public void UpdateValues()
         {
@@ -40,8 +40,10 @@ namespace MatrixCalc.Model
             ClearOldChildren();
             CreateChildren(currentMatrixDimension);
             AssignLines();
-
-            UpdateResultsDelegate.UpdateResults();
+            if (UpdateResultsDelegate.UpdateResults != null)
+            {
+                UpdateResultsDelegate.UpdateResults();
+            }
         }
 
         private void ClearOldChildren()
@@ -78,7 +80,7 @@ namespace MatrixCalc.Model
             {
                 GetInfoButton getInfoButton = new GetInfoButton(i, j);
                 AddToChildren(getInfoButton, i, j);
-				GetInfoButton.LastLineId++;
+                GetInfoButton.LastLineId++;
             }
             else
             {
@@ -119,11 +121,11 @@ namespace MatrixCalc.Model
                 ButtonList.Add(getInfoButton);
         }
 
-		private void AssignLines()
-		{
-			Lines.Clear();
+        private void AssignLines()
+        {
+            Lines.Clear();
 
-			foreach (var button in ButtonList)
+            foreach (var button in ButtonList)
             {
                 List<InputEntry> Line = new List<InputEntry>();
                 FillLine(Line, button);
@@ -149,7 +151,10 @@ namespace MatrixCalc.Model
             ChildHeight = Children[0].Height;
             ChildWidth = Children[0].Width;
 
-            FontManager.UpdateFontDelegate();
+            if (FontManager.UpdateFontDelegate != null)
+            {
+                FontManager.UpdateFontDelegate();
+            }
         }
 
     }

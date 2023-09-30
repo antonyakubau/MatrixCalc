@@ -5,8 +5,8 @@ namespace MatrixCalc.Model
 {
 	public class InputEntry : BaseEntry 
 	{
-		private Random random = new Random();
-		private string lastNumber;
+		private Random _random = new Random();
+		private string _lastNumber;
 
 		public int Row { get; protected set; }
 		public int Column { get; protected set; }
@@ -16,8 +16,8 @@ namespace MatrixCalc.Model
 			Keyboard = Keyboard.Numeric;
 			MaxLength = 3;
 			Behaviors.Add(new InputTextBehavior());
-			Text = random.Next(0, 999).ToString();
-			lastNumber = Text;
+			Text = _random.Next(0, 999).ToString();
+			_lastNumber = Text;
 
 			Row = row;
 			Column = column;
@@ -27,13 +27,17 @@ namespace MatrixCalc.Model
 			FontManager.UpdateFontDelegate += UpdateFontSize;
 		}
 
+		public InputEntry()
+		{
+		}
+
 		public InputEntry(InputEntry oldInputEntry)
 		{
 			Keyboard = Keyboard.Numeric;
 			MaxLength = 3;
 			Behaviors.Add(new InputTextBehavior());
 			Text = oldInputEntry.Text;
-			lastNumber = Text;
+			_lastNumber = Text;
 
 			Row = oldInputEntry.Row;
 			Column = oldInputEntry.Column;
@@ -52,19 +56,19 @@ namespace MatrixCalc.Model
 			}
 			else
 			{
-				lastNumber = e.OldTextValue;
+				_lastNumber = e.OldTextValue;
 			}
 
 		}
 
 		public void UpdateFontSize()
 		{
-			FontSize = Matrix.ChildHeight / 3.5;
+			FontSize = Matrix.ChildWidth / 3;
 		}
 
 		public void GenerateNewValue()
 		{
-			Text = random.Next(0, 999).ToString();
+			Text = _random.Next(0, 999).ToString();
 		}
 
 		private bool IsNumeric(string value)
@@ -88,9 +92,8 @@ namespace MatrixCalc.Model
 
 		private void RestoreNumber(object sender, FocusEventArgs e)
 		{
-			if (Text == "")
-				Text = lastNumber;
-
+			if (Text == string.Empty)
+				Text = _lastNumber;
 		}
 
 		private bool SumMoreZero(string value)
