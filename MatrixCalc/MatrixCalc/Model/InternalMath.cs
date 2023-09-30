@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MatrixCalc.ViewModel;
+using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
@@ -10,7 +10,7 @@ namespace MatrixCalc.Model
 		{
 		}
 
-		public int CalculateMin(List<InputEntry> EntryList)
+        public int CalculateMin(List<InputEntry> EntryList)
 		{
 			int currentMin = int.MaxValue;
 

@@ -92,7 +92,7 @@ namespace MatrixCalc.Model
 
 		private void RestoreNumber(object sender, FocusEventArgs e)
 		{
-			if (Text == "")
+			if (Text == string.Empty)
 				Text = _lastNumber;
 
 		}

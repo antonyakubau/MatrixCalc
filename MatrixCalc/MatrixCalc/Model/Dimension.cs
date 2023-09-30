@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MatrixCalc.ViewModel;
 
 namespace MatrixCalc.Model
 {

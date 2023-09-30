@@ -5,7 +5,7 @@ public class InternalMathTests
     [SetUp]
     public void Setup()
     {
-        //Xamarin.Forms.Forms.Init();
+        Xamarin.Forms.Mocks.MockForms.Init();
     }
 
     [Test]
@@ -23,6 +23,6 @@ public class InternalMathTests
             new InputEntry() {Text = "99"}
         };
         var Min = internalMath.CalculateMin(EntryList);
-        Assert.Equals(Min, 2);
+        Assert.That(Min, Is.EqualTo(2));
     }
 }
