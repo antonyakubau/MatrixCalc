@@ -25,7 +25,7 @@ namespace MatrixCalc
 
             ShowMatrixUpdated = ShowUpdated;
             ShowMatrixMessege = ShowMessage;
-            ExceptionManager.ExceptionMessege = ShowException;
+            ExceptionManager.ExceptionMessege += ShowException;
         }
 
         public async void ShowMessage(int sum, int min, int max, int everage)
