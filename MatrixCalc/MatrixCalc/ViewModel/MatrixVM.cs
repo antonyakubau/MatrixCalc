@@ -83,7 +83,7 @@ namespace MatrixCalc.ViewModel
 			}
 			catch (Exception ex)
 			{
-				ExceptionManager.ExceptionMessege(ex);
+				ExceptionManager.ShowExceptionMessege(ex);
 				_mainMatrix.UpdateMatrix(_currentMatrixDimension);
 			}
 		});
@@ -102,7 +102,7 @@ namespace MatrixCalc.ViewModel
 			}
 			catch (Exception ex)
 			{
-				ExceptionManager.ExceptionMessege(ex);
+				ExceptionManager.ShowExceptionMessege(ex);
 				_mainMatrix.UpdateMatrix(_currentMatrixDimension);
 			}
 		});
@@ -110,7 +110,10 @@ namespace MatrixCalc.ViewModel
 		public ICommand UpdateFromButton => new Command(() =>
 		{
 			_mainMatrix.UpdateValues();
-			MatrixPage.ShowMatrixUpdated();
+			if (MatrixPage.ShowMatrixUpdated != null)
+			{
+                MatrixPage.ShowMatrixUpdated();
+            }
 		});
 	}
 }

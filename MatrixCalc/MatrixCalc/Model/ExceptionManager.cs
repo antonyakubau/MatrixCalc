@@ -5,8 +5,12 @@ namespace MatrixCalc.Model
 	{
         public delegate void ExceptionDelegate(Exception exception);
 
-        public static ExceptionDelegate ExceptionMessege;
+        public static event ExceptionDelegate ExceptionMessege;
 
-	}
+		public static void ShowExceptionMessege(Exception exception)
+        {
+            ExceptionMessege?.Invoke(exception);
+        }
+    }
 }
 
