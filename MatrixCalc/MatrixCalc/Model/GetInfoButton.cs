@@ -22,7 +22,7 @@ namespace MatrixCalc.Model
 			Row = row;
 			Column = column;
 			LineId = LastLineId;
-			CommandParameter = Convert.ToString(LineId);
+			CommandParameter = LineId;
 
 			FontManager.UpdateFontDelegate += UpdateFontSize;
 		}

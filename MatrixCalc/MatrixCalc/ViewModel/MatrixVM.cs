@@ -42,19 +42,18 @@ namespace MatrixCalc.ViewModel
 			_mainMatrix.UpdateMatrix(_currentMatrixDimension);
 		}
 
-
-
-		public ICommand IncreaseDimensionCommand => new Command(() =>
-		{
-			int newDimension = _dimension.IncreaseDimension
-			(_currentMatrixDimension);
-
-			if (newDimension != _currentMatrixDimension)
+        public ICommand IncreaseDimensionCommand => new Command(
+			execute:() =>
 			{
-				_currentMatrixDimension = newDimension;
-				_mainMatrix.UpdateMatrix(_currentMatrixDimension);
-			}
-		});
+				int newDimension = _dimension.IncreaseDimension
+				(_currentMatrixDimension);
+
+				if (newDimension != _currentMatrixDimension)
+				{
+					_currentMatrixDimension = newDimension;
+					_mainMatrix.UpdateMatrix(_currentMatrixDimension);
+                }
+            });
 
 		public ICommand DecreaseDimensionCommand => new Command(() =>
 		{
@@ -89,16 +88,15 @@ namespace MatrixCalc.ViewModel
 		});
 
 
-		public ICommand GetInfo => new Command((LineId) =>
+		public ICommand GetInfo => new Command<int>((int LineId) =>
 		{
 			try
 			{
-				int lineId = Convert.ToInt32(LineId);
 				MatrixPage.ShowMatrixMessege(
-					_internalMath.CalculateSum(_mainMatrix.Lines[lineId]),
-					_internalMath.CalculateMin(_mainMatrix.Lines[lineId]),
-					_internalMath.CalculateMax(_mainMatrix.Lines[lineId]),
-					_internalMath.CalculateAverage(_mainMatrix.Lines[lineId]));
+					_internalMath.CalculateSum(_mainMatrix.Lines[LineId]),
+					_internalMath.CalculateMin(_mainMatrix.Lines[LineId]),
+					_internalMath.CalculateMax(_mainMatrix.Lines[LineId]),
+					_internalMath.CalculateAverage(_mainMatrix.Lines[LineId]));
 			}
 			catch (Exception ex)
 			{
