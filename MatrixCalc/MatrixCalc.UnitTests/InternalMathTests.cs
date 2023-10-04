@@ -21,7 +21,7 @@ public class InternalMathTests
     }
 
     [Test]
-    public void CalculateMin_ListOfEntriesWithText_MinValueFound()
+    public void CalculateMin_ListOfEntriesWithText_ReturnMinValue()
     {
         var minValue = _internalMath.CalculateMin(_entryList);
 
@@ -29,7 +29,21 @@ public class InternalMathTests
     }
 
     [Test]
-    public void CalculateMax_ListOfEntriesWithText_MaxValueFound()
+    public void CalculateMin_ListOfEntriesWithoutText_ThrowArgumentNullException()
+    {
+        var entryList = new List<InputEntry>()
+        {
+            new InputEntry(){ Text = null},
+            new InputEntry(){ Text = null},
+            new InputEntry(){ Text = null},
+        };
+
+        Assert.That(() => _internalMath.CalculateMin(entryList),
+            Throws.Exception.TypeOf<ArgumentNullException>());
+    }
+
+    [Test]
+    public void CalculateMax_ListOfEntriesWithText_ReturnMaxValue()
     {
         var maxValue = _internalMath.CalculateMax(_entryList);
 
@@ -37,7 +51,21 @@ public class InternalMathTests
     }
 
     [Test]
-    public void CalculateAverage_ListOfEntriesWithText_AverageValueFound()
+    public void CalculateMax_ListOfEntriesWithoutText_ThrowArgumentNullException()
+    {
+        var entryList = new List<InputEntry>()
+        {
+            new InputEntry(){ Text = null},
+            new InputEntry(){ Text = null},
+            new InputEntry(){ Text = null},
+        };
+
+        Assert.That(() => _internalMath.CalculateMax(entryList),
+            Throws.Exception.TypeOf<ArgumentNullException>());
+    }
+
+    [Test]
+    public void CalculateAverage_ListOfEntriesWithText_ReturnAverageValue()
     {
         var averageValue = _internalMath.CalculateAverage(_entryList);
 
@@ -45,10 +73,38 @@ public class InternalMathTests
     }
 
     [Test]
-    public void CalculateSum_ListOfEntriesWithText_SumValueFound()
+    public void CalculateAverage_ListOfEntriesWithoutText_ThrowArgumentNullException()
+    {
+        var entryList = new List<InputEntry>()
+        {
+            new InputEntry(){ Text = null},
+            new InputEntry(){ Text = null},
+            new InputEntry(){ Text = null},
+        };
+
+        Assert.That(() => _internalMath.CalculateAverage(entryList),
+            Throws.Exception.TypeOf<ArgumentNullException>());
+    }
+
+    [Test]
+    public void CalculateSum_ListOfEntriesWithText_ReturnSumValue()
     {
         var sumValue = _internalMath.CalculateSum(_entryList);
 
         Assert.That(sumValue, Is.EqualTo(1200));
+    }
+
+    [Test]
+    public void CalculateSum_ListOfEntriesWithoutText_ThrowArgumentNullException()
+    {
+        var entryList = new List<InputEntry>()
+        {
+            new InputEntry(){ Text = null},
+            new InputEntry(){ Text = null},
+            new InputEntry(){ Text = null},
+        };
+
+        Assert.That(() => _internalMath.CalculateSum(entryList),
+            Throws.Exception.TypeOf<ArgumentNullException>());
     }
 }

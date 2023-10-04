@@ -52,7 +52,10 @@ namespace MatrixCalc.Model
 			if (IsNumeric(e.NewTextValue))
 			{
 				Text = e.NewTextValue;
-				UpdateResultsDelegate.UpdateResults();
+				if (UpdateResultsDelegate.UpdateResults != null)
+                {
+                    UpdateResultsDelegate.UpdateResults();
+                }
 			}
 			else
 			{
