@@ -40,6 +40,7 @@ namespace MatrixCalc.Model
             ClearOldChildren();
             CreateChildren(currentMatrixDimension);
             AssignLines();
+            UpdateChildHeightWidth(this, null);
             if (UpdateResultsDelegate.UpdateResults != null)
             {
                 UpdateResultsDelegate.UpdateResults();
@@ -153,10 +154,9 @@ namespace MatrixCalc.Model
 
             if (FontManager.UpdateFontDelegate != null)
             {
-                FontManager.UpdateFontDelegate();
+                FontManager.UpdateFontDelegate(Children[0].Height, Children[0].Width);
             }
         }
-
     }
 }
 

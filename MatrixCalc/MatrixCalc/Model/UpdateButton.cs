@@ -5,23 +5,27 @@ using Xamarin.Forms.Shapes;
 
 namespace MatrixCalc.Model
 {
-    public class UpdateButton : BaseButton
-    {
-        public UpdateButton()
+	public class UpdateButton : BaseButton
+	{
+		public UpdateButton()
 		{
 			Text = "⟳";
-            VerticalOptions = LayoutOptions.FillAndExpand;
-            HorizontalOptions = LayoutOptions.FillAndExpand;
-            SetBinding(Button.CommandProperty, new Binding("UpdateFromButton"));
+			VerticalOptions = LayoutOptions.FillAndExpand;
+			HorizontalOptions = LayoutOptions.FillAndExpand;
+			SetBinding(Button.CommandProperty, new Binding("UpdateFromButton"));
 
-            FontManager.UpdateFontDelegate += UpdateFontSize;
-        }
+			FontManager.UpdateFontDelegate += UpdateFontSize;
+		}
 
-        public void UpdateFontSize()
-        {
-            FontSize = Matrix.ChildWidth / 2;
-        }
+		public void UpdateFontSize()
+		{
+			FontSize = Matrix.ChildWidth / 2;
+		}
 
-    }
+		public void UpdateFontSize(double childHeight, double childWidth)
+		{
+			FontSize = childWidth / 2;
+		}
+	}
 }
 

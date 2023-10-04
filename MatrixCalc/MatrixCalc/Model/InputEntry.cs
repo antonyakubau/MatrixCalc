@@ -53,9 +53,9 @@ namespace MatrixCalc.Model
 			{
 				Text = e.NewTextValue;
 				if (UpdateResultsDelegate.UpdateResults != null)
-                {
-                    UpdateResultsDelegate.UpdateResults();
-                }
+				{
+					UpdateResultsDelegate.UpdateResults();
+				}
 			}
 			else
 			{
@@ -67,6 +67,11 @@ namespace MatrixCalc.Model
 		public void UpdateFontSize()
 		{
 			FontSize = Matrix.ChildWidth / 3;
+		}
+
+		public void UpdateFontSize(double childHeight, double childWidth)
+		{
+			FontSize = childWidth / 3;
 		}
 
 		public void GenerateNewValue()
