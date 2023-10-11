@@ -40,7 +40,6 @@ namespace MatrixCalc.Model
             ClearOldChildren();
             CreateChildren(currentMatrixDimension);
             AssignLines();
-            UpdateChildHeightWidth(this, null);
             if (UpdateResultsDelegate.UpdateResults != null)
             {
                 UpdateResultsDelegate.UpdateResults();

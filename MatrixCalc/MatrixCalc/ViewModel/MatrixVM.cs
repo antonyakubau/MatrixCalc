@@ -37,7 +37,7 @@ namespace MatrixCalc.ViewModel
 
 			_internalMath = new InternalMath();
 
-			UpdateResultsDelegate.UpdateResults = ExecuteUpdateResults;
+			UpdateResultsDelegate.UpdateResults += ExecuteUpdateResults;
 
 			_mainMatrix.UpdateMatrix(_currentMatrixDimension);
 		}

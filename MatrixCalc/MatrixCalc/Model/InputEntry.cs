@@ -5,15 +5,16 @@ namespace MatrixCalc.Model
 {
 	public class InputEntry : BaseEntry 
 	{
-		private Random _random = new Random();
+		private Random _random;
 		private string _lastNumber;
 
 		public int Row { get; protected set; }
 		public int Column { get; protected set; }
 
 		public InputEntry(int row, int column)
-		{ 
-			Keyboard = Keyboard.Numeric;
+		{
+			_random = new Random();
+            Keyboard = Keyboard.Numeric;
 			MaxLength = 3;
 			Behaviors.Add(new InputTextBehavior());
 			Text = _random.Next(0, 999).ToString();
