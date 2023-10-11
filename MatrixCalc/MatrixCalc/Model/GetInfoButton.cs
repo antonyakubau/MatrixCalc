@@ -13,7 +13,7 @@ namespace MatrixCalc.Model
 		public int LineId { get; set; }
 
 		public GetInfoButton(int row, int column)
-        {
+		{
 			Text = "⋯";
 			VerticalOptions = LayoutOptions.FillAndExpand;
 			HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -22,7 +22,7 @@ namespace MatrixCalc.Model
 			Row = row;
 			Column = column;
 			LineId = LastLineId;
-			CommandParameter = Convert.ToString(LineId);
+			CommandParameter = LineId;
 
 			FontManager.UpdateFontDelegate += UpdateFontSize;
 		}
@@ -34,6 +34,11 @@ namespace MatrixCalc.Model
 		public void UpdateFontSize()
 		{
 			FontSize = Matrix.ChildWidth / 2;
+		}
+
+		public void UpdateFontSize(double childHeight, double childWidth)
+		{
+			FontSize = childWidth / 2;
 		}
 	}
 }

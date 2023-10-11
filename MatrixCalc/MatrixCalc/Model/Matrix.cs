@@ -153,10 +153,9 @@ namespace MatrixCalc.Model
 
             if (FontManager.UpdateFontDelegate != null)
             {
-                FontManager.UpdateFontDelegate();
+                FontManager.UpdateFontDelegate(Children[0].Height, Children[0].Width);
             }
         }
-
     }
 }
 

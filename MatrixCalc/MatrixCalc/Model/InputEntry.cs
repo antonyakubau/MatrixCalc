@@ -12,8 +12,8 @@ namespace MatrixCalc.Model
 		public int Column { get; protected set; }
 
 		public InputEntry(int row, int column)
-		{ 
-			Keyboard = Keyboard.Numeric;
+		{
+            Keyboard = Keyboard.Numeric;
 			MaxLength = 3;
 			Behaviors.Add(new InputTextBehavior());
 			Text = _random.Next(0, 999).ToString();
@@ -52,7 +52,10 @@ namespace MatrixCalc.Model
 			if (IsNumeric(e.NewTextValue))
 			{
 				Text = e.NewTextValue;
-				UpdateResultsDelegate.UpdateResults();
+				if (UpdateResultsDelegate.UpdateResults != null)
+				{
+					UpdateResultsDelegate.UpdateResults();
+				}
 			}
 			else
 			{
@@ -64,6 +67,11 @@ namespace MatrixCalc.Model
 		public void UpdateFontSize()
 		{
 			FontSize = Matrix.ChildWidth / 3;
+		}
+
+		public void UpdateFontSize(double childHeight, double childWidth)
+		{
+			FontSize = childWidth / 3;
 		}
 
 		public void GenerateNewValue()

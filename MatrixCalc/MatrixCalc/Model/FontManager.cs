@@ -7,11 +7,12 @@ namespace MatrixCalc.Model
 	public class FontManager
     {
 
-        public delegate void FontDelegate();
+        public delegate void FontDelegate(double childHeight, double childWidth);
         public static FontDelegate UpdateFontDelegate;
 
         public FontManager()
 		{
+            
         }
     }
 }

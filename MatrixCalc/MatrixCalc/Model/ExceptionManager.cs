@@ -3,9 +3,9 @@ namespace MatrixCalc.Model
 {
 	public class ExceptionManager
 	{
-        public delegate void ExceptionDelegate(Exception exception);
+        public delegate void ExceptionMessegeEventHandler(Exception exception);
 
-        public static event ExceptionDelegate ExceptionMessege;
+        public static event ExceptionMessegeEventHandler ExceptionMessege;
 
 		public static void ShowExceptionMessege(Exception exception)
         {

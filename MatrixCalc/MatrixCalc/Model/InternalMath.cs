@@ -16,6 +16,10 @@ namespace MatrixCalc.Model
 
 				foreach (var item in EntryList)
 				{
+					if (item.Text == null || item.Text == "")
+					{
+						throw new ArgumentNullException();
+					}
 					if (Convert.ToInt32(item.Text) < currentMin)
 					{
 						currentMin = Convert.ToInt32(item.Text);
@@ -32,6 +36,10 @@ namespace MatrixCalc.Model
 
 				foreach (var item in EntryList)
 				{
+					if (item.Text == null || item.Text == "")
+					{
+						throw new ArgumentNullException();
+					}
 					if (Convert.ToInt32(item.Text) > currentMax)
 					{
 						currentMax = Convert.ToInt32(item.Text);
@@ -52,8 +60,12 @@ namespace MatrixCalc.Model
 			int currentSum = 0;
 
 			foreach (var item in EntryList)
-			{ 
-				currentSum += Convert.ToInt32(item.Text);
+            {
+                if (item.Text == null || item.Text == "")
+                {
+                    throw new ArgumentNullException();
+                }
+                currentSum += Convert.ToInt32(item.Text);
             }
 
 			return currentSum;
