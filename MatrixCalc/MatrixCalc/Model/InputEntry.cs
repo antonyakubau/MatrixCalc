@@ -5,7 +5,7 @@ namespace MatrixCalc.Model
 {
 	public class InputEntry : BaseEntry 
 	{
-		private Random _random;
+		private Random _random = new Random();
 		private string _lastNumber;
 
 		public int Row { get; protected set; }
@@ -13,7 +13,6 @@ namespace MatrixCalc.Model
 
 		public InputEntry(int row, int column)
 		{
-			_random = new Random();
             Keyboard = Keyboard.Numeric;
 			MaxLength = 3;
 			Behaviors.Add(new InputTextBehavior());

@@ -14,10 +14,10 @@ namespace MatrixCalc.ViewModel
 	{
 		private IMatrix _mainMatrix;
 		private int _currentMatrixDimension;
-		private IPageMath _internalMath;
 		private readonly Dimension _dimension;
 
-		public int LowerBound { get; private set; }
+		public IPageMath InternalMath { get; set; }
+        public int LowerBound { get; private set; }
         public int UpperBound { get; private set; }
         public int StartDimension { get; private set; }
         public int MinValueOfMatrix { get; private set; }
@@ -27,15 +27,14 @@ namespace MatrixCalc.ViewModel
 		public MatrixVM(IMatrix mainMatrix)
 		{
 			_mainMatrix = mainMatrix;
+            InternalMath = new InternalMath();
 
-			LowerBound = 2;
+            LowerBound = 2;
 			UpperBound = 7;
 			StartDimension = 4;
 
 			_dimension = new Dimension(LowerBound, UpperBound, StartDimension);
 			_currentMatrixDimension = _dimension.StartDimension;
-
-			_internalMath = new InternalMath();
 
 			UpdateResultsDelegate.UpdateResults += ExecuteUpdateResults;
 
@@ -76,9 +75,9 @@ namespace MatrixCalc.ViewModel
 		{
 			try
 			{
-				MinValueOfMatrix = _internalMath.CalculateMin(_mainMatrix.EntryList);
-				MaxValueOfMatrix = _internalMath.CalculateMax(_mainMatrix.EntryList);
-				AverageValueOfMatrix = _internalMath.CalculateAverage(_mainMatrix.EntryList);
+				MinValueOfMatrix = InternalMath.CalculateMin(_mainMatrix.EntryList);
+				MaxValueOfMatrix = InternalMath.CalculateMax(_mainMatrix.EntryList);
+				AverageValueOfMatrix = InternalMath.CalculateAverage(_mainMatrix.EntryList);
 			}
 			catch (Exception ex)
 			{
@@ -93,10 +92,10 @@ namespace MatrixCalc.ViewModel
 			try
 			{
 				MatrixPage.ShowMatrixMessege(
-					_internalMath.CalculateSum(_mainMatrix.Lines[LineId]),
-					_internalMath.CalculateMin(_mainMatrix.Lines[LineId]),
-					_internalMath.CalculateMax(_mainMatrix.Lines[LineId]),
-					_internalMath.CalculateAverage(_mainMatrix.Lines[LineId]));
+                    InternalMath.CalculateSum(_mainMatrix.Lines[LineId]),
+                    InternalMath.CalculateMin(_mainMatrix.Lines[LineId]),
+                    InternalMath.CalculateMax(_mainMatrix.Lines[LineId]),
+                    InternalMath.CalculateAverage(_mainMatrix.Lines[LineId]));
 			}
 			catch (Exception ex)
 			{
