@@ -12,7 +12,7 @@ namespace MatrixCalc
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MatrixPage());
+            MainPage = new MatrixPage();
         }
 
         protected override void OnStart ()

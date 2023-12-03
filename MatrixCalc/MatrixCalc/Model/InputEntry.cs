@@ -5,7 +5,6 @@ namespace MatrixCalc.Model
 {
 	public class InputEntry : BaseEntry 
 	{
-		private Random _random = new Random();
 		private string _lastNumber;
 
 		public int Row { get; protected set; }
@@ -16,7 +15,7 @@ namespace MatrixCalc.Model
             Keyboard = Keyboard.Numeric;
 			MaxLength = 3;
 			Behaviors.Add(new InputTextBehavior());
-			Text = _random.Next(0, 999).ToString();
+			Text = new Random().Next(0, 999).ToString();
 			_lastNumber = Text;
 
 			Row = row;
@@ -74,12 +73,12 @@ namespace MatrixCalc.Model
 			FontSize = childWidth / 3;
 		}
 
-		public void GenerateNewValue()
+		public string GenerateNewValue()
 		{
-			Text = _random.Next(0, 999).ToString();
+			return new Random().Next(0, 999).ToString();
 		}
 
-		private bool IsNumeric(string value)
+        private bool IsNumeric(string value)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
@@ -127,4 +126,3 @@ namespace MatrixCalc.Model
 		}
 	}
 }
-

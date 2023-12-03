@@ -4,29 +4,56 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MatrixCalc.MatrixPage"
     xmlns:vm="clr-namespace:MatrixCalc.ViewModel"
-    xmlns:model="clr-namespace:MatrixCalc.Model">
+    xmlns:model="clr-namespace:MatrixCalc.Model"
+    BackgroundColor="DarkBlue">
 
 
-    <Grid RowDefinitions=".6*,.4*"
-          BackgroundColor="AliceBlue"
-          ColumnSpacing="10">
+    <Grid RowDefinitions=".6*,.04*,.4*">
           
         <model:Matrix x:Name="MainMatrix"
               Grid.Row="0"
-              BackgroundColor="AliceBlue"
-              Padding="5"
+              Padding="3"
               ColumnDefinitions="*,*"
               ColumnSpacing="5"
-              RowDefinitions="*,*"
-              RowSpacing="5">
+              RowDefinitions="*,*">
             
         </model:Matrix>
 
-
-
         <Grid Grid.Row="1"
-              ColumnDefinitions="*,*"
-              BackgroundColor="DarkBlue">
+              ColumnDefinitions="*,*">
+            <Button Grid.Column="0"
+                    BorderColor="AliceBlue"
+                    BorderWidth="1"
+                    CornerRadius="8"
+                    Text="Save"
+                    TextTransform="Uppercase"
+                    Padding="0"
+                    FontSize="Body"
+                    FontAttributes="Bold"
+                    TextColor="AliceBlue"
+                    BackgroundColor="DarkBlue"
+                    Margin="1">
+
+            </Button>
+            
+            <Button Grid.Column="1"
+                    BorderColor="AliceBlue"
+                    BorderWidth="1"
+                    CornerRadius="8"
+                    Text="Open"
+                    TextTransform="Uppercase"
+                    Padding="0"
+                    FontSize="Body"
+                    FontAttributes="Bold"
+                    TextColor="AliceBlue"
+                    BackgroundColor="DarkBlue"
+                    Margin="1">
+
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="2"
+              ColumnDefinitions="*,*">
         <StackLayout Grid.Column="0">
             <Grid RowDefinitions=".1*,.1*">
                  <Label Text="Min value is"
@@ -63,19 +90,19 @@
             </Grid>
         </StackLayout>
             <Grid Grid.Column="1"
-                  RowDefinitions="*,*"
-                  BackgroundColor="DarkBlue">
+                  RowDefinitions="*,*">
 
             <Button Grid.Row="0"
                     BorderColor="AliceBlue"
                     BorderWidth="1"
                     CornerRadius="8"
+                    Padding="0"
                     Text="+"
                     FontSize="50"
                     FontAttributes="Bold"
                     TextColor="AliceBlue"
                     BackgroundColor="DarkBlue"
-                    Margin="3,3,3,0"
+                    Margin="0,3,3,0"
                     Command="{Binding IncreaseDimensionCommand}">
 
                     
@@ -84,12 +111,13 @@
                     BorderColor="AliceBlue"
                     BorderWidth="1"
                     CornerRadius="8"
+                    Padding="0"
                     Text="-"
                     FontSize="70"
                     FontAttributes="Bold"
                     TextColor="AliceBlue"
                     BackgroundColor="DarkBlue"
-                    Margin="3,0,3,3"
+                    Margin="0,0,3,3"
                     Command="{Binding DecreaseDimensionCommand}">
             </Button>
 

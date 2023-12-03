@@ -11,9 +11,9 @@ namespace MatrixCalc.Model
 			FontFamily = "OpenSansRegular";
 			FontAttributes = FontAttributes.Bold;
 			HorizontalTextAlignment = TextAlignment.Center;
-			TextColor = Color.Black;
-
-		}
+			TextColor = Color.AliceBlue;
+			BackgroundColor = Color.DarkBlue;
+        }
 	}
 }
 

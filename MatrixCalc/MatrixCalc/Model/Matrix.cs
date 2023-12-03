@@ -29,7 +29,7 @@ namespace MatrixCalc.Model
         {
             foreach (var entry in EntryList)
             {
-                entry.GenerateNewValue();
+                entry.Text = entry.GenerateNewValue().InRange(1, 999);
             }
         }
 
@@ -92,11 +92,11 @@ namespace MatrixCalc.Model
         private void CreateEntry(int i, int j)
         {
             InputEntry inputEntry = new InputEntry(i, j);
-            inputEntry = CheckOldValueExist(inputEntry);
+            inputEntry = CheckOldValueExists(inputEntry);
             AddToChildren(inputEntry, i, j);
         }
 
-        private InputEntry CheckOldValueExist(InputEntry inputEntry)
+        private InputEntry CheckOldValueExists(InputEntry inputEntry)
         {
             foreach (var oldEntry in OldEntryList)
             {
