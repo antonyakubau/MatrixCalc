@@ -11,12 +11,7 @@
     <Grid RowDefinitions=".6*,.04*,.4*">
           
         <model:Matrix x:Name="MainMatrix"
-              Grid.Row="0"
-              Padding="3"
-              ColumnDefinitions="*,*"
-              ColumnSpacing="5"
-              RowDefinitions="*,*">
-            
+              Grid.Row="0">
         </model:Matrix>
 
         <Grid Grid.Row="1"

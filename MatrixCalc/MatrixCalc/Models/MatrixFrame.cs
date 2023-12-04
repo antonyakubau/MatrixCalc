@@ -5,15 +5,26 @@ namespace MatrixCalc.Model
 {
 	public class MatrixFrame : Frame
 	{
-		IUpdatableSize _child;
+		IUpdatable _child;
 
-		public MatrixFrame(IUpdatableSize child)
+		public MatrixFrame(IUpdatable child) 
 		{
 			_child = child;
 			Content = (View)_child;
-            BackgroundColor = Color.YellowGreen;
-			Padding = 1;
-		}
-	}
+            BackgroundColor = Color.DarkBlue;
+            Margin = 0;
+            UpdateManager.UpdateFont += UpdatePadding;
+        }
+
+        public void UpdatePadding(double childHeight, double childWidth)
+        {
+            Padding = childHeight / 8;
+            if (this.Content is BaseButton)
+            {
+                Padding = childHeight / 12;
+                ((BaseButton)Content).BorderWidth = childHeight / 40;
+            }
+        }
+    }
 }
 

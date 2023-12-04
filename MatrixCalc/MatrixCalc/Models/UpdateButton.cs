@@ -5,7 +5,7 @@ using Xamarin.Forms.Shapes;
 
 namespace MatrixCalc.Model
 {
-	public class UpdateButton : BaseButton, IUpdatableSize
+	public class UpdateButton : BaseButton, IUpdatable
 	{
 		public UpdateButton()
 		{

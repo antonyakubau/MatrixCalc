@@ -2,7 +2,7 @@
 
 namespace MatrixCalc.Model
 {
-    public interface IUpdatableSize
+    public interface IUpdatable
 	{
         void UpdateFontSize();
         void UpdateFontSize(double childHeight, double childWidth);
@@ -10,4 +10,3 @@ namespace MatrixCalc.Model
         void UpdateSize(double height, double width);
     }
 }
-

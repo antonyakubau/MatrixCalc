@@ -21,6 +21,10 @@ namespace MatrixCalc.Model
             ButtonList = new List<GetInfoButton>();
             Lines = new List<List<InputEntry>>();
 
+            ColumnSpacing = 1;
+            RowSpacing = 1;
+            Margin = 0;
+            Padding = 0;
             BackgroundColor = Color.AliceBlue;
 
             SizeChanged += UpdateChildHeightWidth;
@@ -163,4 +167,3 @@ namespace MatrixCalc.Model
         }
     }
 }
-

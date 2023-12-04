@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
-	public class InputEntry : BaseEntry, IUpdatableSize
+	public class InputEntry : BaseEntry, IUpdatable
 	{
 		private string _lastNumber;
 

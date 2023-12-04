@@ -9,7 +9,7 @@ namespace MatrixCalc.Model
 		{
 			BackgroundColor = Color.DarkBlue;
 			TextColor = Color.AliceBlue;
-            BorderWidth = 1;
+            BorderWidth = 2;
             BorderColor = Color.AliceBlue;
             Padding = 0;
             FontFamily = "OpenSansRegular";

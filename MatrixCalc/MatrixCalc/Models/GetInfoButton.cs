@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
-	public class GetInfoButton : BaseButton, IUpdatableSize
+	public class GetInfoButton : BaseButton, IUpdatable
 	{
 		public static int LastLineId { get; set; }
 
