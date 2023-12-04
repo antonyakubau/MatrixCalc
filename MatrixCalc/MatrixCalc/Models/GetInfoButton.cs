@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
-	public class GetInfoButton : BaseButton
+	public class GetInfoButton : BaseButton, IUpdatableSize
 	{
 		public static int LastLineId { get; set; }
 
@@ -24,7 +24,7 @@ namespace MatrixCalc.Model
 			LineId = LastLineId;
 			CommandParameter = LineId;
 
-			FontManager.UpdateFontDelegate += UpdateFontSize;
+			UpdateManager.UpdateFont += UpdateFontSize;
 		}
 
 		public GetInfoButton()
@@ -40,6 +40,18 @@ namespace MatrixCalc.Model
 		{
 			FontSize = childWidth / 2;
 		}
-	}
+
+        public void UpdateSize(View parent)
+        {
+			HeightRequest = parent.Height;
+            WidthRequest = parent.Height;
+        }
+
+        public void UpdateSize(double childHeight, double childWidth)
+        {
+            HeightRequest = childHeight;
+            WidthRequest = childWidth;
+        }
+    }
 }
 

@@ -8,7 +8,7 @@ namespace MatrixCalc.Model
 		public BaseButton()
 		{
 			BackgroundColor = Color.DarkBlue;
-			TextColor = Color.White;
+			TextColor = Color.AliceBlue;
             BorderWidth = 1;
             BorderColor = Color.AliceBlue;
             Padding = 0;

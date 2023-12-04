@@ -36,7 +36,7 @@ namespace MatrixCalc.ViewModel
 			_dimension = new Dimension(LowerBound, UpperBound, StartDimension);
 			_currentMatrixDimension = _dimension.StartDimension;
 
-			UpdateResultsDelegate.UpdateResults += ExecuteUpdateResults;
+			UpdateManager.UpdateResults += ExecuteUpdateResults;
 
 			_mainMatrix.UpdateMatrix(_currentMatrixDimension);
 		}

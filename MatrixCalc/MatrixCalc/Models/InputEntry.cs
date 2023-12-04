@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace MatrixCalc.Model
 {
-	public class InputEntry : BaseEntry 
+	public class InputEntry : BaseEntry, IUpdatableSize
 	{
 		private string _lastNumber;
 
@@ -23,7 +23,7 @@ namespace MatrixCalc.Model
 
 			TextChanged += UpdateResults;
 			Unfocused += RestoreNumber;
-			FontManager.UpdateFontDelegate += UpdateFontSize;
+			UpdateManager.UpdateFont += UpdateFontSize;
 		}
 
 		public InputEntry()
@@ -37,13 +37,16 @@ namespace MatrixCalc.Model
 			Behaviors.Add(new InputTextBehavior());
 			Text = oldInputEntry.Text;
 			_lastNumber = Text;
+			
+			VerticalOptions = LayoutOptions.FillAndExpand;
+			HorizontalOptions = LayoutOptions.FillAndExpand;
 
 			Row = oldInputEntry.Row;
 			Column = oldInputEntry.Column;
 
 			TextChanged += UpdateResults;
 			Unfocused += RestoreNumber;
-			FontManager.UpdateFontDelegate += UpdateFontSize;
+			UpdateManager.UpdateFont += UpdateFontSize;
 		}
 
 		public void UpdateResults(object sender, TextChangedEventArgs e)
@@ -51,9 +54,9 @@ namespace MatrixCalc.Model
 			if (IsNumeric(e.NewTextValue))
 			{
 				Text = e.NewTextValue;
-				if (UpdateResultsDelegate.UpdateResults != null)
+				if (UpdateManager.UpdateResults != null)
 				{
-					UpdateResultsDelegate.UpdateResults();
+                    UpdateManager.UpdateResults();
 				}
 			}
 			else
@@ -73,7 +76,19 @@ namespace MatrixCalc.Model
 			FontSize = childWidth / 3;
 		}
 
-		public string GenerateNewValue()
+		public void UpdateSize(View parent)
+        {
+            HeightRequest = parent.Height;
+            WidthRequest = parent.Height;
+        }
+
+        public void UpdateSize(double childHeight, double childWidth)
+        {
+            HeightRequest = childHeight;
+            WidthRequest = childWidth;
+        }
+
+        public string GenerateNewValue()
 		{
 			return new Random().Next(0, 999).ToString();
 		}
@@ -124,5 +139,16 @@ namespace MatrixCalc.Model
 
 			return true;
 		}
-	}
+
+    }
+	
+
+	public static class InputEntryExtensions
+    {
+        public static string InRange(this string value, int lowerBound, int upperBound)
+        {
+            return new Random().Next(lowerBound, upperBound).ToString();
+        }
+    }
+
 }

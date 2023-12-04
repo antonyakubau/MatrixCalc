@@ -21,6 +21,8 @@ namespace MatrixCalc.Model
             ButtonList = new List<GetInfoButton>();
             Lines = new List<List<InputEntry>>();
 
+            BackgroundColor = Color.AliceBlue;
+
             SizeChanged += UpdateChildHeightWidth;
             LayoutChanged += UpdateChildHeightWidth;
         }
@@ -40,9 +42,9 @@ namespace MatrixCalc.Model
             ClearOldChildren();
             CreateChildren(currentMatrixDimension);
             AssignLines();
-            if (UpdateResultsDelegate.UpdateResults != null)
+            if (UpdateManager.UpdateResults != null)
             {
-                UpdateResultsDelegate.UpdateResults();
+                UpdateManager.UpdateResults();
             }
         }
 
@@ -56,44 +58,47 @@ namespace MatrixCalc.Model
 
         private void CreateChildren(int currentMatrixDimension)
         {
-            for (int i = 0; i <= currentMatrixDimension; i++)
+            for (int row = 0; row <= currentMatrixDimension; row++)
             {
-                for (int j = 0; j <= currentMatrixDimension; j++)
+                for (int column = 0; column <= currentMatrixDimension; column++)
                 {
-                    if ((i == currentMatrixDimension)
-                        || (j == currentMatrixDimension))
+                    if ((row == currentMatrixDimension)
+                        || (column == currentMatrixDimension))
                     {
-                        CreateButton(i, j);
+                        CreateButton(row, column);
                     }
                     else
                     {
-                        CreateEntry(i, j);
+                        CreateEntry(row, column);
                     }
                 }
 
             }
         }
 
-        private void CreateButton(int i, int j)
+        private void CreateButton(int row, int column)
         {
-            if (i != j)
+            if (row != column)
             {
-                GetInfoButton getInfoButton = new GetInfoButton(i, j);
-                AddToChildren(getInfoButton, i, j);
+                GetInfoButton getInfoButton = new GetInfoButton(row, column);
+                MatrixFrame buttonFrame = new MatrixFrame(getInfoButton);
+                AddToChildren(buttonFrame, row, column);
                 GetInfoButton.LastLineId++;
             }
             else
             {
                 UpdateButton updateButton = new UpdateButton();
-                AddToChildren(updateButton, i, j);
+                MatrixFrame buttonFrame = new MatrixFrame(updateButton);
+                AddToChildren(buttonFrame, row, column);
             }
         }
 
-        private void CreateEntry(int i, int j)
+        private void CreateEntry(int row, int column)
         {
-            InputEntry inputEntry = new InputEntry(i, j);
+            InputEntry inputEntry = new InputEntry(row, column);
             inputEntry = CheckOldValueExists(inputEntry);
-            AddToChildren(inputEntry, i, j);
+            MatrixFrame entryFrame = new MatrixFrame(inputEntry);
+            AddToChildren(entryFrame, row, column);
         }
 
         private InputEntry CheckOldValueExists(InputEntry inputEntry)
@@ -107,18 +112,18 @@ namespace MatrixCalc.Model
                     break;
                 }
             }
-
             return inputEntry;
         }
 
-        private void AddToChildren(View child, int i, int j)
+        private void AddToChildren(MatrixFrame frame, int row, int column)
         {
-            Children.Add(child, j, i);
-            if (child is InputEntry inputEntry)
+            Children.Add(frame, column, row);
+            if (frame.Content is InputEntry inputEntry)
                 EntryList.Add(inputEntry);
             else
-            if (child is GetInfoButton getInfoButton)
+            if (frame.Content is GetInfoButton getInfoButton)
                 ButtonList.Add(getInfoButton);
+
         }
 
         private void AssignLines()
@@ -151,9 +156,9 @@ namespace MatrixCalc.Model
             ChildHeight = Children[0].Height;
             ChildWidth = Children[0].Width;
 
-            if (FontManager.UpdateFontDelegate != null)
+            if (UpdateManager.UpdateFont != null)
             {
-                FontManager.UpdateFontDelegate(Children[0].Height, Children[0].Width);
+                UpdateManager.UpdateFont(Children[0].Height, Children[0].Width);
             }
         }
     }

@@ -20,14 +20,14 @@
     <PackageReference Include="SQLite" Version="3.13.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="ViewModel\" />
     <None Remove="PropertyChanged.Fody" />
-    <None Remove="Model\" />
-    <None Remove="View\" />
+    <None Remove="Views\" />
+    <None Remove="ViewModels\" />
+    <None Remove="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="Model\" />
-    <Folder Include="View\" />
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>
