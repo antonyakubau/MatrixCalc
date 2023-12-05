@@ -1,8 +1,7 @@
 ﻿using System;
-using MatrixCalc.ViewModel;
 using System.Collections.Generic;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
 	public class UpdateManager
     {

@@ -1,8 +1,7 @@
 ﻿using System;
-using MatrixCalc.ViewModel;
 using Xamarin.Forms;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
 	public class GetInfoButton : BaseButton, IUpdatable
 	{

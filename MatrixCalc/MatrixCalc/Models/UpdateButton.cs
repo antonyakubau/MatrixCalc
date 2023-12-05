@@ -3,7 +3,7 @@ using Xamarin.Forms;
 using static SQLite.TableMapping;
 using Xamarin.Forms.Shapes;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
 	public class UpdateButton : BaseButton, IUpdatable
 	{

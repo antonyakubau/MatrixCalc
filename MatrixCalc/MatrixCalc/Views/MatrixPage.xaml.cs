@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MatrixCalc.Model;
-using MatrixCalc.ViewModel;
+using MatrixCalc.Models;
+using MatrixCalc.ViewModels;
 using PropertyChanged;
 using Xamarin.Forms;
 

@@ -3,8 +3,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MatrixCalc.MatrixPage"
-    xmlns:vm="clr-namespace:MatrixCalc.ViewModel"
-    xmlns:model="clr-namespace:MatrixCalc.Model"
+    xmlns:vm="clr-namespace:MatrixCalc.ViewModels"
+    xmlns:model="clr-namespace:MatrixCalc.Models"
     BackgroundColor="DarkBlue">
 
 
@@ -27,7 +27,8 @@
                     FontAttributes="Bold"
                     TextColor="AliceBlue"
                     BackgroundColor="DarkBlue"
-                    Margin="3,0,0,0">
+                    Margin="3,0,0,0"
+                    Command="{Binding SaveMatrixCommand}">
 
             </Button>
             
@@ -42,7 +43,8 @@
                     FontAttributes="Bold"
                     TextColor="AliceBlue"
                     BackgroundColor="DarkBlue"
-                    Margin="0,0,3,0">
+                    Margin="0,0,3,0"
+                    Command="{Binding OpenMatrixCommand}">
 
             </Button>
         </Grid>

@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
     public interface IUpdatable
 	{

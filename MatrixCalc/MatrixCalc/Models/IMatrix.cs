@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
     public interface IMatrix
     {

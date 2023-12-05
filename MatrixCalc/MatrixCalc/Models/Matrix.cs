@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
     public class Matrix : Grid, IMatrix
     {
+        public new int Id { get; set; }
+        public string Name { get; set; }
+        public string Data { get; set; }
+        public int Size { get; set; }
+        public string Date { get; set; }
+
         public static double ChildHeight { get; set; }
         public static double ChildWidth { get; set; }
 
