@@ -1,5 +1,6 @@
 ﻿using System;
 using MatrixCalc.Models;
+using MatrixCalc.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,6 +14,7 @@ namespace MatrixCalc
             InitializeComponent();
 
             MainPage = new MatrixPage();
+            //MainPage = new SavedItemsPage();
         }
 
         protected override void OnStart ()

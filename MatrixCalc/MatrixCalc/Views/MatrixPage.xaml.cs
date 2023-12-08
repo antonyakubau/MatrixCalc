@@ -1,30 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using MatrixCalc.Models;
 using MatrixCalc.ViewModels;
 using PropertyChanged;
 using Xamarin.Forms;
 
-namespace MatrixCalc
+namespace MatrixCalc.Views
 {
     [AddINotifyPropertyChangedInterface]
     public partial class MatrixPage : ContentPage
     {
-        private MatrixVM matrixVM;
-
-        public delegate void ShowUpdateDelegate();
-        public delegate void ShowMessegeDelegate(int sum, int min, int max, int everage);
-        public static ShowUpdateDelegate ShowMatrixUpdated;
-        public static ShowMessegeDelegate ShowMatrixMessege;
+        private MatrixVM _matrixVM;
 
         public MatrixPage()
         {
             InitializeComponent();
-            matrixVM = new MatrixVM(MainMatrix);
-            BindingContext = matrixVM;
+            _matrixVM = new MatrixVM(MainMatrix);
+            BindingContext = _matrixVM;
 
-            ShowMatrixUpdated = ShowUpdated;
-            ShowMatrixMessege = ShowMessage;
+            ShowDialogManager.ShowMatrixUpdated += ShowUpdated;
+            ShowDialogManager.ShowMatrixMessege += ShowMessage;
             ExceptionManager.ExceptionMessege += ShowException;
         }
 
@@ -48,6 +44,7 @@ namespace MatrixCalc
         {
             await DisplayAlert($"Exception", $"{exception.Message}", "OK");
         }
+
     }
 }
 

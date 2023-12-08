@@ -92,7 +92,7 @@ namespace MatrixCalc.ViewModels
 		{
 			try
 			{
-				MatrixPage.ShowMatrixMessege(
+                ShowDialogManager.ShowMatrixMessege(
 					InternalMath.CalculateSum(_mainMatrix.Lines[LineId]),
 					InternalMath.CalculateMin(_mainMatrix.Lines[LineId]),
 					InternalMath.CalculateMax(_mainMatrix.Lines[LineId]),
@@ -108,9 +108,9 @@ namespace MatrixCalc.ViewModels
 		public ICommand UpdateFromButton => new Command(() =>
 		{
 			_mainMatrix.UpdateValues();
-			if (MatrixPage.ShowMatrixUpdated != null)
+			if (ShowDialogManager.ShowMatrixUpdated != null)
 			{
-				MatrixPage.ShowMatrixUpdated();
+                ShowDialogManager.ShowMatrixUpdated();
 			}
 		});
 
@@ -120,8 +120,8 @@ namespace MatrixCalc.ViewModels
         });
 
         public ICommand OpenMatrixCommand => new Command(() =>
-		{
-			App.Current.MainPage = new SavedItemsPage();
+        {
+            App.Current.MainPage = new NavigationPage(new SavedItemsPage());
         });
     }
 }

@@ -3,17 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MatrixCalc.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#00008B</Color>
+            <Color x:Key="Secondary">#f0f8ff</Color>
 
-        <Style x:Key="BaseLabel" TargetType="Label">
-            <Setter Property="FontFamily" Value="OpenSansRegular"/>
-            <Setter Property="BackgroundColor" Value="DarkBlue"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="FontSize" Value="Medium"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="Margin" Value="20,0,0,0"/>
-        </Style>
-
-        <SolidColorBrush x:Key="DarkBlueFrontColor" Color="DarkBlue"/>
-        <SolidColorBrush x:Key="MainWhiteColor" Color="White"/>
+            <Style x:Key="BaseLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="OpenSansRegular"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="TextColor" Value="{StaticResource Secondary}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Margin" Value="20,0,0,0"/>
+            </Style>
+            
+        </ResourceDictionary>
+        
     </Application.Resources>
 </Application>

@@ -3,14 +3,36 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MatrixCalc.Views.SavedItemsPage"
-    xmlns:vm="clr-namespace:MatrixCalc.ViewModels"
-    xmlns:model="clr-namespace:MatrixCalc.Models"
-    BackgroundColor="DarkBlue">
+    BackgroundColor="{StaticResource Primary}">
 
-    <CollectionView>
-         <CollectionView.ItemsSource>
+    <CollectionView ItemsSource="{Binding Matrices}">
 
-        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid
+                    Padding="10">
+                    <Frame
+                    BorderColor="{StaticResource Secondary}"
+                    BackgroundColor="{StaticResource Primary}"
+                    MinimumHeightRequest="200"
+                    CornerRadius="4"
+                    Padding="10">
+                    <StackLayout>
+                        <Label Text="{Binding Name}"
+                               TextColor="{StaticResource Secondary}"/>
+                        <Label Text="{Binding Date}"
+                               TextColor="{StaticResource Secondary}"/>
+
+                    </StackLayout>
+
+                </Frame>
+
+                </Grid>
+                
+
+            </DataTemplate>
+
+        </CollectionView.ItemTemplate>
 
     </CollectionView>
 
