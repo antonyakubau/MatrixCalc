@@ -24,10 +24,16 @@
     <None Remove="Views\" />
     <None Remove="ViewModels\" />
     <None Remove="Models\" />
+    <None Remove="Models\UI\" />
+    <None Remove="Models\Interfaces\" />
+    <None Remove="Models\Delegates\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Models\" />
+    <Folder Include="Models\UI\" />
+    <Folder Include="Models\Interfaces\" />
+    <Folder Include="Models\Delegates\" />
   </ItemGroup>
 </Project>
