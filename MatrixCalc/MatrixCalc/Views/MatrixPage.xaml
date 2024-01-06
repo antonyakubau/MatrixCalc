@@ -7,6 +7,7 @@
     xmlns:model="clr-namespace:MatrixCalc.Models"
     BackgroundColor="{StaticResource Primary}">
 
+    <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
 
     <Grid RowDefinitions=".6*,.04*,.4*">
 
@@ -43,7 +44,7 @@
                     TextColor="{StaticResource Secondary}"
                     BackgroundColor="{StaticResource Primary}"
                     Margin="0,0,3,0"
-                    Command="{Binding OpenMatrixCommand}">
+                    Clicked="OpenButton_Clicked">
 
             </Button>
         </Grid>

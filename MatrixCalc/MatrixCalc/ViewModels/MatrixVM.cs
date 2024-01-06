@@ -113,16 +113,6 @@ namespace MatrixCalc.ViewModels
                 ShowDialogManager.ShowMatrixUpdated();
 			}
 		});
-
-        public ICommand SaveMatrixCommand => new Command(() =>
-        {
-
-        });
-
-        public ICommand OpenMatrixCommand => new Command(() =>
-        {
-            App.Current.MainPage = new NavigationPage(new SavedItemsPage());
-        });
     }
 }
 

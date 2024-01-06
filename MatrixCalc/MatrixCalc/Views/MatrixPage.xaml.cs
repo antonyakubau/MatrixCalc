@@ -45,6 +45,10 @@ namespace MatrixCalc.Views
             await DisplayAlert($"Exception", $"{exception.Message}", "OK");
         }
 
+        async void OpenButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new SavedItemsPage());
+        }
     }
 }
 

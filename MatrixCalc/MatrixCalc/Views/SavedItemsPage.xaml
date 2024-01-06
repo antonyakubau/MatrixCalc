@@ -16,7 +16,8 @@
                     BackgroundColor="{StaticResource Primary}"
                     MinimumHeightRequest="200"
                     CornerRadius="4"
-                    Padding="10">
+                    Padding="10"
+                    >
                     <StackLayout>
                         <Label Text="{Binding Name}"
                                TextColor="{StaticResource Secondary}"/>
