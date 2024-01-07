@@ -1,41 +1,61 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="MatrixCalc.Views.SavedItemsPage"
-    BackgroundColor="{StaticResource Primary}">
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="MatrixCalc.Views.SavedItemsPage"
+	BackgroundColor="{StaticResource Primary}">
 
-    <CollectionView ItemsSource="{Binding Matrices}">
+	<NavigationPage.TitleView>
+		<Label Text="Select"
+			   FontSize="Title"
+			   FontAttributes="Bold"
+			   TextColor="{StaticResource Secondary}"/>
+	</NavigationPage.TitleView>
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid
-                    Padding="10">
-                    <Frame
-                    BorderColor="{StaticResource Secondary}"
-                    BackgroundColor="{StaticResource Primary}"
-                    MinimumHeightRequest="200"
-                    CornerRadius="4"
-                    Padding="10"
-                    >
-                    <StackLayout>
-                        <Label Text="{Binding Name}"
-                               TextColor="{StaticResource Secondary}"/>
-                        <Label Text="{Binding Date}"
-                               TextColor="{StaticResource Secondary}"/>
+	<CollectionView ItemsSource="{Binding Matrices}"
+			  x:Name="collectionView">
 
-                    </StackLayout>
+		<CollectionView.ItemTemplate>
+			<DataTemplate>
+				<Grid
+					Padding="10, 5">
+					<Frame
+					BorderColor="{StaticResource Secondary}"
+					BackgroundColor="{StaticResource Primary}"
+					MinimumHeightRequest="200"
+					CornerRadius="4"
+					Padding="2">
+						<Grid RowDefinitions="*">
+						<StackLayout
+							Grid.Row="0"
+							Margin="10">
+							<Label Text="{Binding Name}"
+								   TextColor="{StaticResource Secondary}"/>
+							<Label Text="{Binding Date}"
+								   TextColor="{StaticResource Secondary}"/>
 
-                </Frame>
+						</StackLayout>
+							<Button
+							Grid.Row="0"
+							Opacity="0"
+							BackgroundColor="{StaticResource Primary}"
+							Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.OpenSavedMatrixCommand}"
+							CommandParameter="{Binding Id}"
+							Clicked="ItemButton_Clicked">
+						</Button>
 
-                </Grid>
-                
+						</Grid>
+						
 
-            </DataTemplate>
+				</Frame>
 
-        </CollectionView.ItemTemplate>
+				</Grid>
+			</DataTemplate>
 
-    </CollectionView>
+		</CollectionView.ItemTemplate>
+
+
+	</CollectionView>
 
 </ContentPage>
 

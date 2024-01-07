@@ -10,12 +10,17 @@ namespace MatrixCalc.Views
 	public partial class SavedItemsPage : ContentPage
 	{
 		private SavedItemsVM _savedItemsVM;
-		public SavedItemsPage()
+		public SavedItemsPage(IMatrix mainMatrix)
 		{
 			InitializeComponent();
-            _savedItemsVM = new SavedItemsVM();
+            _savedItemsVM = new SavedItemsVM(mainMatrix);
             BindingContext = _savedItemsVM;
         }
-	}
+
+        async void ItemButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+    }
 }
 

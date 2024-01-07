@@ -88,7 +88,7 @@ namespace MatrixCalc.ViewModels
 		});
 
 
-		public ICommand GetInfo => new Command<int>((int LineId) =>
+		public ICommand GetInfo => new Command<int>((LineId) =>
 		{
 			try
 			{

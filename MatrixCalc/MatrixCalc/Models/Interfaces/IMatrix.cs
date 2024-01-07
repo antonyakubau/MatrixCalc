@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using MatrixCalc.Models.Interfaces;
 
 namespace MatrixCalc.Models
 {
-    public interface IMatrix
+    public interface IMatrix : IMatrixInfo
     {
         List<InputEntry> OldEntryList { get; }
         List<InputEntry> EntryList { get; }

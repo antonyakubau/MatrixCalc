@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MatrixCalc.Models.Interfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 
