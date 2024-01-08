@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MatrixCalc.Views;
 using Xamarin.Forms;
 
 namespace MatrixCalc

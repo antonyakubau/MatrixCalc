@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
 	public class InputTextBehavior : Behavior<Entry>
 	{
@@ -28,8 +28,8 @@ namespace MatrixCalc.Model
         {
             var entry = sender as Entry;
 
-            entry.BackgroundColor = Color.DarkBlue;
-            entry.TextColor = Color.White;
+            entry.BackgroundColor = baseTextColor;
+            entry.TextColor = baseBackgroundColor;
         }
 
         private void OnUnfocusedInput(object sender, FocusEventArgs e)

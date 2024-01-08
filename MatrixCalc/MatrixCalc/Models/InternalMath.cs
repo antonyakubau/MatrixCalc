@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
 	public class InternalMath : IPageMath
 	{

@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using MatrixCalc.Models.Interfaces;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
     public interface IMatrix
     {
+        Dimension Dimension { get; }
         List<InputEntry> OldEntryList { get; }
         List<InputEntry> EntryList { get; }
         List<GetInfoButton> ButtonList { get; }

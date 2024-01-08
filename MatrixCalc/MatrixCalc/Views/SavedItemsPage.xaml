@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="MatrixCalc.Views.SavedItemsPage"
+	BackgroundColor="{StaticResource Primary}">
+
+	<NavigationPage.TitleView>
+		<Label Text="Select"
+			   FontSize="Title"
+			   FontAttributes="Bold"
+			   TextColor="{StaticResource Secondary}"/>
+	</NavigationPage.TitleView>
+
+	<CollectionView ItemsSource="{Binding Matrices}"
+			  x:Name="collectionView">
+
+		<CollectionView.ItemTemplate>
+			<DataTemplate>
+				<Grid
+					Padding="10, 5">
+					<Frame
+					BorderColor="{StaticResource Secondary}"
+					BackgroundColor="{StaticResource Primary}"
+					MinimumHeightRequest="200"
+					CornerRadius="4"
+					Padding="2">
+						<Grid RowDefinitions="*">
+						<StackLayout
+							Grid.Row="0"
+							Margin="10">
+							<Label Text="{Binding Name}"
+								   TextColor="{StaticResource Secondary}"/>
+							<Label Text="{Binding Date}"
+								   TextColor="{StaticResource Secondary}"/>
+
+						</StackLayout>
+							<Button
+							Grid.Row="0"
+							Opacity="0"
+							BackgroundColor="{StaticResource Primary}"
+							Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.OpenSavedMatrixCommand}"
+							CommandParameter="{Binding Id}"
+							Clicked="ItemButton_Clicked">
+						</Button>
+
+						</Grid>
+						
+
+				</Frame>
+
+				</Grid>
+			</DataTemplate>
+
+		</CollectionView.ItemTemplate>
+
+
+	</CollectionView>
+
+</ContentPage>
+

@@ -1,7 +1,8 @@
 ﻿using System;
+using MatrixCalc.Views;
 using Xamarin.Forms;
 
-namespace MatrixCalc.ViewModel
+namespace MatrixCalc.ViewModels
 {
     public class StartVM
     {

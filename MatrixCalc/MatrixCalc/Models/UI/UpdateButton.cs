@@ -3,9 +3,9 @@ using Xamarin.Forms;
 using static SQLite.TableMapping;
 using Xamarin.Forms.Shapes;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
-	public class UpdateButton : BaseButton
+	public class UpdateButton : BaseButton, IUpdatable
 	{
 		public UpdateButton()
 		{
@@ -14,7 +14,7 @@ namespace MatrixCalc.Model
 			HorizontalOptions = LayoutOptions.FillAndExpand;
 			SetBinding(Button.CommandProperty, new Binding("UpdateFromButton"));
 
-			FontManager.UpdateFontDelegate += UpdateFontSize;
+			UpdateManager.UpdateFont += UpdateFontSize;
 		}
 
 		public void UpdateFontSize()
@@ -26,6 +26,18 @@ namespace MatrixCalc.Model
 		{
 			FontSize = childWidth / 2;
 		}
-	}
+
+        public void UpdateSize(View parent)
+        {
+            HeightRequest = parent.Height;
+            WidthRequest = parent.Height;
+        }
+
+        public void UpdateSize(double childHeight, double childWidth)
+        {
+            HeightRequest = childHeight;
+            WidthRequest = childWidth;
+        }
+    }
 }
 

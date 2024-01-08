@@ -1,5 +1,5 @@
 ﻿using System;
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
 	public class ExceptionManager
 	{

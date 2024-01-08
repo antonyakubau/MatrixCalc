@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace MatrixCalc.Model
+namespace MatrixCalc.Models
 {
 	public class BaseEntry : Entry
 	{
@@ -11,9 +11,9 @@ namespace MatrixCalc.Model
 			FontFamily = "OpenSansRegular";
 			FontAttributes = FontAttributes.Bold;
 			HorizontalTextAlignment = TextAlignment.Center;
-			TextColor = Color.Black;
-
-		}
+			TextColor = Color.AliceBlue;
+			BackgroundColor = Color.DarkBlue;
+        }
 	}
 }
 

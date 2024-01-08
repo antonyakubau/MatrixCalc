@@ -1,5 +1,6 @@
 ﻿using System;
-using MatrixCalc.Model;
+using MatrixCalc.Models;
+using MatrixCalc.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

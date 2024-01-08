@@ -18,6 +18,8 @@
     <PackageReference Include="coverlet.collector" Version="3.2.0" />
     <PackageReference Include="Xamarin.Forms.Mocks" Version="4.7.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2612" />
+    <PackageReference Include="Moq" Version="4.20.69" />
+    <PackageReference Include="SQLite" Version="3.13.0" />
   </ItemGroup>
 
   <ItemGroup>
