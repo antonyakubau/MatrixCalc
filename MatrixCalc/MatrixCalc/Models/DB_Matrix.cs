@@ -23,17 +23,22 @@ namespace MatrixCalc.Models
         {
             LoadInfo(matrixInfo);
 
+            UpdateMatrix();
+
             LoadValues();
 
-            UpdateMatrix(matrixInfo.Size);
-
+            if (UpdateManager.UpdateResults != null)
+            {
+                UpdateManager.UpdateResults();
+            }
         }
 
         private void LoadValues()
         {
             foreach (var entry in EntryList)
             {
-                entry.UpdateTextSafe(Values[0]);
+                int position = entry.Column + Dimension.CurrentDimension * entry.Row;
+                entry.UpdateTextSafe(Values[position]);
             }
         }
 
@@ -50,7 +55,15 @@ namespace MatrixCalc.Models
 
         public virtual void UpdateMatrix()
         {
-            
+            OldEntryList = new List<InputEntry>(EntryList);
+
+            ClearOldChildren();
+            CreateChildren(Dimension.CurrentDimension);
+            AssignLines();
+            if (UpdateManager.UpdateResults != null)
+            {
+                UpdateManager.UpdateResults();
+            }
         }
     }
 }

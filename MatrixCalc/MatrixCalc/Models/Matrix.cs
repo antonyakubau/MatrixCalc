@@ -17,10 +17,6 @@ namespace MatrixCalc.Models
         public List<GetInfoButton> ButtonList { get; protected set; }
         public List<List<InputEntry>> Lines { get; protected set; }
 
-        //public int LowerBound { get; protected set; }
-        //public int UpperBound { get; protected set; }
-        //public int CurrentDimension { get; protected set; }
-
         public Matrix()
         {
             EntryList = new List<InputEntry>();
@@ -73,7 +69,7 @@ namespace MatrixCalc.Models
             GetInfoButton.LastLineId = 0;
         }
 
-        private void CreateChildren(int currentMatrixDimension)
+        protected void CreateChildren(int currentMatrixDimension)
         {
             for (int row = 0; row <= currentMatrixDimension; row++)
             {
@@ -148,7 +144,7 @@ namespace MatrixCalc.Models
 
         }
 
-        private void AssignLines()
+        protected void AssignLines()
         {
             Lines.Clear();
 
