@@ -8,12 +8,6 @@ namespace MatrixCalc.Models
 {
     public class Matrix : Grid, IMatrix
     {
-        public new int Id { get; set; }
-        public string Name { get; set; }
-        public string Data { get; set; }
-        public int Size { get; set; }
-        public string Date { get; set; }
-
         public static double ChildHeight { get; set; }
         public static double ChildWidth { get; set; }
 
@@ -46,7 +40,7 @@ namespace MatrixCalc.Models
             }
         }
 
-        public void UpdateMatrix(int currentMatrixDimension)
+        public virtual void UpdateMatrix(int currentMatrixDimension)
         {
             OldEntryList = new List<InputEntry>(EntryList);
 
@@ -59,7 +53,7 @@ namespace MatrixCalc.Models
             }
         }
 
-        private void ClearOldChildren()
+        protected void ClearOldChildren()
         {
             Children.Clear();
             EntryList.Clear();
@@ -67,7 +61,7 @@ namespace MatrixCalc.Models
             GetInfoButton.LastLineId = 0;
         }
 
-        private void CreateChildren(int currentMatrixDimension)
+        protected void CreateChildren(int currentMatrixDimension)
         {
             for (int row = 0; row <= currentMatrixDimension; row++)
             {
@@ -87,7 +81,7 @@ namespace MatrixCalc.Models
             }
         }
 
-        private void CreateButton(int row, int column)
+        protected void CreateButton(int row, int column)
         {
             if (row != column)
             {
@@ -104,7 +98,7 @@ namespace MatrixCalc.Models
             }
         }
 
-        private void CreateEntry(int row, int column)
+        protected void CreateEntry(int row, int column)
         {
             InputEntry inputEntry = new InputEntry(row, column);
             inputEntry = CheckOldValueExists(inputEntry);
@@ -112,7 +106,7 @@ namespace MatrixCalc.Models
             AddToChildren(entryFrame, row, column);
         }
 
-        private InputEntry CheckOldValueExists(InputEntry inputEntry)
+        protected InputEntry CheckOldValueExists(InputEntry inputEntry)
         {
             foreach (var oldEntry in OldEntryList)
             {
@@ -126,7 +120,7 @@ namespace MatrixCalc.Models
             return inputEntry;
         }
 
-        private void AddToChildren(MatrixFrame frame, int row, int column)
+        protected void AddToChildren(MatrixFrame frame, int row, int column)
         {
             Children.Add(frame, column, row);
             if (frame.Content is InputEntry inputEntry)
@@ -137,7 +131,7 @@ namespace MatrixCalc.Models
 
         }
 
-        private void AssignLines()
+        protected void AssignLines()
         {
             Lines.Clear();
 
@@ -150,7 +144,7 @@ namespace MatrixCalc.Models
 
         }
 
-        private void FillLine(List<InputEntry> Line, GetInfoButton button)
+        protected void FillLine(List<InputEntry> Line, GetInfoButton button)
         {
             foreach (var entry in EntryList)
             {
@@ -162,7 +156,7 @@ namespace MatrixCalc.Models
             }
         }
 
-        private void UpdateChildHeightWidth(object sender, EventArgs e)
+        protected void UpdateChildHeightWidth(object sender, EventArgs e)
         {
             ChildHeight = Children[0].Height;
             ChildWidth = Children[0].Width;

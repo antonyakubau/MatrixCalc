@@ -4,6 +4,7 @@ using MatrixCalc.ViewModels;
 using MatrixCalc.Models;
 
 using Xamarin.Forms;
+using MatrixCalc.Models.Interfaces;
 
 namespace MatrixCalc.Views
 {	
@@ -13,6 +14,7 @@ namespace MatrixCalc.Views
 		public SavedItemsPage(IMatrix mainMatrix)
 		{
 			InitializeComponent();
+
             _savedItemsVM = new SavedItemsVM(mainMatrix);
             BindingContext = _savedItemsVM;
         }

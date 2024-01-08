@@ -3,7 +3,7 @@ using MatrixCalc.Models.Interfaces;
 
 namespace MatrixCalc.Models
 {
-    public interface IMatrix : IMatrixInfo
+    public interface IMatrix
     {
         List<InputEntry> OldEntryList { get; }
         List<InputEntry> EntryList { get; }

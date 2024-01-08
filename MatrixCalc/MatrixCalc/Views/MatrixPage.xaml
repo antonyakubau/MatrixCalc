@@ -11,9 +11,9 @@
 
     <Grid RowDefinitions=".6*,.04*,.4*">
 
-        <model:Matrix x:Name="MainMatrix"
+        <model:DB_Matrix x:Name="MainMatrix"
               Grid.Row="0">
-        </model:Matrix>
+        </model:DB_Matrix>
 
         <Grid Grid.Row="1"
               ColumnDefinitions="*,*">

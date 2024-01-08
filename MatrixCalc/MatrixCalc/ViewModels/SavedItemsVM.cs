@@ -10,14 +10,15 @@ namespace MatrixCalc.ViewModels
 {
 	public class SavedItemsVM
 	{
-		public IMatrix _mainMatrix;
-		public IEnumerable<Matrix> Matrices { get; set; }
+        private DB_Matrix _dbMatrix;
+
+        public IEnumerable<IMatrixInfo> Matrices { get; set; }
 		public SavedItemsVM(IMatrix mainMatrix)
 		{
-			_mainMatrix = mainMatrix;
-			Matrices = new List<Matrix>()
+			_dbMatrix = mainMatrix as DB_Matrix;
+			Matrices = new List<DB_Matrix>()
 			{
-				new Matrix()
+				new DB_Matrix()
 				{
 					Id = 2,
 					Name = "Second",
@@ -25,7 +26,7 @@ namespace MatrixCalc.ViewModels
 					Size = 4,
 					Date = "05.11.2023"
 				},
-				new Matrix()
+				new DB_Matrix()
 				{
 					Id = 3,
 					Name = "Third",
@@ -40,15 +41,30 @@ namespace MatrixCalc.ViewModels
 		{
 			try
 			{
-				IMatrixInfo newMatrix = new Matrix();
-				_mainMatrix.Id = 1;
-			}
+				IMatrixInfo matrixInfo = FindId(id);
+                _dbMatrix.Id = matrixInfo.Id;
+                _dbMatrix.Name = matrixInfo.Name;
+                _dbMatrix.Data = matrixInfo.Data;
+                _dbMatrix.Size = matrixInfo.Size;
+                _dbMatrix.Date = matrixInfo.Date;
+            }
 			catch (Exception ex)
 			{
 				ExceptionManager.ShowExceptionMessege(ex);
 			}
-		}); 
+		});
 
-	}
+        private IMatrixInfo FindId(int id)
+        {
+			foreach (var matrix in Matrices)
+			{
+				if (matrix.Id == id)
+				{
+					return matrix;
+				}
+            }
+            throw new NullReferenceException("Matrix not found");
+        }
+    }
 }
 
