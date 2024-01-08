@@ -57,7 +57,7 @@
                         Style="{StaticResource BaseLabel}"
                         Margin="10,10,0,0"/>
                     <Label Grid.Row="1"
-                        Text="{Binding MinValueOfMatrix}"
+                        Text="{Binding MinValue}"
                         Style="{StaticResource BaseLabel}"
                         FontSize="Title"/>
 
@@ -68,7 +68,7 @@
                     Style="{StaticResource BaseLabel}"
                         Margin="10,10,0,0"/>
                     <Label Grid.Row="1"
-                        Text="{Binding MaxValueOfMatrix}"
+                        Text="{Binding MaxValue}"
                         Style="{StaticResource BaseLabel}"
                         FontSize="Title"/>
 
@@ -79,7 +79,7 @@
                         Style="{StaticResource BaseLabel}"
                         Margin="10,10,0,0"/>
                     <Label Grid.Row="1"
-                        Text="{Binding AverageValueOfMatrix}"
+                        Text="{Binding AverageValue}"
                         Style="{StaticResource BaseLabel}"
                         FontSize="Title"/>
 

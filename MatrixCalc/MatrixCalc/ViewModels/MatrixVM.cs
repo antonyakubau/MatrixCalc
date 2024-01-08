@@ -14,57 +14,36 @@ namespace MatrixCalc.ViewModels
 	public class MatrixVM
 	{
 		private IMatrix _mainMatrix;
-		private int _currentMatrixDimension;
-		private readonly Dimension _dimension;
 
 		public IPageMath InternalMath { get; set; }
-		public int LowerBound { get; private set; }
-		public int UpperBound { get; private set; }
-		public int StartDimension { get; private set; }
-		public int MinValueOfMatrix { get; private set; }
-		public int MaxValueOfMatrix { get; private set; }
-		public int AverageValueOfMatrix { get; private set; }
+		public int MinValue { get; private set; }
+		public int MaxValue { get; private set; }
+		public int AverageValue { get; private set; }
 
 		public MatrixVM(IMatrix mainMatrix)
 		{
 			_mainMatrix = mainMatrix;
 			InternalMath = new InternalMath();
 
-			LowerBound = 2;
-			UpperBound = 7;
-			StartDimension = 4;
+            UpdateManager.UpdateResults += ExecuteUpdateResults;
 
-			_dimension = new Dimension(LowerBound, UpperBound, StartDimension);
-			_currentMatrixDimension = _dimension.StartDimension;
-
-			UpdateManager.UpdateResults += ExecuteUpdateResults;
-
-			_mainMatrix.UpdateMatrix(_currentMatrixDimension);
+			_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
 		}
 
 		public ICommand IncreaseDimensionCommand => new Command(
 			execute: () =>
 			{
-				int newDimension = _dimension.IncreaseDimension
-				(_currentMatrixDimension);
+				_mainMatrix.Dimension.IncreaseDimension();
 
-				if (newDimension != _currentMatrixDimension)
-				{
-					_currentMatrixDimension = newDimension;
-					_mainMatrix.UpdateMatrix(_currentMatrixDimension);
-				}
+				_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
+				
 			});
 
 		public ICommand DecreaseDimensionCommand => new Command(() =>
 		{
-			int newDimension = _dimension.DecreaseDimension
-			(_currentMatrixDimension);
+			_mainMatrix.Dimension.DecreaseDimension();
 
-			if (newDimension != _currentMatrixDimension)
-			{
-				_currentMatrixDimension = newDimension;
-				_mainMatrix.UpdateMatrix(_currentMatrixDimension);
-			}
+			_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
 		});
 
 		private void ExecuteUpdateResults()
@@ -76,14 +55,14 @@ namespace MatrixCalc.ViewModels
 		{
 			try
 			{
-				MinValueOfMatrix = InternalMath.CalculateMin(_mainMatrix.EntryList);
-				MaxValueOfMatrix = InternalMath.CalculateMax(_mainMatrix.EntryList);
-				AverageValueOfMatrix = InternalMath.CalculateAverage(_mainMatrix.EntryList);
+				MinValue = InternalMath.CalculateMin(_mainMatrix.EntryList);
+				MaxValue = InternalMath.CalculateMax(_mainMatrix.EntryList);
+				AverageValue = InternalMath.CalculateAverage(_mainMatrix.EntryList);
 			}
 			catch (Exception ex)
 			{
 				ExceptionManager.ShowExceptionMessege(ex);
-				_mainMatrix.UpdateMatrix(_currentMatrixDimension);
+				_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
 			}
 		});
 
@@ -101,7 +80,7 @@ namespace MatrixCalc.ViewModels
 			catch (Exception ex)
 			{
 				ExceptionManager.ShowExceptionMessege(ex);
-				_mainMatrix.UpdateMatrix(_currentMatrixDimension);
+				_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
 			}
 		});
 

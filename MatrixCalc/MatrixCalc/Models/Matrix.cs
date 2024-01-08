@@ -11,10 +11,15 @@ namespace MatrixCalc.Models
         public static double ChildHeight { get; set; }
         public static double ChildWidth { get; set; }
 
+        public Dimension Dimension { get; protected set; }
         public List<InputEntry> OldEntryList { get; protected set; }
         public List<InputEntry> EntryList { get; protected set; }
         public List<GetInfoButton> ButtonList { get; protected set; }
         public List<List<InputEntry>> Lines { get; protected set; }
+
+        //public int LowerBound { get; protected set; }
+        //public int UpperBound { get; protected set; }
+        //public int CurrentDimension { get; protected set; }
 
         public Matrix()
         {
@@ -27,6 +32,8 @@ namespace MatrixCalc.Models
             Margin = 0;
             Padding = 0;
             BackgroundColor = Color.AliceBlue;
+
+            Dimension = new Dimension(2, 7, 4);
 
             SizeChanged += UpdateChildHeightWidth;
             LayoutChanged += UpdateChildHeightWidth;

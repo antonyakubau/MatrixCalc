@@ -9,8 +9,8 @@ namespace MatrixCalc.Models
 
         public new int Id { get; set; }
         public string Name { get; set; }
-        public string Data { get; set; }
-        public int Dimension { get; set; }
+        public List<string> Values { get; set; }
+        public int Size { get; set; }
         public string Date { get; set; }
 
         public DB_Matrix()
@@ -25,18 +25,15 @@ namespace MatrixCalc.Models
 
             LoadValues();
 
-            UpdateMatrix(matrixInfo.Dimension);
-
-            //ClearOldChildren();
-            //LoadChildren(matrixInfo.Size);
+            UpdateMatrix(matrixInfo.Size);
 
         }
 
         private void LoadValues()
         {
-            foreach (var entry in OldEntryList)
+            foreach (var entry in EntryList)
             {
-                //entry.Text = 
+                entry.UpdateTextSafe(Values[0]);
             }
         }
 
@@ -44,27 +41,16 @@ namespace MatrixCalc.Models
         {
             Id = matrixInfo.Id;
             Name = matrixInfo.Name;
-            Data = matrixInfo.Data;
-            Dimension = matrixInfo.Dimension;
+            Values = matrixInfo.Values;
+            Size = matrixInfo.Size;
             Date = matrixInfo.Date;
+
+            Dimension.SetDimension(Size);
         }
 
-
-        private void LoadChildren(int currentMatrixDimension)
+        public virtual void UpdateMatrix()
         {
-            for (int row = 0; row <= currentMatrixDimension; row++)
-            {
-                for (int column = 0; column <= currentMatrixDimension; column++)
-                {
-                    LoadChild(currentMatrixDimension, row, column);
-                }
-
-            }
-        }
-
-        private void LoadChild(int currentMatrixDimension, int row, int column)
-        {
-            //throw new NotImplementedException();
+            
         }
     }
 }

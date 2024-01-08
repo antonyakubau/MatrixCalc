@@ -22,16 +22,16 @@ namespace MatrixCalc.ViewModels
 				{
 					Id = 2,
 					Name = "Second",
-					Data = "0 1 2 3",
-					Dimension = 2,
+					Values = new List<string>(){"0", "1", "2", "3" },
+					Size = 2,
 					Date = "05.11.2023"
 				},
 				new DB_Matrix()
 				{
 					Id = 3,
 					Name = "Third",
-					Data = "4 314 856 7 235 23 64 12 43",
-					Dimension = 3,
+					Values = new List<string>(){"4", "314", "856", "7", "235", "23", "64", "12", "43" },
+					Size = 3,
 					Date = "05.11.2023"
 				}
 			};

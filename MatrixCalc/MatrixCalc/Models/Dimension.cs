@@ -10,13 +10,13 @@ namespace MatrixCalc.Models
 
         private int _upperBound;
         private int _lowerBound;
-        private int _startDimension;
+        private int _currentDimension;
 
-        public Dimension(int lowerBound, int upperBound, int startDimension)
+        public Dimension(int lowerBound, int upperBound, int currentDimension)
         {
             LowerBound = lowerBound;
             UpperBound = upperBound;
-            StartDimension = startDimension;
+            CurrentDimension = currentDimension;
         }
 
         public int UpperBound
@@ -44,9 +44,9 @@ namespace MatrixCalc.Models
             }
         }
 
-        public int StartDimension
+        public int CurrentDimension
         {
-            get { return _startDimension; }
+            get { return _currentDimension; }
             private set
             {
                 if (LowerBound == 0 || UpperBound == 0)
@@ -60,31 +60,32 @@ namespace MatrixCalc.Models
 
 
                 if (value < LowerBound)
-                    _startDimension = LowerBound;
+                    _currentDimension = LowerBound;
                 else
                 if (value > UpperBound)
-                    _startDimension = UpperBound;
+                    _currentDimension = UpperBound;
                 else
-                    _startDimension = value;
+                    _currentDimension = value;
             }
 
         }
 
-        public int IncreaseDimension(int currentMatrixDimension)
+        public void SetDimension(int newDimension)
         {
-            if (currentMatrixDimension < UpperBound)
-                currentMatrixDimension++;
+            CurrentDimension = newDimension;
+        }
 
-            return currentMatrixDimension;
+        public void IncreaseDimension()
+        {
+            if (CurrentDimension < UpperBound)
+                CurrentDimension++;
         }
 
 
-        public int DecreaseDimension(int currentMatrixDimension)
+        public void DecreaseDimension()
         {
-            if (currentMatrixDimension > LowerBound)
-                currentMatrixDimension--;
-
-            return currentMatrixDimension;
+            if (CurrentDimension > LowerBound)
+                CurrentDimension--;
         }
     }
 }

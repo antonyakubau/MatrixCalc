@@ -5,6 +5,7 @@ namespace MatrixCalc.Models
 {
     public interface IMatrix
     {
+        Dimension Dimension { get; }
         List<InputEntry> OldEntryList { get; }
         List<InputEntry> EntryList { get; }
         List<GetInfoButton> ButtonList { get; }
