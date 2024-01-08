@@ -16,33 +16,47 @@ namespace MatrixCalc.ViewModels
 		public SavedItemsVM(IMatrix mainMatrix)
 		{
 			_dbMatrix = mainMatrix as DB_Matrix;
-			Matrices = new List<DB_Matrix>()
+			Matrices = new List<dbt>()
 			{
-				new DB_Matrix()
+				new dbt()
 				{
 					Id = 2,
 					Name = "Second",
-					Values = new List<string>(){"0", "1", "2", "3" },
+					//Values = new List<string>(){"0", "1", "2", "3" }.ToString(),
+					Values = "0;1;2;3",
 					Size = 2,
 					Date = "05.11.2023"
 				},
-				new DB_Matrix()
+				new dbt()
 				{
 					Id = 3,
 					Name = "Third",
-					Values = new List<string>(){"4", "314", "856", "7", "235", "23", "64", "12", "43" },
+					//Values = new List<string>(){"4", "314", "856", "7", "235", "23", "64", "12", "43" }.ToString(),
+					Values = "4;314;856;7;235;23;64;12;43",
 					Size = 3,
 					Date = "05.11.2023"
 				}
 			};
+			App.Database.SaveDB_MatrixAsync(new dbt()
+			{
+				Id = 3,
+				Name = "Third",
+				//Values = new List<string>(){"4", "314", "856", "7", "235", "23", "64", "12", "43" }.ToString(),
+				Values = "4;314;856;7;235;23;64;12;43",
+				Size = 3,
+				Date = "05.11.2023"
+
+			});
 		}
 
-		public ICommand OpenSavedMatrixCommand => new Command<int>((id) =>
-		{
+		//public ICommand OpenSavedMatrixCommand => new Command<DB_Matrix>((matrix) =>
+
+        public ICommand OpenSavedMatrixCommand => new Command<int>((id) =>
+        {
 			try
 			{
-				IMatrixInfo matrixInfo = FindId(id);
-				_dbMatrix.Load(matrixInfo);
+				_dbMatrix.Load(FindId(id));
+
             }
 			catch (Exception ex)
 			{
@@ -50,6 +64,18 @@ namespace MatrixCalc.ViewModels
 			}
 		});
 
+        //private async void GetMatrices()
+        //{
+        //    await App.Database.SavePersonAsync(new Person
+        //    {
+        //        Name = nameEntry.Text,
+        //        Age = int.Parse(ageEntry.Text)
+        //    });
+
+        //    nameEntry.Text = ageEntry.Text = string.Empty;
+        //    collectionView.ItemsSource = await App.Database.GetPeopleAsync();
+        
+        //}
         private IMatrixInfo FindId(int id)
         {
 			foreach (var matrix in Matrices)

@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MatrixCalc.Models.Interfaces;
+using SQLite;
 
 namespace MatrixCalc.Models
 {
-    public class DB_Matrix : Matrix, IMatrixInfo
+    public class DB_Matrix : Matrix
     {
-
-        public new int Id { get; set; }
-        public string Name { get; set; }
-        public List<string> Values { get; set; }
-        public int Size { get; set; }
-        public string Date { get; set; }
 
         public DB_Matrix()
         {
@@ -37,8 +33,10 @@ namespace MatrixCalc.Models
         {
             foreach (var entry in EntryList)
             {
+                List<string> ListValues = Values.Split(';').ToList();
+
                 int position = entry.Column + Dimension.CurrentDimension * entry.Row;
-                entry.UpdateTextSafe(Values[position]);
+                entry.UpdateTextSafe(ListValues[position]);
             }
         }
 
