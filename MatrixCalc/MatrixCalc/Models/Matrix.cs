@@ -6,7 +6,7 @@ using Xamarin.Forms.Shapes;
 
 namespace MatrixCalc.Models
 {
-    public class Matrix : MatrixInfo, IMatrix
+    public class Matrix : Grid, IMatrix
     {
         public static double ChildHeight { get; set; }
         public static double ChildWidth { get; set; }

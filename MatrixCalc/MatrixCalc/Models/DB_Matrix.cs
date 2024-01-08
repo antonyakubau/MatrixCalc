@@ -6,14 +6,18 @@ using SQLite;
 
 namespace MatrixCalc.Models
 {
-    public class DB_Matrix : Matrix
+    public class DB_Matrix : Matrix, IMatrixInfo
     {
+        public new int Id { get; set; }
+        public string Name { get; set; }
+        public string Values { get; set; }
+        public int Size { get; set; }
+        public string Date { get; set; }
 
         public DB_Matrix()
         {
 
         }
-
 
         public virtual void Load(IMatrixInfo matrixInfo)
         {

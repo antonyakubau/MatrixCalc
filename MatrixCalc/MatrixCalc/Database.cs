@@ -14,15 +14,15 @@ namespace MatrixCalc
         public Database(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<dbt>().Wait();
+            _database.CreateTableAsync<MatrixInfo>().Wait();
         }
 
-        public Task<List<dbt>> GetDB_MatrixAsync()
+        public Task<List<MatrixInfo>> GetDB_MatrixAsync()
         {
-            return _database.Table<dbt>().ToListAsync();
+            return _database.Table<MatrixInfo>().ToListAsync();
         }
 
-        public Task<int> SaveDB_MatrixAsync(dbt dB_Matrix)
+        public Task<int> SaveDB_MatrixAsync(MatrixInfo dB_Matrix)
         {
             return _database.InsertAsync(dB_Matrix);
         }

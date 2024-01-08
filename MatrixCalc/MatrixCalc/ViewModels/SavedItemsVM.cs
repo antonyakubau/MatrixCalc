@@ -16,9 +16,9 @@ namespace MatrixCalc.ViewModels
 		public SavedItemsVM(IMatrix mainMatrix)
 		{
 			_dbMatrix = mainMatrix as DB_Matrix;
-			Matrices = new List<dbt>()
+			Matrices = new List<MatrixInfo>()
 			{
-				new dbt()
+				new MatrixInfo()
 				{
 					Id = 2,
 					Name = "Second",
@@ -27,7 +27,7 @@ namespace MatrixCalc.ViewModels
 					Size = 2,
 					Date = "05.11.2023"
 				},
-				new dbt()
+				new MatrixInfo()
 				{
 					Id = 3,
 					Name = "Third",
@@ -37,7 +37,7 @@ namespace MatrixCalc.ViewModels
 					Date = "05.11.2023"
 				}
 			};
-			App.Database.SaveDB_MatrixAsync(new dbt()
+			App.Database.SaveDB_MatrixAsync(new MatrixInfo()
 			{
 				Id = 3,
 				Name = "Third",
