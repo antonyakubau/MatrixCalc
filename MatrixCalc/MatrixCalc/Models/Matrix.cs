@@ -11,10 +11,10 @@ namespace MatrixCalc.Models
         public static double ChildHeight { get; set; }
         public static double ChildWidth { get; set; }
 
-        public List<InputEntry> OldEntryList { get; private set; }
-        public List<InputEntry> EntryList { get; private set; }
-        public List<GetInfoButton> ButtonList { get; private set; }
-        public List<List<InputEntry>> Lines { get; private set; }
+        public List<InputEntry> OldEntryList { get; protected set; }
+        public List<InputEntry> EntryList { get; protected set; }
+        public List<GetInfoButton> ButtonList { get; protected set; }
+        public List<List<InputEntry>> Lines { get; protected set; }
 
         public Matrix()
         {
@@ -36,7 +36,12 @@ namespace MatrixCalc.Models
         {
             foreach (var entry in EntryList)
             {
-                entry.Text = entry.GenerateNewValue().InRange(1, 999);
+                entry.UpdateTextSafe(entry.GenerateNewValue().InRange(1, 999));
+            }
+
+            if (UpdateManager.UpdateResults != null)
+            {
+                UpdateManager.UpdateResults();
             }
         }
 
@@ -61,27 +66,32 @@ namespace MatrixCalc.Models
             GetInfoButton.LastLineId = 0;
         }
 
-        protected void CreateChildren(int currentMatrixDimension)
+        private void CreateChildren(int currentMatrixDimension)
         {
             for (int row = 0; row <= currentMatrixDimension; row++)
             {
                 for (int column = 0; column <= currentMatrixDimension; column++)
                 {
-                    if ((row == currentMatrixDimension)
-                        || (column == currentMatrixDimension))
-                    {
-                        CreateButton(row, column);
-                    }
-                    else
-                    {
-                        CreateEntry(row, column);
-                    }
+                    CreateChild(currentMatrixDimension, row, column);
                 }
 
             }
         }
 
-        protected void CreateButton(int row, int column)
+        private void CreateChild(int currentMatrixDimension, int row, int column)
+        {
+            if ((row == currentMatrixDimension)
+                || (column == currentMatrixDimension))
+            {
+                CreateButton(row, column);
+            }
+            else
+            {
+                CreateEntry(row, column);
+            }
+        }
+
+        private void CreateButton(int row, int column)
         {
             if (row != column)
             {
@@ -98,7 +108,7 @@ namespace MatrixCalc.Models
             }
         }
 
-        protected void CreateEntry(int row, int column)
+        private void CreateEntry(int row, int column)
         {
             InputEntry inputEntry = new InputEntry(row, column);
             inputEntry = CheckOldValueExists(inputEntry);
@@ -106,7 +116,7 @@ namespace MatrixCalc.Models
             AddToChildren(entryFrame, row, column);
         }
 
-        protected InputEntry CheckOldValueExists(InputEntry inputEntry)
+        private InputEntry CheckOldValueExists(InputEntry inputEntry)
         {
             foreach (var oldEntry in OldEntryList)
             {
@@ -120,7 +130,7 @@ namespace MatrixCalc.Models
             return inputEntry;
         }
 
-        protected void AddToChildren(MatrixFrame frame, int row, int column)
+        private void AddToChildren(MatrixFrame frame, int row, int column)
         {
             Children.Add(frame, column, row);
             if (frame.Content is InputEntry inputEntry)
@@ -131,7 +141,7 @@ namespace MatrixCalc.Models
 
         }
 
-        protected void AssignLines()
+        private void AssignLines()
         {
             Lines.Clear();
 
@@ -144,7 +154,7 @@ namespace MatrixCalc.Models
 
         }
 
-        protected void FillLine(List<InputEntry> Line, GetInfoButton button)
+        private void FillLine(List<InputEntry> Line, GetInfoButton button)
         {
             foreach (var entry in EntryList)
             {
@@ -156,7 +166,7 @@ namespace MatrixCalc.Models
             }
         }
 
-        protected void UpdateChildHeightWidth(object sender, EventArgs e)
+        private void UpdateChildHeightWidth(object sender, EventArgs e)
         {
             ChildHeight = Children[0].Height;
             ChildWidth = Children[0].Width;

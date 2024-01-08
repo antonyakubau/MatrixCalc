@@ -10,44 +10,32 @@ namespace MatrixCalc.Models
 		public int Row { get; protected set; }
 		public int Column { get; protected set; }
 
-		public InputEntry(int row, int column)
-		{
-            Keyboard = Keyboard.Numeric;
-			MaxLength = 3;
-			Behaviors.Add(new InputTextBehavior());
-			Text = new Random().Next(0, 999).ToString();
+        public InputEntry(int row, int column)
+        {
+            InitializeSettings();
+
+			UpdateTextSafe(new Random().Next(0, 999).ToString());
 			_lastNumber = Text;
 
 			Row = row;
 			Column = column;
+        }
 
-			TextChanged += UpdateResults;
-			Unfocused += RestoreNumber;
-			UpdateManager.UpdateFont += UpdateFontSize;
-		}
+        public InputEntry()
+        {
 
-		public InputEntry()
-		{
-		}
+        }
 
 		public InputEntry(InputEntry oldInputEntry)
 		{
-			Keyboard = Keyboard.Numeric;
-			MaxLength = 3;
-			Behaviors.Add(new InputTextBehavior());
-			Text = oldInputEntry.Text;
+            InitializeSettings();
+
+			UpdateTextSafe(oldInputEntry.Text);
 			_lastNumber = Text;
 			
-			VerticalOptions = LayoutOptions.FillAndExpand;
-			HorizontalOptions = LayoutOptions.FillAndExpand;
-
 			Row = oldInputEntry.Row;
 			Column = oldInputEntry.Column;
-
-			TextChanged += UpdateResults;
-			Unfocused += RestoreNumber;
-			UpdateManager.UpdateFont += UpdateFontSize;
-		}
+        }
 
 		public void UpdateResults(object sender, TextChangedEventArgs e)
 		{
@@ -66,7 +54,14 @@ namespace MatrixCalc.Models
 
 		}
 
-		public void UpdateFontSize()
+        public void UpdateTextSafe(string text)
+        {
+            RemoveEvents();
+            Text = text;
+            AssignEvents();
+        }
+
+        public void UpdateFontSize()
 		{
 			FontSize = Matrix.ChildWidth / 3;
 		}
@@ -92,6 +87,15 @@ namespace MatrixCalc.Models
 		{
 			return new Random().Next(0, 999).ToString();
 		}
+
+
+        private void InitializeSettings()
+        {
+            Keyboard = Keyboard.Numeric;
+            MaxLength = 3;
+            Behaviors.Add(new InputTextBehavior());
+            AssignEvents();
+        }
 
         private bool IsNumeric(string value)
 		{
@@ -140,6 +144,19 @@ namespace MatrixCalc.Models
 			return true;
 		}
 
+        private void AssignEvents()
+        {
+            TextChanged += UpdateResults;
+            Unfocused += RestoreNumber;
+            UpdateManager.UpdateFont += UpdateFontSize;
+        }
+
+        private void RemoveEvents()
+        {
+            TextChanged -= UpdateResults;
+            Unfocused -= RestoreNumber;
+            UpdateManager.UpdateFont -= UpdateFontSize;
+        }
     }
 	
 

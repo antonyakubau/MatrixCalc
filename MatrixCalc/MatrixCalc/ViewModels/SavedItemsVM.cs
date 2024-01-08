@@ -10,7 +10,7 @@ namespace MatrixCalc.ViewModels
 {
 	public class SavedItemsVM
 	{
-        private DB_Matrix _dbMatrix;
+        protected DB_Matrix _dbMatrix;
 
         public IEnumerable<IMatrixInfo> Matrices { get; set; }
 		public SavedItemsVM(IMatrix mainMatrix)
@@ -23,7 +23,7 @@ namespace MatrixCalc.ViewModels
 					Id = 2,
 					Name = "Second",
 					Data = "0 1 2 3",
-					Size = 4,
+					Dimension = 2,
 					Date = "05.11.2023"
 				},
 				new DB_Matrix()
@@ -31,7 +31,7 @@ namespace MatrixCalc.ViewModels
 					Id = 3,
 					Name = "Third",
 					Data = "4 314 856 7 235 23 64 12 43",
-					Size = 9,
+					Dimension = 3,
 					Date = "05.11.2023"
 				}
 			};
@@ -42,11 +42,7 @@ namespace MatrixCalc.ViewModels
 			try
 			{
 				IMatrixInfo matrixInfo = FindId(id);
-                _dbMatrix.Id = matrixInfo.Id;
-                _dbMatrix.Name = matrixInfo.Name;
-                _dbMatrix.Data = matrixInfo.Data;
-                _dbMatrix.Size = matrixInfo.Size;
-                _dbMatrix.Date = matrixInfo.Date;
+				_dbMatrix.Load(matrixInfo);
             }
 			catch (Exception ex)
 			{

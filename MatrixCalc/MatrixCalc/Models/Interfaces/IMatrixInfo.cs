@@ -6,7 +6,7 @@ namespace MatrixCalc.Models.Interfaces
         int Id { get; set; }
         string Name { get; set; }
         string Data { get; set; }
-        int Size { get; set; }
+        int Dimension { get; set; }
         string Date { get; set; }
     }
 }
