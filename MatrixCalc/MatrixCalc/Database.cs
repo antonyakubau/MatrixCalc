@@ -15,7 +15,7 @@ namespace MatrixCalc
         public Database(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.DropTableAsync<MatrixInfo>().Wait(); //remove
+            //_database.DropTableAsync<MatrixInfo>().Wait();
             _database.CreateTableAsync<MatrixInfo>().Wait();
         }
 
@@ -26,7 +26,6 @@ namespace MatrixCalc
 
         public Task<int> SaveDbMatrixAsync(IMatrixInfo dB_Matrix)
         {
-
             return _database.InsertAsync(new MatrixInfo(dB_Matrix));
         }
     }

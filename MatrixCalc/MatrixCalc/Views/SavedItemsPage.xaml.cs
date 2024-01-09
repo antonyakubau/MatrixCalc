@@ -29,7 +29,6 @@ namespace MatrixCalc.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            _savedItemsVM.GetMatrices();
             collectionView.ItemsSource = _savedItemsVM.DbMatrices;
         }
     }

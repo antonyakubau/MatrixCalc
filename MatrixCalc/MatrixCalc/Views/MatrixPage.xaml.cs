@@ -37,7 +37,7 @@ namespace MatrixCalc.Views
 
         public async void ShowUpdated()
         {
-            await DisplayAlert($"Updated", "", "OK");
+            await DisplayAlert($"Updated", null, "OK");
         }
 
         public async void ShowException(Exception exception)
@@ -52,7 +52,20 @@ namespace MatrixCalc.Views
 
         async void SaveButton_Clicked(System.Object sender, System.EventArgs e)
         {
-            await DisplayActionSheet("Save", "Cancel", "Destr", "buttons");
+            var name = await DisplayPromptAsync
+                ("Save file", null, "Save", "Cancel", "Enter file name", 20,
+                Keyboard.Default, Convert.ToString(DateTime.Now.ToShortDateString()));
+
+            if (name == "")
+            {
+                await DisplayAlert($"Enter file name", null, "OK");
+                SaveButton_Clicked(sender, e);
+            }
+            else
+            if (name != null)
+            {
+                _matrixVM.SaveButtonCommand.Execute(name);
+            }
         }
     }
 }

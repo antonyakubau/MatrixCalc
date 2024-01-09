@@ -29,6 +29,7 @@
                     TextColor="{StaticResource Secondary}"
                     BackgroundColor="{StaticResource Primary}"
                     Margin="3,0,0,0"
+                    x:Name="saveButton"
                     Clicked="SaveButton_Clicked">
 
             </Button>
