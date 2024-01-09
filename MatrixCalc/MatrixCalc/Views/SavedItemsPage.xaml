@@ -12,7 +12,7 @@
 			   TextColor="{StaticResource Secondary}"/>
 	</NavigationPage.TitleView>
 
-	<CollectionView ItemsSource="{Binding Matrices}"
+	<CollectionView
 			  x:Name="collectionView">
 
 		<CollectionView.ItemTemplate>
@@ -29,7 +29,11 @@
 						<StackLayout
 							Grid.Row="0"
 							Margin="10">
+							<Label Text="{Binding Id}"
+								   TextColor="{StaticResource Secondary}"/>
 							<Label Text="{Binding Name}"
+								   TextColor="{StaticResource Secondary}"/>
+							<Label Text="{Binding Values}"
 								   TextColor="{StaticResource Secondary}"/>
 							<Label Text="{Binding Date}"
 								   TextColor="{StaticResource Secondary}"/>

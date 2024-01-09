@@ -18,6 +18,13 @@ namespace MatrixCalc.Models
 		{
 		}
 
+        public MatrixInfo(IMatrixInfo matrix)
+        {
+            Name = matrix.Name;
+            Values = matrix.Values;
+            Size = matrix.Size;
+            Date = matrix.Date;
+        }
     }
 }
 

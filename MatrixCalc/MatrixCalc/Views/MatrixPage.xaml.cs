@@ -49,6 +49,11 @@ namespace MatrixCalc.Views
         {
             await Navigation.PushAsync(new SavedItemsPage(MainMatrix));
         }
+
+        async void SaveButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await DisplayActionSheet("Save", "Cancel", "Destr", "buttons");
+        }
     }
 }
 

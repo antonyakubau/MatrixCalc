@@ -28,7 +28,8 @@
                     FontAttributes="Bold"
                     TextColor="{StaticResource Secondary}"
                     BackgroundColor="{StaticResource Primary}"
-                    Margin="3,0,0,0">
+                    Margin="3,0,0,0"
+                    Clicked="SaveButton_Clicked">
 
             </Button>
 

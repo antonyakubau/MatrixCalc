@@ -4,6 +4,7 @@ using System.IO;
 using SQLite;
 using System.Threading.Tasks;
 using MatrixCalc.Models;
+using MatrixCalc.Models.Interfaces;
 
 namespace MatrixCalc
 {
@@ -14,17 +15,19 @@ namespace MatrixCalc
         public Database(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
+            _database.DropTableAsync<MatrixInfo>().Wait(); //remove
             _database.CreateTableAsync<MatrixInfo>().Wait();
         }
 
-        public Task<List<MatrixInfo>> GetDB_MatrixAsync()
+        public Task<List<MatrixInfo>> GetDbMatricesAsync()
         {
             return _database.Table<MatrixInfo>().ToListAsync();
         }
 
-        public Task<int> SaveDB_MatrixAsync(MatrixInfo dB_Matrix)
+        public Task<int> SaveDbMatrixAsync(IMatrixInfo dB_Matrix)
         {
-            return _database.InsertAsync(dB_Matrix);
+
+            return _database.InsertAsync(new MatrixInfo(dB_Matrix));
         }
     }
 

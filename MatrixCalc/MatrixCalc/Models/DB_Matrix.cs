@@ -33,14 +33,16 @@ namespace MatrixCalc.Models
             }
         }
 
-        private void LoadValues()
+        public virtual void UpdateMatrix()
         {
-            foreach (var entry in EntryList)
-            {
-                List<string> ListValues = Values.Split(';').ToList();
+            OldEntryList = new List<InputEntry>(EntryList);
 
-                int position = entry.Column + Dimension.CurrentDimension * entry.Row;
-                entry.UpdateTextSafe(ListValues[position]);
+            ClearOldChildren();
+            CreateChildren(Dimension.CurrentDimension);
+            AssignLines();
+            if (UpdateManager.UpdateResults != null)
+            {
+                UpdateManager.UpdateResults();
             }
         }
 
@@ -55,16 +57,14 @@ namespace MatrixCalc.Models
             Dimension.SetDimension(Size);
         }
 
-        public virtual void UpdateMatrix()
+        private void LoadValues()
         {
-            OldEntryList = new List<InputEntry>(EntryList);
-
-            ClearOldChildren();
-            CreateChildren(Dimension.CurrentDimension);
-            AssignLines();
-            if (UpdateManager.UpdateResults != null)
+            foreach (var entry in EntryList)
             {
-                UpdateManager.UpdateResults();
+                List<string> ListValues = Values.Split(';').ToList();
+
+                int position = entry.Column + Dimension.CurrentDimension * entry.Row;
+                entry.UpdateTextSafe(ListValues[position]);
             }
         }
     }
