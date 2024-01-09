@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using MatrixCalc.Models;
 using MatrixCalc.Views;
 using Xamarin.Forms;
@@ -8,6 +9,18 @@ namespace MatrixCalc
 {
     public partial class App : Application
     {
+        static Database database;
+        public static Database Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new Database(Constants.DatabasePath);
+                }
+                return database;
+            }
+        }
 
         public App ()
         {

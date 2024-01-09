@@ -5,11 +5,11 @@ namespace MatrixCalc.Models.Interfaces
 {
 	public interface IMatrixInfo
 	{
-        int Id { get; set; }
-        string Name { get; set; }
-        List<string> Values { get; set; }
-        int Size { get; set; }
-        string Date { get; set; }
+        int Id { get; }
+        string Name { get; }
+        string Values { get; }
+        int Size { get; }
+        string Date { get; }
     }
 }
 

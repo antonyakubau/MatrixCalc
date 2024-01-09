@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows.Input;
 using MatrixCalc.Models;
+using MatrixCalc.Models.Interfaces;
 using MatrixCalc.Views;
 using PropertyChanged;
 using Xamarin.Forms;
@@ -92,6 +94,31 @@ namespace MatrixCalc.ViewModels
                 ShowDialogManager.ShowMatrixUpdated();
 			}
 		});
+
+        public ICommand SaveButtonCommand => new Command<string>((name) =>
+        {
+			DB_Matrix dB_Matrix = _mainMatrix as DB_Matrix;
+			dB_Matrix.Name = name;
+			dB_Matrix.Values = ConvertInputEntryToValues(dB_Matrix.EntryList);
+			dB_Matrix.Size = dB_Matrix.Dimension.CurrentDimension;
+			dB_Matrix.Date = Convert.ToString(DateTime.Now);
+
+            App.Database.SaveDbMatrixAsync(dB_Matrix);
+            
+
+        });
+
+        private string ConvertInputEntryToValues(List<InputEntry> entryList)
+        {
+			string values = "";
+			foreach (var entry in entryList)
+			{
+				values += entry.Text;
+				values += ";";
+			}
+			
+			return values;
+        }
     }
 }
 

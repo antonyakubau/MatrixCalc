@@ -10,7 +10,9 @@ namespace MatrixCalc.Views
 {	
 	public partial class SavedItemsPage : ContentPage
 	{
-		private SavedItemsVM _savedItemsVM;
+        public List<IMatrixInfo> DB_Matrices { get; set; }
+
+        private SavedItemsVM _savedItemsVM;
 		public SavedItemsPage(IMatrix mainMatrix)
 		{
 			InitializeComponent();
@@ -22,6 +24,12 @@ namespace MatrixCalc.Views
         async void ItemButton_Clicked(System.Object sender, System.EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            collectionView.ItemsSource = _savedItemsVM.DbMatrices;
         }
     }
 }
