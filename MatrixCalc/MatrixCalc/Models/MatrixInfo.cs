@@ -1,10 +1,12 @@
 ﻿using System;
 using MatrixCalc.Models.Interfaces;
+using PropertyChanged;
 using SQLite;
 using Xamarin.Forms;
 
 namespace MatrixCalc.Models
 {
+    [AddINotifyPropertyChangedInterface]
 	public class MatrixInfo : IMatrixInfo
     {
         [PrimaryKey, AutoIncrement]

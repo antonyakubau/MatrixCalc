@@ -45,7 +45,9 @@
 							BackgroundColor="{StaticResource Primary}"
 							Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.OpenSavedMatrixCommand}"
 							CommandParameter="{Binding Id}"
-							Clicked="ItemButton_Clicked">
+							Clicked="ItemButton_Clicked"
+							Pressed="ItemButton_Pressed"
+							Released="ItemButton_Released">
 						</Button>
 
 						</Grid>
