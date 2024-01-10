@@ -11,17 +11,16 @@ using PropertyChanged;
 
 namespace MatrixCalc.Views
 {
-    [AddINotifyPropertyChangedInterface]
 	public partial class SavedItemsPage : ContentPage
     {
         private SavedItemsVM _savedItemsVM;
-        private bool itemButtonPressed;
-        private Stopwatch stopwatch = new Stopwatch();
+        private bool _itemButtonPressed;
+        private Stopwatch _stopwatch;
 
 		public SavedItemsPage(IMatrix mainMatrix)
 		{
 			InitializeComponent();
-
+            _stopwatch = new Stopwatch();
             _savedItemsVM = new SavedItemsVM(mainMatrix);
             BindingContext = _savedItemsVM;
             //collectionView.ItemsSource = _savedItemsVM.DbMatrices;//
@@ -32,31 +31,25 @@ namespace MatrixCalc.Views
             await Navigation.PopAsync();
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            collectionView.ItemsSource = _savedItemsVM.DbMatrices;
-        }
-
         void ItemButton_Pressed(System.Object sender, System.EventArgs e)
         {
-            stopwatch.Start();
-            itemButtonPressed = true;
+            _stopwatch.Start();
+            _itemButtonPressed = true;
             Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
             {
-                if (stopwatch.Elapsed.TotalSeconds >= 0.5)
+                if (_stopwatch.Elapsed.TotalSeconds >= 0.5)
                 {
                     StopTimer();
                     OpenItemOptions((int)((Button)sender).CommandParameter);
                 }
-                return itemButtonPressed;
+                return _itemButtonPressed;
             });
 
         }
 
         void ItemButton_Released(System.Object sender, System.EventArgs e)
         {
-            if (stopwatch.Elapsed.TotalSeconds < 0.5)
+            if (_stopwatch.Elapsed.TotalSeconds < 0.5)
             {
                 StopTimer();
             }
@@ -64,9 +57,9 @@ namespace MatrixCalc.Views
 
         private void StopTimer()
         {
-            itemButtonPressed = false;
-            stopwatch.Stop();
-            stopwatch.Reset();
+            _itemButtonPressed = false;
+            _stopwatch.Stop();
+            _stopwatch.Reset();
         }
 
         private async void OpenItemOptions(int id)

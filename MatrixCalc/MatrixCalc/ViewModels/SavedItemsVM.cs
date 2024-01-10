@@ -47,7 +47,7 @@ namespace MatrixCalc.ViewModels
         {
             try
             {
-                App.Database.DeleteDbMatrixAsync(id).Wait();
+                App.Database.DeleteDbMatrixByIdAsync(id).Wait();
                 GetMatrices();
             }
             catch (Exception ex)

@@ -29,7 +29,7 @@ namespace MatrixCalc
             return _database.InsertAsync(new MatrixInfo(dB_Matrix));
         }
 
-        public Task<int> DeleteDbMatrixAsync(int id)
+        public Task<int> DeleteDbMatrixByIdAsync(int id)
         {
             return _database.DeleteAsync<MatrixInfo>(id);
         }

@@ -6,7 +6,6 @@ using Xamarin.Forms;
 
 namespace MatrixCalc.Models
 {
-    [AddINotifyPropertyChangedInterface]
 	public class MatrixInfo : IMatrixInfo
     {
         [PrimaryKey, AutoIncrement]
@@ -20,12 +19,12 @@ namespace MatrixCalc.Models
 		{
 		}
 
-        public MatrixInfo(IMatrixInfo matrix)
+        public MatrixInfo(IMatrixInfo copiedMatrix)
         {
-            Name = matrix.Name;
-            Values = matrix.Values;
-            Size = matrix.Size;
-            Date = matrix.Date;
+            Name = copiedMatrix.Name;
+            Values = copiedMatrix.Values;
+            Size = copiedMatrix.Size;
+            Date = copiedMatrix.Date;
         }
     }
 }

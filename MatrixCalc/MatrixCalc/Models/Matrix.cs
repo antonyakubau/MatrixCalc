@@ -97,18 +97,24 @@ namespace MatrixCalc.Models
         private void CreateButton(int row, int column)
         {
             if (row != column)
-            {
-                GetInfoButton getInfoButton = new GetInfoButton(row, column);
-                MatrixFrame buttonFrame = new MatrixFrame(getInfoButton);
-                AddToChildren(buttonFrame, row, column);
-                GetInfoButton.LastLineId++;
-            }
+                CreateGetInfoButton(row, column);
             else
-            {
-                UpdateButton updateButton = new UpdateButton();
-                MatrixFrame buttonFrame = new MatrixFrame(updateButton);
-                AddToChildren(buttonFrame, row, column);
-            }
+                CreateUpdateButton(row, column);
+        }
+
+        private void CreateGetInfoButton(int row, int column)
+        {
+            GetInfoButton getInfoButton = new GetInfoButton(row, column);
+            MatrixFrame buttonFrame = new MatrixFrame(getInfoButton);
+            AddToChildren(buttonFrame, row, column);
+            GetInfoButton.LastLineId++;
+        }
+
+        private void CreateUpdateButton(int row, int column)
+        {
+            UpdateButton updateButton = new UpdateButton();
+            MatrixFrame buttonFrame = new MatrixFrame(updateButton);
+            AddToChildren(buttonFrame, row, column);
         }
 
         private void CreateEntry(int row, int column)
