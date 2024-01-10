@@ -28,6 +28,11 @@ namespace MatrixCalc
         {
             return _database.InsertAsync(new MatrixInfo(dB_Matrix));
         }
+
+        public Task<int> DeleteDbMatrixByIdAsync(int id)
+        {
+            return _database.DeleteAsync<MatrixInfo>(id);
+        }
     }
 
     public static class Constants

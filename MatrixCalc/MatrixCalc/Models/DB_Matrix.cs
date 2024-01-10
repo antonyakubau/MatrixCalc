@@ -2,21 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using MatrixCalc.Models.Interfaces;
+using PropertyChanged;
 using SQLite;
 
 namespace MatrixCalc.Models
 {
     public class DB_Matrix : Matrix, IMatrixInfo
     {
-        public new int Id { get; set; }
-        public string Name { get; set; }
-        public string Values { get; set; }
-        public int Size { get; set; }
-        public string Date { get; set; }
+        public new int Id { get; protected set; }
+        public string Name { get; protected set; }
+        public string Values { get; protected set; }
+        public int Size { get; protected set; }
+        public string Date { get; protected set; }
 
         public DB_Matrix()
         {
 
+        }
+
+        public void SetInfo(string name, string values, int size, string date)
+        {
+            Name = name;
+            Values = values;
+            Size = size;
+            Date = date;
         }
 
         public virtual void Load(IMatrixInfo matrixInfo)

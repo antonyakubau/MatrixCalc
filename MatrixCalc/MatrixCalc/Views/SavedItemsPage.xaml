@@ -12,7 +12,7 @@
 			   TextColor="{StaticResource Secondary}"/>
 	</NavigationPage.TitleView>
 
-	<CollectionView
+	<CollectionView ItemsSource="{Binding DbMatrices}"
 			  x:Name="collectionView">
 
 		<CollectionView.ItemTemplate>
@@ -41,11 +41,12 @@
 						</StackLayout>
 							<Button
 							Grid.Row="0"
-							Opacity="0"
-							BackgroundColor="{StaticResource Primary}"
+							BackgroundColor="Transparent"
 							Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.OpenSavedMatrixCommand}"
 							CommandParameter="{Binding Id}"
-							Clicked="ItemButton_Clicked">
+							Clicked="ItemButton_Clicked"
+							Pressed="ItemButton_Pressed"
+							Released="ItemButton_Released">
 						</Button>
 
 						</Grid>

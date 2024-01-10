@@ -98,13 +98,14 @@ namespace MatrixCalc.ViewModels
         public ICommand SaveButtonCommand => new Command<string>((name) =>
         {
 			DB_Matrix dB_Matrix = _mainMatrix as DB_Matrix;
-			dB_Matrix.Name = name;
-			dB_Matrix.Values = ConvertInputEntryToValues(dB_Matrix.EntryList);
-			dB_Matrix.Size = dB_Matrix.Dimension.CurrentDimension;
-			dB_Matrix.Date = Convert.ToString(DateTime.Now);
+
+			dB_Matrix.SetInfo(
+				name,
+				ConvertInputEntryToValues(dB_Matrix.EntryList),
+				dB_Matrix.Dimension.CurrentDimension,
+				Convert.ToString(DateTime.Now));
 
             App.Database.SaveDbMatrixAsync(dB_Matrix);
-            
 
         });
 

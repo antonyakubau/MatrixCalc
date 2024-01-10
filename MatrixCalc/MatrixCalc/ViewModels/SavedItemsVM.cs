@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MatrixCalc.Models;
@@ -15,8 +16,7 @@ namespace MatrixCalc.ViewModels
 	{
         protected DB_Matrix _dbMatrix;
 
-        public List<MatrixInfo> DbMatrices { get; private set; }
-        public IEnumerable<IMatrixInfo> Matrices { get; set; }
+        public ObservableCollection<MatrixInfo> DbMatrices { get; set; }
 
 		public SavedItemsVM(IMatrix mainMatrix)
 		{
@@ -39,8 +39,22 @@ namespace MatrixCalc.ViewModels
 
         public async void GetMatrices()
 		{
-            DbMatrices = await App.Database.GetDbMatricesAsync();
+            DbMatrices = new ObservableCollection<MatrixInfo>
+                (await App.Database.GetDbMatricesAsync());
+            
 		}
+        public ICommand DeleteSavedMatrixCommand => new Command<int>((id) =>
+        {
+            try
+            {
+                App.Database.DeleteDbMatrixByIdAsync(id).Wait();
+                GetMatrices();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.ShowExceptionMessege(ex);
+            }
+        });
 
 		private MatrixInfo FindMatrix(int id)
         {
@@ -53,6 +67,7 @@ namespace MatrixCalc.ViewModels
             }
             throw new NullReferenceException("Matrix not found");
         }
+
     }
 }
 
