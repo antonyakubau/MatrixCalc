@@ -35,17 +35,31 @@ namespace MatrixCalc.ViewModels
 		public ICommand IncreaseDimensionCommand => new Command(
 			execute: () =>
 			{
-				_mainMatrix.Dimension.IncreaseDimension();
+				try
+                {
+                    _mainMatrix.Dimension.IncreaseDimension();
 
-				_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
+                    _mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
+                }
+				catch (Exception ex)
+                {
+                    ExceptionManager.ShowExceptionMessege(ex);
+                }
 				
 			});
 
 		public ICommand DecreaseDimensionCommand => new Command(() =>
 		{
-			_mainMatrix.Dimension.DecreaseDimension();
+			try
+			{
+                _mainMatrix.Dimension.DecreaseDimension();
 
-			_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
+                _mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
+            }
+			catch (Exception ex)
+			{
+                ExceptionManager.ShowExceptionMessege(ex);
+            }
 		});
 
 		private void ExecuteUpdateResults()
@@ -64,7 +78,7 @@ namespace MatrixCalc.ViewModels
 			catch (Exception ex)
 			{
 				ExceptionManager.ShowExceptionMessege(ex);
-				_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
+				//_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
 			}
 		});
 
@@ -82,7 +96,7 @@ namespace MatrixCalc.ViewModels
 			catch (Exception ex)
 			{
 				ExceptionManager.ShowExceptionMessege(ex);
-				_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
+				//_mainMatrix.UpdateMatrix(_mainMatrix.Dimension.CurrentDimension);
 			}
 		});
 
