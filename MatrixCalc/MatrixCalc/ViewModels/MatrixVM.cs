@@ -91,7 +91,7 @@ namespace MatrixCalc.ViewModels
 			_mainMatrix.UpdateValues();
 			if (ShowDialogManager.ShowMatrixUpdated != null)
 			{
-                ShowDialogManager.ShowMatrixUpdated();
+                //ShowDialogManager.ShowMatrixUpdated();
 			}
 		});
 

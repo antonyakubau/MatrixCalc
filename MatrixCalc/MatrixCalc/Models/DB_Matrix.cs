@@ -68,10 +68,10 @@ namespace MatrixCalc.Models
 
         private void LoadValues()
         {
+            List<string> ListValues = Values.Split(';').ToList();
+
             foreach (var entry in EntryList)
             {
-                List<string> ListValues = Values.Split(';').ToList();
-
                 int position = entry.Column + Dimension.CurrentDimension * entry.Row;
                 entry.UpdateTextSafe(ListValues[position]);
             }

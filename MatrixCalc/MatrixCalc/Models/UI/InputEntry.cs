@@ -5,7 +5,7 @@ namespace MatrixCalc.Models
 {
 	public class InputEntry : BaseEntry, IUpdatable
 	{
-		private string _lastNumber;
+		private string _lastNumericValue;
 
 		public int Row { get; protected set; }
 		public int Column { get; protected set; }
@@ -15,7 +15,7 @@ namespace MatrixCalc.Models
             InitializeSettings();
 
 			UpdateTextSafe(new Random().Next(0, 999).ToString());
-			_lastNumber = Text;
+			_lastNumericValue = Text;
 
 			Row = row;
 			Column = column;
@@ -31,7 +31,7 @@ namespace MatrixCalc.Models
             InitializeSettings();
 
 			UpdateTextSafe(oldInputEntry.Text);
-			_lastNumber = Text;
+			_lastNumericValue = Text;
 			
 			Row = oldInputEntry.Row;
 			Column = oldInputEntry.Column;
@@ -39,26 +39,22 @@ namespace MatrixCalc.Models
 
 		public void UpdateResults(object sender, TextChangedEventArgs e)
 		{
-			if (IsNumeric(e.NewTextValue))
+			if (IsNumeric())
 			{
-				Text = e.NewTextValue;
-				if (UpdateManager.UpdateResults != null)
+                _lastNumericValue = Text;
+                if (UpdateManager.UpdateResults != null)
 				{
                     UpdateManager.UpdateResults();
 				}
 			}
-			else
-			{
-				_lastNumber = e.OldTextValue;
-			}
 
 		}
 
-        public void UpdateTextSafe(string text)
+        public void UpdateTextSafe(string newText)
         {
-            RemoveEvents();
-            Text = text;
-            AssignEvents();
+            TextChanged -= UpdateResults;
+            Text = newText;
+            TextChanged += UpdateResults;
         }
 
         public void UpdateFontSize()
@@ -94,17 +90,20 @@ namespace MatrixCalc.Models
             Keyboard = Keyboard.Numeric;
             MaxLength = 3;
             Behaviors.Add(new InputTextBehavior());
-            AssignEvents();
+
+            TextChanged += UpdateResults;
+            Unfocused += RestoreNumber;
+            UpdateManager.UpdateFont += UpdateFontSize;
         }
 
-        private bool IsNumeric(string value)
+        private bool IsNumeric()
 		{
-			if (string.IsNullOrEmpty(value))
+			if (string.IsNullOrEmpty(Text))
 			{
 				return false;
 			}
 
-			foreach (char c in value)
+			foreach (char c in Text)
 			{
 				if (!char.IsDigit(c))
 				{
@@ -118,11 +117,11 @@ namespace MatrixCalc.Models
 
 		private void RestoreNumber(object sender, FocusEventArgs e)
 		{
-			if (Text == string.Empty)
-				Text = _lastNumber;
+			if (Text == string.Empty || !IsNumeric())
+				UpdateTextSafe(_lastNumericValue);
 		}
 
-		private bool SumMoreZero(string value)
+		private bool SumIsPositive(string value)
 		{
 			int sum = 0;
 
@@ -136,27 +135,13 @@ namespace MatrixCalc.Models
 				sum += (int)c;
 			}
 
-			if (sum <= 0)
+			if (sum < 0)
 			{
 				return false;
 			}
 
 			return true;
 		}
-
-        private void AssignEvents()
-        {
-            TextChanged += UpdateResults;
-            Unfocused += RestoreNumber;
-            UpdateManager.UpdateFont += UpdateFontSize;
-        }
-
-        private void RemoveEvents()
-        {
-            TextChanged -= UpdateResults;
-            Unfocused -= RestoreNumber;
-            UpdateManager.UpdateFont -= UpdateFontSize;
-        }
     }
 	
 
